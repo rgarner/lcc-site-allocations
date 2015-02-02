@@ -11,22 +11,32 @@ describe SiteAllocations::Import::Scores do
   end
 
   context 'everything is fine, and everyone is happy' do
+    let!(:site)       { Site.create!(shlaa_ref: 'exist1') }
+    let!(:score_type) { ScoreType.create(sa_objective_code: 'SA01') }
+
     let(:filename) { 'spec/fixtures/import/scores.csv' }
 
+    let(:logger)   { instance_spy Logger }
+
     before do
-      SiteAllocations::Import::Scores.new(filename).run!
+      SiteAllocations::Import::Scores.new(filename, logger).run!
     end
 
-    it 'imported lots' do
-      expect(::Scores.all.count).to eql(200)
+    it 'imported all it could find' do
+      expect(::Score.all.count).to eql(1)
     end
 
     describe 'the first' do
-      subject(:type) { Score.find_by(sa_objective_code: 'SA1') }
 
-      example { expect(type.description).to eql('Employment') }
-      example { expect(type.assumptions).to include('Based on the location') }
-      example { expect(type.scoring_descriptions).to include('Proposed Employment Use') }
+      subject(:score) { Score.find_by!(shlaa_ref: 'exist1') }
+
+      example { expect(score.score).to eql('0') }
+      example { expect(score.site).to eql(site) }
+      example { expect(score.score_type).to eql(score_type) }
+
+      it 'warns about sites it could not find' do
+        expect(logger).to have_received(:warn).with('no site for notexist2')
+      end
     end
   end
 end

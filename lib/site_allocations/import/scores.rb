@@ -2,17 +2,40 @@ require 'csv'
 
 module SiteAllocations
   module Import
-    class Scores < Struct.new(:filename)
+    class Scores
+      attr_reader :filename, :logger
+      def initialize(filename, logger = Logger.new(STDERR))
+        @filename = filename
+        @logger = logger
+      end
+
+      def sa_key_values(row)
+        row.to_a.select { |key, _| key =~ /^SA[0-9]{1,2}[a-d]?/}
+      end
+
       def run!
         CSV.read(filename, headers: true).each do |row|
-          Score.find_or_create_by!(sa_objective_code: row['SA Objective Code']) do |score_type|
-            # HMCA,Site Ref,SA01,SA02,SA03,SA04,SA05,SA06,SA07,SA08,SA09,SA10,SA11,SA12,SA13,SA14,SA15,SA16,SA17,SA18a,SA18b,SA18c,SA19,SA20,SA21,SA22a,SA22b,SA22c,SA22d,SustApprComment
-            # 1,12,0,1,1,1,0,0,1,1,0,1,-2,0,1,1,0,1,0,0,0,0,-2,0,0,0,0,0,1,""
-            # 1,180,0,0,1,1,0,0,1,1,0,0,1,0,1,2,1,1,0,1,0,0,0,0,0,0,0,0,0,"SA1&2 & 7 & 8 & 16 negative if in use, neutral if not"
+          shlaa_ref = row['Site Ref']
 
-            score_type.description = row['SA Objective Description']
-            score_type.assumptions = row['Assumptions Used']
-            score_type.scoring_descriptions = row['Scoring']
+          site = Site.find_by(shlaa_ref: shlaa_ref)
+          if site.nil?
+            logger.warn "no site for #{shlaa_ref}"
+            next
+          end
+
+          sa_key_values(row).each do |sa_code, value|
+            score_type = ScoreType.find_by(sa_objective_code: sa_code)
+
+            if score_type.nil?
+              logger.warn "no score type with sa_objective_code #{sa_code}"
+              next
+            end
+
+            Score.find_or_create_by!(score_type: score_type, shlaa_ref: shlaa_ref) do |score|
+              score.score_type = score_type
+              score.site = site
+              score.score = value
+            end
           end
         end
       end
