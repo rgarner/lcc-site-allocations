@@ -1,43 +1,29 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Shlaa ref:</strong>
-  <%= @site.shlaa_ref %>
-</p>
+<dl>
+  <dt>SHLAA ref</dt>
+  <dd><%= @site.shlaa_ref %></dd>
 
-<p>
-  <strong>Address:</strong>
-  <%= @site.address %>
-</p>
+  <dt>Address</dt>
+  <dd><%= @site.address %></dd>
 
-<p>
-  <strong>Area ha:</strong>
-  <%= @site.area_ha %>
-</p>
+  <dt>Area HA</dt>
+  <dd><%= @site.area_ha %></dd>
 
-<p>
-  <strong>Capacity:</strong>
-  <%= @site.capacity %>
-</p>
+  <dt>Capacity</dt>
+  <dd><%= @site.capacity %></dd>
 
-<p>
-  <strong>Io rag:</strong>
-  <%= @site.io_rag %>
-</p>
+  <dt>IO / RAG</dt>
+  <dd><%= @site.io_rag %></dd>
 
-<p>
-  <strong>Settlement hierarchy:</strong>
-  <%= @site.settlement_hierarchy %>
-</p>
+  <dt>Settlement hierarchy</dt>
+  <dd><%= @site.settlement_hierarchy %></dd>
 
-<p>
-  <strong>Green brown:</strong>
-  <%= @site.green_brown %>
-</p>
+  <dt>Greenfield / brownfield</dt>
+  <dd><%= @site.green_brown %></dd>
 
-<p>
-  <strong>Reason:</strong>
-  <%= @site.reason %>
-</p>
+  <dt>Reason</dt>
+  <dd><%= @site.reason %></dd>
+</dl>
 
 <%= link_to 'Back', sites_path %>
