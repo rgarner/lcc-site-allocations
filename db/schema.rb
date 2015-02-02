@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150202171600) do
+ActiveRecord::Schema.define(version: 20150202180808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 20150202171600) do
   end
 
   add_index "score_types", ["sa_objective_code"], name: "index_score_types_on_sa_objective_code", unique: true, using: :btree
+
+  create_table "scores", force: :cascade do |t|
+    t.string  "shlaa_ref"
+    t.string  "score"
+    t.integer "site_id"
+    t.integer "score_type_id"
+  end
+
+  add_index "scores", ["shlaa_ref"], name: "index_scores_on_shlaa_ref", using: :btree
+  add_index "scores", ["site_id", "score_type_id"], name: "index_scores_on_site_id_and_score_type_id", unique: true, using: :btree
 
   create_table "sites", force: :cascade do |t|
     t.string  "shlaa_ref"
