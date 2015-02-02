@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150130175027) do
+ActiveRecord::Schema.define(version: 20150202171600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "score_types", force: :cascade do |t|
+    t.string "sa_objective_code"
+    t.string "description"
+    t.string "assumptions"
+    t.text   "scoring_descriptions"
+  end
+
+  add_index "score_types", ["sa_objective_code"], name: "index_score_types_on_sa_objective_code", unique: true, using: :btree
 
   create_table "sites", force: :cascade do |t|
     t.string  "shlaa_ref"
