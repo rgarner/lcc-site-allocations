@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Sites</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Shlaa ref</th>
+      <th>Address</th>
+      <th>Area ha</th>
+      <th>Capacity</th>
+      <th>Io rag</th>
+      <th>Settlement hierarchy</th>
+      <th>Green brown</th>
+      <th>Reason</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sites.each do |site| %>
+      <tr>
+        <td><%= site.shlaa_ref %></td>
+        <td><%= site.address %></td>
+        <td><%= site.area_ha %></td>
+        <td><%= site.capacity %></td>
+        <td><%= site.io_rag %></td>
+        <td><%= site.settlement_hierarchy %></td>
+        <td><%= site.green_brown %></td>
+        <td><%= site.reason %></td>
+        <td><%= link_to 'Show', site %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
