@@ -14,7 +14,7 @@ RSpec.describe "sites/index", :type => :view do
         :reason => "Reason"
       ),
       Site.create!(
-        :shlaa_ref => "Shlaa Ref",
+        :shlaa_ref => "Shlaa Ref 2",
         :address => "Address",
         :area_ha => 1.5,
         :capacity => 1,
@@ -28,7 +28,6 @@ RSpec.describe "sites/index", :type => :view do
 
   it "renders a list of sites" do
     render
-    assert_select "tr>td", :text => "Shlaa Ref".to_s, :count => 2
     assert_select "tr>td", :text => "Address".to_s, :count => 2
     assert_select "tr>td", :text => 1.5.to_s, :count => 2
     assert_select "tr>td", :text => 1.to_s, :count => 2
