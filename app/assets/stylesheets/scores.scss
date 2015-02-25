@@ -1,0 +1,18 @@
+.scores {
+  td {
+    border: 1px solid silver;
+    padding: 0.2em;
+  }
+
+  .score {
+    text-align: right;
+  }
+
+  .score.v2 { background-color: green; }
+  .score.v1 { background-color: greenyellow; }
+  .score.v0 { }
+  .score.vx { background-color: silver; }
+  .score.v-1 { background-color: orange; }
+  .score.v-2 { background-color: red; }
+}
+
