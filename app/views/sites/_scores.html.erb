@@ -12,8 +12,10 @@
     <% scores.each do |score| %>
       <tr>
         <td><%= score.score_type.sa_objective_code %></td>
-        <td><%= score.score_type.description %></td>
-        <td class="<%= "score v#{score.score}" %>"><%= score.score %></td>
+        <td><%= link_to score.score_type.description, score.score_type %></td>
+        <td class="<%= "score v#{score.score}" %>">
+          <%= score.score %>
+        </td>
       </tr>
     <% end %>
   </tbody>
