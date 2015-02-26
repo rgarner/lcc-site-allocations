@@ -4,6 +4,6 @@ class SitesController < ApplicationController
   end
 
   def show
-    @site = Site.find(params[:id])
+    @site = Site.find_by(shlaa_ref: params[:id])
   end
 end
