@@ -1,18 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<dl>
+<h1><%= @site.address %></h1>
+
+<dl class="left col">
   <dt>SHLAA ref</dt>
   <dd><%= @site.shlaa_ref %></dd>
-
-  <dt>Address</dt>
-  <dd><%= @site.address %></dd>
 
   <dt>Area HA</dt>
   <dd><%= @site.area_ha %></dd>
 
   <dt>Capacity</dt>
   <dd><%= @site.capacity %></dd>
+</dl>
 
+<dl class="right col">
   <dt>IO / RAG</dt>
   <dd><%= @site.io_rag %></dd>
 
@@ -21,11 +22,15 @@
 
   <dt>Greenfield / brownfield</dt>
   <dd><%= @site.green_brown %></dd>
-
-  <dt>Reason</dt>
-  <dd><%= @site.reason %></dd>
 </dl>
 
-<%= render 'scores' %>
+<div class="reason">
+  <label>Reason</label>
+  <p><%= @site.reason %></p>
+</div>
+
+<% if @site.scores.any? %>
+  <%= render 'scores' %>
+<% end %>
 
 <%= link_to 'Back', sites_path %>

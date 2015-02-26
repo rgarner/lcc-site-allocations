@@ -1,18 +1,20 @@
 .scores {
-  td {
+  margin: 3em;
+  border-collapse: collapse;
+  th,td {
     border: 1px solid silver;
-    padding: 0.2em;
+    padding: 0.4em;
   }
 
   .score {
     text-align: right;
   }
 
-  .score.v2 { background-color: green; }
-  .score.v1 { background-color: greenyellow; }
-  .score.v0 { }
-  .score.vx { background-color: silver; }
-  .score.v-1 { background-color: orange; }
-  .score.v-2 { background-color: red; }
+  .score.v2  { background-color: #63BE7B; }
+  .score.v1  { background-color: #B1D580; }
+  .score.v0  { background-color: #FFEB84; }
+  .score.vx  { background-color:  silver; }
+  .score.v-1 { background-color: #FBAA77; }
+  .score.v-2 { background-color: #F8696B; }
 }
 
