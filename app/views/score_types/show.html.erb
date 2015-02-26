@@ -3,5 +3,7 @@
 <h2>Assumptions</h2>
 <p><%= @score_type.assumptions %></p>
 
-<h2>Scoring explanation</h2>
-<pre><%= @score_type.scoring_descriptions %></pre>
+<% if @score_type.scoring_descriptions.present?  %>
+  <h2>Scoring explanation</h2>
+  <pre><%= @score_type.scoring_descriptions %></pre>
+<% end %>
