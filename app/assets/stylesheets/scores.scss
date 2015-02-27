@@ -2,20 +2,6 @@
   width: 75%;
   margin: 0 auto 0 auto;
 
-  border-collapse: collapse;
-  th,td {
-    padding: 0.4em;
-  }
-
-  tr:nth-child(odd) {
-    background-color: #eeeeee
-  }
-
-  tr {
-    border-top: 1px solid silver;
-    border-bottom: 1px solid silver;
-  }
-
   .score {
     text-align: right;
   }
