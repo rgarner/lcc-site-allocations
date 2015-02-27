@@ -13,7 +13,7 @@
       <tr>
         <td><%= score.score_type.sa_objective_code %></td>
         <td><%= link_to score.score_type.description, score.score_type %></td>
-        <td class="<%= "score v#{score.score}" %>">
+        <td class="<%= present(score).css_class %>">
           <%= score.score %>
         </td>
       </tr>
