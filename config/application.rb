@@ -30,5 +30,9 @@ module LccSiteAllocations
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.after_initialize do |app|
+      app.config.paths.add 'app/presenters', eager_load: true
+    end
   end
 end
