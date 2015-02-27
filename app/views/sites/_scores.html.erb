@@ -12,7 +12,14 @@
     <% scores.each do |score| %>
       <tr>
         <td><%= score.score_type.sa_objective_code %></td>
-        <td><%= link_to score.score_type.description, score.score_type %></td>
+        <td>
+          <span class="help">
+            <span class="glyphicon glyphicon-question-sign"></span>
+            <pre class="show-on-hover"><%= score.score_type.scoring_descriptions %></pre>
+            <%= link_to score.score_type.description, score.score_type %>
+          </span>
+
+        </td>
         <td class="<%= present(score).css_class %>">
           <%= score.score %>
         </td>

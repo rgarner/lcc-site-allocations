@@ -1,9 +1,11 @@
 .scores {
-  width: 75%;
-  margin: 0 auto 0 auto;
+  width: 50%;
+  max-width: 45em;
+  margin: 2em auto 0 auto;
 
   .score {
     text-align: right;
+    width: 3em;
   }
 
   .score.v2  { background-color: #63BE7B; }
@@ -12,5 +14,26 @@
   .score.vx  { background-color:  silver; }
   .score.v-1 { background-color: #FBAA77; }
   .score.v-2 { background-color: #F8696B; }
+
+  .help {
+    border: 0;
+    position: relative;
+
+    .glyphicon-question-sign {
+      margin-right: 0.2em;
+    }
+
+    .show-on-hover {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 1.8em;
+      z-index: 1;
+    }
+
+    &:hover {
+      .show-on-hover { display: block; }
+    }
+  }
 }
 
