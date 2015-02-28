@@ -1,8 +1,24 @@
-.scores {
-  width: 50%;
-  max-width: 45em;
-  margin: 2em auto 0 auto;
+.site-total-score {
+  text-align: right;
 
+  .label {
+    color: black;
+
+    &.very-positive { background-color: $very-positive; }
+    &.positive      { background-color: $positive; }
+    &.neutral       { background-color: $neutral; }
+    &.negative      { background-color: $negative; }
+    &.very-negative { background-color: $very-negative; }
+  }
+}
+
+.site-total-score, .scores {
+  width: 65%;
+  max-width: 99em;
+  margin: 2em auto 0 auto;
+}
+
+.scores {
   .score {
     text-align: right;
     width: 3em;

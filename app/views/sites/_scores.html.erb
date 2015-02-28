@@ -1,4 +1,10 @@
-<% scores = @site.scores %>
+
+<h2 class="site-total-score">
+  Total score
+  <span class="label <%= total_css_class(@site.total_score) %>">
+    <%= @site.total_score %>
+  </span>
+</h2>
 
 <table class="scores">
   <thead>
@@ -9,7 +15,7 @@
     </tr>
   </thead>
   <tbody>
-    <% scores.each do |score| %>
+    <% @site.scores.each do |score| %>
       <tr>
         <td><%= score.score_type.sa_objective_code %></td>
         <td>
@@ -18,7 +24,6 @@
             <pre class="show-on-hover"><%= score.score_type.scoring_descriptions %></pre>
             <%= link_to score.score_type.description, score.score_type %>
           </span>
-
         </td>
         <td class="<%= present(score).css_class %>">
           <%= score.score %>
