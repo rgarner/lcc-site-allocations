@@ -2,7 +2,10 @@
 
 <p id="notice"><%= notice %></p>
 
-<h1><%= @site.address %></h1>
+<h1>
+  <%= green_brown_glyphs(@site) %>
+  <%= @site.address %>
+</h1>
 
 <dl class="left col">
   <dt>SHLAA ref</dt>
