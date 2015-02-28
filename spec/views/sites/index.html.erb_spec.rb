@@ -33,7 +33,6 @@ RSpec.describe "sites/index", :type => :view do
     assert_select "tr>td", :text => 1.to_s, :count => 2
     assert_select "tr>td", :text => "Io Rag".to_s, :count => 2
     assert_select "tr>td", :text => "Settlement Hierarchy".to_s, :count => 2
-    assert_select "tr>td", :text => "Green Brown".to_s, :count => 2
     assert_select "tr>td", :text => "Reason".to_s, :count => 2
   end
 end

@@ -11,21 +11,22 @@
       <th>Capacity</th>
       <th>IO / RAG</th>
       <th>Settlement hierarchy</th>
-      <th>Greenfield / brownfield</th>
       <th>Reason</th>
     </tr>
   </thead>
 
   <tbody>
     <% @sites.each do |site| %>
-      <tr>
-        <td><%= link_to site.shlaa_ref, site %></td>
-        <td><%= site.address %></td>
+      <tr class="site">
+        <td class="shlaa-ref">
+          <%= green_brown_glyphs(site) %>
+          <%= link_to site.shlaa_ref, site %>
+        </td>
+        <td><%= link_to site.address, site %></td>
         <td><%= site.area_ha %></td>
         <td><%= site.capacity %></td>
         <td><%= site.io_rag %></td>
         <td><%= site.settlement_hierarchy %></td>
-        <td><%= site.green_brown %></td>
         <td><%= site.reason %></td>
       </tr>
     <% end %>
