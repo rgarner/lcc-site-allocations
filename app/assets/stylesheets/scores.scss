@@ -8,12 +8,12 @@
     width: 3em;
   }
 
-  .score.v2  { background-color: #63BE7B; }
-  .score.v1  { background-color: #B1D580; }
-  .score.v0  { background-color: #FFEB84; }
-  .score.vx  { background-color:  silver; }
-  .score.v-1 { background-color: #FBAA77; }
-  .score.v-2 { background-color: #F8696B; }
+  .score.v2  { background-color: $very-positive; }
+  .score.v1  { background-color: $positive; }
+  .score.v0  { background-color: $neutral; }
+  .score.vx  { background-color: $null; }
+  .score.v-1 { background-color: $negative; }
+  .score.v-2 { background-color: $very-negative; }
 
   .help {
     border: 0;
