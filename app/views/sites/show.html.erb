@@ -2,11 +2,12 @@
 
 <p id="notice"><%= notice %></p>
 
-<h1>
+<h2>
   <%= green_brown_glyphs(@site) %>
   <%= @site.address %>
-</h1>
+</h2>
 
+<div class="panel">
 <dl class="left col">
   <dt>SHLAA ref</dt>
   <dd><%= @site.shlaa_ref %></dd>
@@ -36,11 +37,10 @@
   <label>Reason</label>
   <p><%= @site.reason %></p>
 </div>
+</div>
 
 <% if @site.scores.any? %>
   <%= render 'scores' %>
 <% end %>
 
 </div>
-
-<%= link_to 'Back', sites_path %>

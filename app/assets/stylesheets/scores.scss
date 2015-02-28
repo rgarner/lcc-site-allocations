@@ -13,15 +13,19 @@
 }
 
 .site-total-score, .scores {
-  width: 65%;
+  width: 80%;
   max-width: 99em;
-  margin: 2em auto 0 auto;
+  margin: 2em auto;
 }
 
 .scores {
   .score {
     text-align: right;
     width: 3em;
+  }
+
+  tbody tr:hover {
+    background-color: #d6e4ff !important;
   }
 
   .score.v2  { background-color: $very-positive; }
