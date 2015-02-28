@@ -5,6 +5,16 @@ class Site < ActiveRecord::Base
     shlaa_ref
   end
 
+  def green_status
+    case green_brown
+      when /mix/i then :mixed
+      when /greenfield/i then :green
+      when /brownfield/i then :brown
+    else
+      nil
+    end
+  end
+
   def total_score
     scores.inject(0) do |total, score|
       numeric_score = score.to_i
