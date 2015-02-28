@@ -1,18 +1,19 @@
 @import "colours";
 
+$lr-margin: 10%;
 header {
   background-color: $header-footer-background;
   color: $header-footer-foreground;
-  padding: 1em 10% 2em 10%;
+  padding: 1em $lr-margin 2em $lr-margin;
 }
 
 article {
-  margin: 1em 10%;
+  margin: 1em $lr-margin;
   font-family: "Noto Sans", sans-serif;
 }
 
 footer {
   background-color: $header-footer-background;
   color: $header-footer-foreground;
-  padding: 2em 0.5em;
+  padding: 1em $lr-margin 2em $lr-margin;
 }
