@@ -5,6 +5,10 @@ header {
   background-color: $header-footer-background;
   color: $header-footer-foreground;
   padding: 1em $lr-margin 2em $lr-margin;
+
+  a, a:hover, a:visited {
+    color: $header-footer-foreground;
+  }
 }
 
 article {
@@ -15,5 +19,5 @@ article {
 footer {
   background-color: $header-footer-background;
   color: $header-footer-foreground;
-  padding: 1em $lr-margin 2em $lr-margin;
+  padding: 1em $lr-margin 1em $lr-margin;
 }
