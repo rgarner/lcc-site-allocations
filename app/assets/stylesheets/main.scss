@@ -1,6 +1,6 @@
 @import "colours";
+$lr-margin: 15px;
 
-$lr-margin: 10%;
 header {
   background-color: $header-footer-background;
   color: $header-footer-foreground;
@@ -9,13 +9,18 @@ header {
   a, a:hover, a:visited {
     color: $header-footer-foreground;
   }
+  @media (max-width: $screen-sm-max) {
+    padding: 0.1em $lr-margin 0.8em $lr-margin;
+
+    h1 { font-size: 1.5em; }
+  }
 }
 
 article {
-  margin: 1em $lr-margin;
 }
 
 footer {
+  clear: both;
   background-color: $header-footer-background;
   color: $header-footer-foreground;
   padding: 1em $lr-margin 1em $lr-margin;

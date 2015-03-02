@@ -2,15 +2,17 @@
 <html>
 <head>
   <title>Site Allocations</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<div class="container">
 <header>
   <%= link_to root_path do %>
-    <h1>Leeds Site Allocations</h1>
+    <h1><span class="hidden-xs">Leeds </span>Site Allocations</h1>
   <% end %>
 </header>
 
@@ -21,6 +23,6 @@
 <footer>
   <p>© Zephyros Systems Limited 2015</p>
 </footer>
-
+</div>
 </body>
 </html>

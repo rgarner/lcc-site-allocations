@@ -1,19 +1,17 @@
 .glyphicon-tree-deciduous { color: darkgreen; }
 .glyphicon-oil            { color: saddlebrown; }
 
-.site .shlaa-ref {
-  width: 10em;
-}
+$padding-dl-and-reason: 1%;
 
-dl.col {
-  width: 45%;
+.site {
+  dl { margin: 0; padding: $padding-dl-and-reason; }
 }
 
 dt {
   line-height: 1.5em;
   font-weight: bold;
   display: inline-block;
-  clear: both;
+  clear: left;
   float: left;
 }
 
@@ -23,15 +21,7 @@ dd {
   float: right;
 }
 
-dl.left {
-  float: left;
-}
-
-dl.right {
-  float: right;
-}
-
 .reason {
-  label { font-weight: bold; }
   clear: both;
+  padding: $padding-dl-and-reason;
 }

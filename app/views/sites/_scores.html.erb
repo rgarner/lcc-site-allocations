@@ -9,7 +9,7 @@
 <table class="scores">
   <thead>
     <tr>
-      <th>SA code</th>
+      <th class="hidden-xs">SA code</th>
       <th>Description</th>
       <th>Score</th>
     </tr>
@@ -17,7 +17,7 @@
   <tbody>
     <% @site.scores.each do |score| %>
       <tr>
-        <td><%= score.score_type.sa_objective_code %></td>
+        <td class="hidden-xs"><%= score.score_type.sa_objective_code %></td>
         <td>
           <span class="help">
             <span class="glyphicon glyphicon-question-sign"></span>

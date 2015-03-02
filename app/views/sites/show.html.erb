@@ -7,36 +7,36 @@
   <%= @site.address %>
 </h2>
 
-<div class="well well-lg">
-<dl class="left col">
-  <dt>SHLAA ref</dt>
-  <dd><%= @site.shlaa_ref %></dd>
+<div class="well well-lg col-md-12">
+  <dl class="col-md-6">
+    <dt>SHLAA ref</dt>
+    <dd><%= @site.shlaa_ref %></dd>
 
-  <dt>Area HA</dt>
-  <dd><%= @site.area_ha %></dd>
+    <dt>Area HA</dt>
+    <dd><%= @site.area_ha %></dd>
 
-  <dt>Capacity</dt>
-  <dd><%= @site.capacity %></dd>
-</dl>
+    <dt>Capacity</dt>
+    <dd><%= @site.capacity %></dd>
+  </dl>
 
-<dl class="right col">
-  <dt>IO / RAG</dt>
-  <dd><%= @site.io_rag %></dd>
+  <dl class="col-md-6">
+    <dt>IO / RAG</dt>
+    <dd><%= @site.io_rag %></dd>
 
-  <dt>Settlement hierarchy</dt>
-  <dd><%= @site.settlement_hierarchy %></dd>
+    <dt>Settlement hierarchy</dt>
+    <dd><%= @site.settlement_hierarchy %></dd>
 
-  <dt>Greenfield / brownfield</dt>
-  <dd>
-    <%= green_brown_glyphs(@site) %>
-    <%= @site.green_brown %>
-  </dd>
-</dl>
+    <dt>Greenfield / brownfield</dt>
+    <dd>
+      <%= green_brown_glyphs(@site) %>
+      <%= @site.green_brown %>
+    </dd>
+  </dl>
 
-<div class="reason">
-  <label>Reason</label>
-  <p><%= @site.reason %></p>
-</div>
+  <div class="reason">
+    <label>Reason</label>
+    <p><%= @site.reason %></p>
+  </div>
 </div>
 
 <% if @site.scores.any? %>
