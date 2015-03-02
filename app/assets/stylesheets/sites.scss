@@ -4,8 +4,7 @@
 $padding-dl-and-reason: 1%;
 
 .sites {
-  @media (max-width: $screen-sm-max) {
-    margin-left: -$lr-margin;
+  @media (max-width: $screen-xs-max) {
     width: 100%;
     max-width: 100%;
   }
