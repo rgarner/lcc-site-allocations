@@ -1,0 +1,43 @@
+<div class="filters well well-lg">
+  <div class="filter-type">
+    <label class="filter-type-heading">Greenfield status</label>
+
+    <div class="btn-group" role="group" aria-label="Greenfield status">
+      <div class="btn-group" role="group">
+        <%= site_filter_link 'Greenfield', :by_green_status, 'green', glyphs: %w(glyphicon-tree-deciduous)  %>
+      </div>
+      <div class="btn-group" role="group">
+        <%= site_filter_link 'Brownfield', :by_green_status, 'brown', glyphs: %w(glyphicon-oil)  %>
+      </div>
+      <div class="btn-group" role="group">
+        <%= site_filter_link 'Mixed', :by_green_status, 'mix', glyphs: %w(glyphicon-tree-deciduous glyphicon-oil) %>
+      </div>
+      <div class="btn-group" role="group">
+        <a class="btn btn-default" href="<%= sites_path %>">
+          <span class="glyphicon glyphicon-list"></span>
+          All
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="filter-type">
+    <label class="filter-type-heading">With scores</label>
+
+    <div class="btn-group" role="group" aria-label="Greenfield status">
+
+      <div class="btn-group" role="group">
+        <%= site_filter_link 'With', :with_scores, '1' %>
+      </div>
+      <div class="btn-group" role="group">
+        <%= site_filter_link 'Without', :with_scores, '0' %>
+      </div>
+      <div class="btn-group" role="group">
+        <a class="btn btn-default" href="<%= sites_path %>">
+          All
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>

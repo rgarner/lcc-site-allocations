@@ -1,6 +1,9 @@
 class SitesController < ApplicationController
+  has_scope :by_green_status
+  has_scope :with_scores
+
   def index
-    @sites = Site.all
+    @sites  = apply_scopes(Site).all
   end
 
   def show

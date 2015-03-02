@@ -5,7 +5,7 @@ module SitesHelper
     when -10..-1 then 'negative'
     when -0 then 'neutral'
     when 1..10 then 'positive'
-    when 1..58 then 'very-positive'
+    when 11..58 then 'very-positive'
       else raise ArgumentError, "#{total_score} unbanded"
     end
   end
@@ -25,5 +25,32 @@ module SitesHelper
     else
       ''
     end.html_safe
+  end
+
+  def site_filter_link(text, name, value, options = {} )
+    # <a class="btn btn-default" href="<%= sites_path by_green_status: 'green' %>">
+    #   <span class="glyphicon glyphicon-tree-deciduous"></span>
+    #   Greenfield
+    # </a>
+    raise ArgumentError, 'name must be a symbol' unless name.is_a?(Symbol)
+
+    glyphs = options[:glyphs]
+
+    markup = if glyphs.try(:any?)
+               glyphs.map do |glyph|
+                 content_tag :span, nil, class: "glyphicon #{glyph}"
+               end.join("\n")
+             else
+               ''
+             end
+    markup = (markup + text).html_safe
+
+
+    if current_scopes[name] == value then
+      content_tag(:span, markup, class: 'btn btn-default active')
+    else
+      content_tag(:a, markup, class: 'btn btn-default',
+                  href: sites_path(current_scopes.merge({name => value})))
+    end
   end
 end

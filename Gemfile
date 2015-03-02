@@ -15,6 +15,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass'
 gem 'rack', '1.6.0' # Fix for OpenShift
+gem 'has_scope'
 
 group :development, :test do
   gem 'rspec-rails'

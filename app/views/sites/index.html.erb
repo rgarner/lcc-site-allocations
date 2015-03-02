@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<table>
+<%= render 'filter_panel' %>
+
+<h2><%= @sites.count %> sites</h2>
+
+<table class="table table-striped">
   <thead>
     <tr>
       <th>SHLAA ref</th>
