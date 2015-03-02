@@ -1,40 +1,38 @@
 <p id="notice"><%= notice %></p>
 
-<div class="col-md-12">
-  <%= render 'filter_panel' %>
+<%= render 'filter_panel' %>
 
-  <h2><%= @sites.count %> sites</h2>
+<h2><%= @sites.count %> sites</h2>
 
-  <table class="sites table table-striped">
-    <thead>
-      <tr>
-        <th class="shlaa-ref">SHLAA ref</th>
-        <th>Address</th>
-        <th>Area (ha)</th>
-        <th>Capacity</th>
-        <th class="hidden-xs hidden-sm">IO / RAG</th>
-        <th class="hidden-xs hidden-sm">Settlement hierarchy</th>
-        <th class="hidden-xs hidden-sm">Reason</th>
+<table class="sites table table-striped">
+  <thead>
+    <tr>
+      <th class="shlaa-ref">SHLAA ref</th>
+      <th>Address</th>
+      <th>Area (ha)</th>
+      <th>Capacity</th>
+      <th class="hidden-xs hidden-sm">IO / RAG</th>
+      <th class="hidden-xs hidden-sm">Settlement hierarchy</th>
+      <th class="hidden-xs hidden-sm">Reason</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sites.each do |site| %>
+      <tr class="site">
+        <td class="shlaa-ref">
+          <span class="shlaa-ref-content">
+            <%= green_brown_glyphs(site) %>
+            <%= link_to site.shlaa_ref, site %>
+           </span>
+        </td>
+        <td><%= link_to site.address, site %></td>
+        <td><%= site.area_ha %></td>
+        <td><%= site.capacity %></td>
+        <td class="hidden-xs hidden-sm"><%= site.io_rag %></td>
+        <td class="hidden-xs hidden-sm"><%= site.settlement_hierarchy %></td>
+        <td class="hidden-xs hidden-sm"><%= site.reason %></td>
       </tr>
-    </thead>
-
-    <tbody>
-      <% @sites.each do |site| %>
-        <tr class="site">
-          <td class="shlaa-ref">
-            <span class="shlaa-ref-content">
-              <%= green_brown_glyphs(site) %>
-              <%= link_to site.shlaa_ref, site %>
-             </span>
-          </td>
-          <td><%= link_to site.address, site %></td>
-          <td><%= site.area_ha %></td>
-          <td><%= site.capacity %></td>
-          <td class="hidden-xs hidden-sm"><%= site.io_rag %></td>
-          <td class="hidden-xs hidden-sm"><%= site.settlement_hierarchy %></td>
-          <td class="hidden-xs hidden-sm"><%= site.reason %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+    <% end %>
+  </tbody>
+</table>

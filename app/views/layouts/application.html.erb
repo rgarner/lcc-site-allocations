@@ -8,21 +8,25 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
-<div class="container">
-<header>
-  <%= link_to root_path do %>
-    <h1><span class="hidden-xs">Leeds </span>Site Allocations</h1>
-  <% end %>
-</header>
+<div class="container-fluid">
 
-<article>
-  <%= yield %>
-</article>
+  <header>
+    <%= link_to root_path do %>
+      <h1><span class="hidden-xs">Leeds </span>Site Allocations</h1>
+    <% end %>
+  </header>
 
-<footer>
-  <p>© Zephyros Systems Limited 2015</p>
-</footer>
+  <article>
+    <%= yield %>
+  </article>
+
+  <footer>
+    <p>© Zephyros Systems Limited 2015</p>
+  </footer>
+
 </div>
 </body>
+
 </html>
