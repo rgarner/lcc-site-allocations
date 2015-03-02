@@ -3,6 +3,21 @@
 
 $padding-dl-and-reason: 1%;
 
+.sites {
+  margin-left: -30px;
+  .shlaa-ref {
+    position: relative;
+    white-space: nowrap;
+
+    .shlaa-ref-content{
+      position: absolute;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
 .site {
   dl { margin: 0; padding: $padding-dl-and-reason; }
 }

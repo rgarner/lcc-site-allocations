@@ -5,10 +5,10 @@
 
   <h2><%= @sites.count %> sites</h2>
 
-  <table class="table table-striped">
+  <table class="sites table table-striped">
     <thead>
       <tr>
-        <th>SHLAA ref</th>
+        <th class="shlaa-ref">SHLAA ref</th>
         <th>Address</th>
         <th>Area (ha)</th>
         <th>Capacity</th>
@@ -22,8 +22,10 @@
       <% @sites.each do |site| %>
         <tr class="site">
           <td class="shlaa-ref">
-            <%= green_brown_glyphs(site) %>
-            <%= link_to site.shlaa_ref, site %>
+            <span class="shlaa-ref-content">
+              <%= green_brown_glyphs(site) %>
+              <%= link_to site.shlaa_ref, site %>
+             </span>
           </td>
           <td><%= link_to site.address, site %></td>
           <td><%= site.area_ha %></td>

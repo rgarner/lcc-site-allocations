@@ -43,7 +43,7 @@ module SitesHelper
              else
                ''
              end
-    markup = (markup + text).html_safe
+    markup = (markup + content_tag(:span, text, class: 'filter-text')).html_safe
 
 
     if current_scopes[name] == value then

@@ -5,6 +5,12 @@
 .filter-type-heading {
   padding-top: 0.3em;
   float: left;
-  min-width: 14em;
+  min-width: 10em;
   font-weight: normal;
+}
+
+.greenfield-status .filter-text {
+  @media (max-width: $screen-xs-max) {
+    display: none;
+  }
 }
