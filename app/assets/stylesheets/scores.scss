@@ -19,9 +19,15 @@
 }
 
 .scores {
+  $row-line-height: 1.8em;
+
   font-size: 125%;
 
   margin-bottom: 2em;
+
+  tr {
+    line-height: $row-line-height;
+  }
   .score {
     text-align: right;
     width: 3em;
@@ -50,7 +56,7 @@
       display: none;
       position: absolute;
       left: 0;
-      top: 1.4em;
+      top: $row-line-height;
       z-index: 1;
     }
 
