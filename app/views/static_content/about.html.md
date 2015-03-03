@@ -3,7 +3,7 @@
 This is an app that helps display Leeds City Council [site allocations data](http://github.com/rgarner/lcc-site-allocations-data) scraped
 from a number of PDFs held in council minutes. That data was effectively locked up there, requiring a lot of cross-referencing effort to use.
 
-## What does this do?
+## What does it do?
 
 This has all the sites that those PDFs know about. Some of those sites have scores that helped decide to allocate them,
 some do not (use the 'With'/'Without' buttons to see which).
