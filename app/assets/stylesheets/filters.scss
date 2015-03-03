@@ -4,6 +4,10 @@
   label {
     font-weight: bold;
   }
+
+  .glyphicon:nth-last-child(2) {
+    margin-right: 0.5em;
+  }
 }
 
 .filter-type-heading {

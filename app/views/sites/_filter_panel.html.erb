@@ -24,13 +24,13 @@
     <div class="btn-group" role="group" aria-label="Greenfield status">
 
       <div class="btn-group" role="group">
-        <%= site_filter_link 'With', :with_scores, '1' %>
+        <%= site_filter_link 'With', :with_scores, '1', glyphs: %w(glyphicon-ok-circle) %>
       </div>
       <div class="btn-group" role="group">
-        <%= site_filter_link 'Without', :with_scores, '0' %>
+        <%= site_filter_link 'Without', :with_scores, '0', glyphs: %w(glyphicon-remove-circle) %>
       </div>
       <div class="btn-group" role="group">
-        <%= site_filter_link 'All', :with_scores, :all %>
+        <%= site_filter_link 'All', :with_scores, :all, glyphs: %w(glyphicon-list) %>
       </div>
     </div>
   </div>
