@@ -58,5 +58,25 @@ describe SitesHelper do
         it { should_not include('glyph') }
       end
     end
+
+    context '"All" links' do
+      let(:current_scopes) { { with_scores: '1', something: 'else' } }
+
+      let(:text)    { 'All' }
+      let(:name)    { :with_scores }
+      let(:value)   { :all }
+      let(:options) { { glyphs: %w(some-glyph) } }
+
+      it { should_not include('with_scores')}
+      it { should_not include('active')}
+      it { should     include('something=else')}
+      it { should     include('<span class="glyphicon some-glyph')}
+
+      context 'is selected' do
+        let(:current_scopes) { {} }
+
+        it { should match(/class=.*active/) }
+      end
+    end
   end
 end

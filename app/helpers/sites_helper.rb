@@ -46,9 +46,16 @@ module SitesHelper
     markup = (markup + content_tag(:span, text, class: 'filter-text')).html_safe
 
 
-    if current_scopes[name] == value then
+    case
+    when current_scopes[name] == value
+      # Value is already selected. Don't render a link
       content_tag(:span, markup, class: 'btn btn-default active')
+    when value == :all
+      # Value should be removed from the query string
+      content_tag(:a, markup, class: "btn btn-default#{" active" if current_scopes[name].nil? }",
+                  href: sites_path(current_scopes.except(name)))
     else
+      # Value should be added to the query string
       content_tag(:a, markup, class: 'btn btn-default',
                   href: sites_path(current_scopes.merge({name => value})))
     end

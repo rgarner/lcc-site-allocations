@@ -13,10 +13,7 @@
         <%= site_filter_link 'Mixed', :by_green_status, 'mix', glyphs: %w(glyphicon-tree-deciduous glyphicon-oil) %>
       </div>
       <div class="btn-group" role="group">
-        <a class="btn btn-default" href="<%= sites_path %>">
-          <span class="glyphicon glyphicon-list"></span>
-          All
-        </a>
+        <%= site_filter_link 'All', :by_green_status, :all, glyphs: %w(glyphicon-list) %>
       </div>
     </div>
   </div>
@@ -33,11 +30,8 @@
         <%= site_filter_link 'Without', :with_scores, '0' %>
       </div>
       <div class="btn-group" role="group">
-        <a class="btn btn-default" href="<%= sites_path %>">
-          All
-        </a>
+        <%= site_filter_link 'All', :with_scores, :all %>
       </div>
-
     </div>
   </div>
 </div>
