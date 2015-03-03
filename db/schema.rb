@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150202180808) do
+ActiveRecord::Schema.define(version: 20150303150523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(version: 20150202180808) do
     t.string  "settlement_hierarchy"
     t.string  "green_brown"
     t.string  "reason"
+    t.integer "total_score"
+    t.integer "ranking"
   end
 
   add_index "sites", ["shlaa_ref"], name: "index_sites_on_shlaa_ref", unique: true, using: :btree

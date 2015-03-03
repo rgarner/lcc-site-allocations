@@ -23,6 +23,7 @@ module SiteAllocations
             next
           end
 
+          total = 0
           sa_key_values(row).each do |sa_code, value|
             score_type = ScoreType.find_by(sa_objective_code: sa_code)
 
@@ -35,8 +36,13 @@ module SiteAllocations
               score.score_type = score_type
               score.site = site
               score.score = value
+
+              numeric_value  = score.to_i
+              total += numeric_value unless numeric_value.nil?
             end
           end
+
+          site.update_attribute(:total_score, total)
         end
       end
     end

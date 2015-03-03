@@ -11,8 +11,9 @@ describe SiteAllocations::Import::Scores do
   end
 
   context 'everything is fine, and everyone is happy' do
-    let!(:site)       { Site.create!(shlaa_ref: 'exist1') }
-    let!(:score_type) { ScoreType.create(sa_objective_code: 'SA01') }
+    let!(:site)        { Site.create!(shlaa_ref: 'exist1') }
+    let!(:score_type)  { ScoreType.create(sa_objective_code: 'SA01') }
+    let!(:score_type2) { ScoreType.create(sa_objective_code: 'SA02') }
 
     let(:filename) { 'spec/fixtures/import/scores.csv' }
 
@@ -22,8 +23,12 @@ describe SiteAllocations::Import::Scores do
       SiteAllocations::Import::Scores.new(filename, logger).run!
     end
 
-    it 'imported all it could find' do
-      expect(::Score.all.count).to eql(1)
+    it 'imported all scores for which there were score types' do
+      expect(::Score.all.count).to eql(2)
+    end
+
+    it 'pre-totalled the results for the Site' do
+      expect(site.reload.total_score).to eql(1)
     end
 
     describe 'the first' do
