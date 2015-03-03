@@ -1,39 +1,27 @@
 @import "colours";
 $lr-margin: 15px;
 
-@mixin occupy-full-width {
-  width: 110%;
-  margin-left: -$lr_margin;
-  padding: 0.1em $lr-margin 0.8em $lr-margin * 2;
-}
-
-header {
-  background-color: $header-footer-background;
-  color: $header-footer-foreground;
-  padding: 1em $lr-margin 2em $lr-margin * 2;
-
-  a, a:hover, a:visited {
+nav {
+  &.navbar-inverse a.navbar-brand {
     color: $header-footer-foreground;
   }
-  @media (max-width: $screen-sm-max) {
-    @include occupy-full-width;
 
-    h1 { font-size: 1.5em; }
+  .navbar-nav {
+    float: right;
+    @media (max-width: $screen-xs-max) {
+      // Stop floating right when we're a hamburger
+      float: none;
+    }
   }
+
 }
 
 article {
 }
 
 footer {
-  clear: both;
   background-color: $header-footer-background;
   color: $header-footer-foreground;
-  padding: 1em $lr-margin 1em $lr-margin;
-
-  @media (max-width: $screen-sm-max) {
-    @include occupy-full-width;
-
-    font-size: 0.75em;
-  }
+  padding: 1em $lr-margin 0em $lr-margin;
+  border-radius: 0;
 }
