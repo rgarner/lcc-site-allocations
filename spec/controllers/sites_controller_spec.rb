@@ -26,10 +26,19 @@ RSpec.describe SitesController, :type => :controller do
   end
 
   describe "GET show" do
-    it "assigns the requested site as @site" do
-      site = Site.create! valid_attributes
-      get :show, {:id => site.to_param}, valid_session
-      expect(assigns(:site)).to eq(site)
+    context 'site exists' do
+      it "assigns the requested site as @site" do
+        site = Site.create! valid_attributes
+        get :show, {:id => site.to_param}, valid_session
+        expect(assigns(:site)).to eq(site)
+      end
+    end
+
+    context 'site does not exist' do
+      it '404s' do
+        get :show, {:id => 123456789}, valid_session
+        expect(response.code).to eql('404')
+      end
     end
   end
 end

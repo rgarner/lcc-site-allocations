@@ -7,6 +7,7 @@ class SitesController < ApplicationController
   end
 
   def show
-    @site = Site.find_by(shlaa_ref: params[:id])
+    @site = Site.find_by(shlaa_ref: params[:id]) or
+      render status: 404, text: "Site #{params[:id]} not found"
   end
 end
