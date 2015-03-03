@@ -3,16 +3,16 @@
 
   .label {
     color: black;
-
-    &.very-positive { background-color: $very-positive; }
-    &.positive      { background-color: $positive; }
-    &.neutral       { background-color: $neutral; }
-    &.negative      { background-color: $negative; }
-    &.very-negative { background-color: $very-negative; }
   }
+
+  .very-positive, &.very-positive { background-color: $very-positive; }
+  .positive     , &.positive      { background-color: $positive; }
+  .neutral      , &.neutral       { background-color: $neutral; }
+  .negative     , &.negative      { background-color: $negative; }
+  .very-negative, &.very-negative { background-color: $very-negative; }
 }
 
-.site-total-score, .scores {
+label.site-total-score, .scores {
   width: 100%;
   max-width: 99em;
   margin: 1em auto 0 auto;

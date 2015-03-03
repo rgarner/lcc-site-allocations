@@ -9,11 +9,14 @@
     <tr>
       <th class="shlaa-ref"><span class="hidden-xs">SHLAA ref</span></th>
       <th>Address</th>
-      <th>Area (ha)</th>
+      <th class="<%= "hidden-xs" unless not_showing_scores? %>">Area (ha)</th>
       <th>Capacity</th>
       <th class="hidden-xs hidden-sm">IO / RAG</th>
       <th class="hidden-xs hidden-sm">Settlement hierarchy</th>
       <th class="hidden-xs hidden-sm">Reason</th>
+      <% unless not_showing_scores? %>
+        <th class="site-total-score col-lg-1 col-md-1 col-sm-1">Score</th>
+      <% end %>
     </tr>
   </thead>
 
@@ -27,11 +30,14 @@
            </span>
         </td>
         <td><%= link_to site.address, site %></td>
-        <td><%= site.area_ha %></td>
+        <td class="<%= "hidden-xs" unless not_showing_scores? %>"><%= site.area_ha %></td>
         <td><%= site.capacity %></td>
         <td class="hidden-xs hidden-sm"><%= site.io_rag %></td>
         <td class="hidden-xs hidden-sm"><%= site.settlement_hierarchy %></td>
         <td class="hidden-xs hidden-sm"><%= site.reason %></td>
+        <% unless not_showing_scores? %>
+          <td class="site-total-score col-lg-1 col-md-1 col-sm-1 <%= total_css_class(site.total_score) %>"><%= site.total_score %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

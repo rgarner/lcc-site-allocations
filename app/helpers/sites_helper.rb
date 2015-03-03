@@ -6,8 +6,12 @@ module SitesHelper
     when -0 then 'neutral'
     when 1..10 then 'positive'
     when 11..58 then 'very-positive'
-      else raise ArgumentError, "#{total_score} unbanded"
+      else ''
     end
+  end
+
+  def not_showing_scores?
+    current_scopes[:with_scores] == '0'
   end
 
   GREEN = <<-HTML
