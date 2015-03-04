@@ -10,6 +10,33 @@ class Site < ActiveRecord::Base
     where("#{with == '0' ? 'NOT' : ''} EXISTS (SELECT 1 FROM scores WHERE site_id = sites.id)")
   }
 
+  scope :green_brown_summary, -> {
+    self.find_by_sql(
+      <<-SQL
+        SELECT
+          CASE
+           WHEN green_brown ~* 'mix'   THEN 'mix'
+           WHEN green_brown ~* 'green' THEN 'green'
+           WHEN green_brown ~* 'brown' THEN 'brown'
+           ELSE NULL
+          END AS coalesced_green_brown
+          , COUNT(*)
+          , MIN(total_score)
+          , MAX(total_score)
+          , ROUND(avg(total_score), 2) as average
+          , ROUND(STDDEV(total_score), 2) as stddev
+          FROM
+            sites
+          WHERE
+            green_brown != '' AND green_brown != 'n/a'
+          GROUP BY
+            coalesced_green_brown
+          ORDER BY
+           average DESC;
+      SQL
+    )
+  }
+
   def to_param
     shlaa_ref
   end

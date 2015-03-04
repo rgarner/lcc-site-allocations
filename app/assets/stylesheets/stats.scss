@@ -1,0 +1,17 @@
+// Place all the styles related to the stats_controller controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$chart-canvas-max-width: 800px;
+
+.canvas-container {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  max-width: $chart-canvas-max-width;
+}
+
+#summary-chart {
+  width: 100% !important;
+  max-width: $chart-canvas-max-width;
+  height: auto !important;
+}

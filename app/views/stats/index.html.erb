@@ -1,0 +1,40 @@
+<div class="page-header"><h1>Statistics</h1></div>
+
+<div class="canvas-container">
+  <canvas id="summary-chart"></canvas>
+</div>
+
+<script type="text/javascript">
+  var data = [
+    <% @green_brown_summary.each do |line| %>
+    {
+      value: <%= line.count %>,
+      color: "<%= doughnut_color(line.coalesced_green_brown) %>",
+      highlight: "<%= doughnut_color(line.coalesced_green_brown, highlight: true) %>",
+      label: "<%= line.coalesced_green_brown.humanize %>"
+    },
+    <% end %>
+  ]
+</script>
+
+<table class="table table-striped">
+  <thead>
+    <th></th>
+    <th>Avg</th>
+    <th>Min</th>
+    <th>Max</th>
+    <th>Std deviation</th>
+  </thead>
+  <tbody>
+  <% @green_brown_summary.each do |line| %>
+    <tr>
+      <td><%= line.coalesced_green_brown.humanize %></td>
+      <td><%= line.average %></td>
+      <td><%= line.min %></td>
+      <td><%= line.max %></td>
+      <td><%= line.stddev %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
