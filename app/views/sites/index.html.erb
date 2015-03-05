@@ -36,7 +36,9 @@
         <td class="hidden-xs hidden-sm"><%= site.settlement_hierarchy %></td>
         <td class="hidden-xs hidden-sm"><%= site.reason %></td>
         <% unless not_showing_scores? %>
-          <td class="site-total-score col-lg-1 col-md-1 col-sm-1 <%= total_css_class(site.total_score) %>"><%= site.total_score %></td>
+          <td class="site-total-score col-lg-1 col-md-1 col-sm-1 <%= total_css_class(site.total_score) %>">
+            <%= site.total_score || '–' %>
+          </td>
         <% end %>
       </tr>
     <% end %>
