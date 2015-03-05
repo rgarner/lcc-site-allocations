@@ -1,6 +1,7 @@
 <div class="page-header"><h1>Statistics</h1></div>
 
 <div class="canvas-container">
+  <div class="legend"></div>
   <canvas id="summary-chart"></canvas>
 </div>
 
@@ -8,31 +9,30 @@
   var data = [
     <% @green_brown_summary.each do |line| %>
     {
+      label: "<%= line.coalesced_green_brown.humanize %>",
       value: <%= line.count %>,
       color: "<%= doughnut_color(line.coalesced_green_brown) %>",
-      highlight: "<%= doughnut_color(line.coalesced_green_brown, highlight: true) %>",
-      label: "<%= line.coalesced_green_brown.humanize %>"
+      highlight: "<%= doughnut_color(line.coalesced_green_brown, highlight: true) %>"
     },
     <% end %>
   ]
 </script>
 
+<h2>Scores</h2>
 <table class="table table-striped">
   <thead>
     <th></th>
     <th>Avg</th>
     <th>Min</th>
     <th>Max</th>
-    <th>Std deviation</th>
   </thead>
   <tbody>
   <% @green_brown_summary.each do |line| %>
     <tr>
       <td><%= line.coalesced_green_brown.humanize %></td>
-      <td><%= line.average %></td>
-      <td><%= line.min %></td>
-      <td><%= line.max %></td>
-      <td><%= line.stddev %></td>
+      <td class="site-total-score <%= total_css_class(line.average) %>"><%= line.average %></td>
+      <td class="site-total-score <%= total_css_class(line.min) %>"><%= line.min %></td>
+      <td class="site-total-score <%= total_css_class(line.max) %>"><%= line.max %></td>
     </tr>
   <% end %>
   </tbody>
