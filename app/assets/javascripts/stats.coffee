@@ -7,4 +7,21 @@ Chart.defaults.global.responsive = true;
 jQuery ->
   canvas = document.getElementById("summary-chart")
   if canvas and ctx = canvas.getContext("2d")
-    new Chart(ctx).Pie(data, { animateScale : true, showScale: false });
+    pieChart = new Chart(ctx).Pie(
+      data, {
+        animateScale : true,
+        showScale: false,
+        legendTemplate : """
+          <ul>
+             <% [2, 0, 1].forEach(function(i) { %>
+               <li>
+                 <span class="badge <%= data[i].label.toLowerCase() %>"><%= data[i].value %></span>
+                 <label><%= data[i].label %></label>
+             </li>
+           <% }); %>
+          </ul>
+        """
+      }
+    )
+    legend = pieChart.generateLegend()
+    $('.legend').append(legend)

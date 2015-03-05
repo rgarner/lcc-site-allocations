@@ -3,15 +3,54 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 $chart-canvas-max-width: 800px;
+$small-stats-font-size: 100%;
+$normal-stats-font-size: 125%;
 
 .canvas-container {
   margin-left: auto !important;
   margin-right: auto !important;
   max-width: $chart-canvas-max-width;
+  position: relative;
 }
 
 #summary-chart {
   width: 100% !important;
   max-width: $chart-canvas-max-width;
   height: auto !important;
+}
+
+.badge {
+  &.brown { background-color: $brownfield; }
+  &.mix   { background-color: $mixed;      }
+  &.green { background-color: $greenfield; }
+}
+
+.legend {
+  position: absolute;
+  opacity: 0.9;
+  left: 0;
+  font-size: $normal-stats-font-size;
+  background-color: white;
+  padding-right: 1em;
+  ul {
+    list-style: none;
+    padding-left: 0;
+    margin-left: 1em;
+  }
+
+  @media (max-width: $screen-xs-max) {
+    font-size: $small-stats-font-size;
+  }
+
+  .badge {
+    width: 4em;
+    font-size: $normal-stats-font-size;
+    @media (max-width: $screen-xs-max) {
+      font-size: $small-stats-font-size;
+    }
+  }
+
+  label {
+    font-weight: normal;
+  }
 }
