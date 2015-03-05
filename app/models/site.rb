@@ -10,6 +10,30 @@ class Site < ActiveRecord::Base
     where("#{with == '0' ? 'NOT' : ''} EXISTS (SELECT 1 FROM scores WHERE site_id = sites.id)")
   }
 
+  scope :sort_by_capacity, ->(sort_order) {
+    case sort_order.try(:to_sym)
+    when :asc then order('sites.capacity NULLS LAST')
+    when :desc then order('sites.capacity DESC NULLS LAST')
+    else unscoped
+    end
+  }
+
+  scope :sort_by_area, ->(sort_order) {
+    case sort_order.try(:to_sym)
+    when :asc then order('sites.area_ha NULLS LAST')
+    when :desc then order('sites.area_ha DESC NULLS LAST')
+    else unscoped
+    end
+  }
+
+  scope :sort_by_score, ->(sort_order) {
+    case sort_order.try(:to_sym)
+    when :asc then order('sites.total_score NULLS LAST')
+    when :desc then order('sites.total_score DESC NULLS LAST')
+    else unscoped
+    end
+  }
+
   scope :green_brown_summary, -> {
     self.find_by_sql(
       <<-SQL

@@ -64,4 +64,40 @@ module SitesHelper
                   href: sites_path(current_scopes.merge({name => value})))
     end
   end
+
+  def site_sort_link(text, name, options = { order: :none })
+    # <a class="sort sort-asc" href="/sites/2062?thing=1' %>">
+    #   Capacity<span class="glyphicon glyphicon-sort-by-attributes"></span>
+    # </a>
+
+    raise ArgumentError, 'name must be a symbol' unless name.is_a?(Symbol)
+
+    current_sort_order = current_scopes[name].try(:to_sym)
+    next_sort_order    = case current_sort_order
+                         when :none, nil then :desc
+                         when :desc then :asc
+                         when :asc then :none
+                         end
+
+    href = if next_sort_order == :none
+             sites_path(current_scopes.except(name))
+           else
+             sites_path(
+               current_scopes
+                 .reject {|key| key.to_s =~ /^sort_by_/}
+                 .merge({name => next_sort_order})
+             )
+           end
+
+    content_tag :a, class: "sort sort-#{current_sort_order}", href: href do
+      case current_sort_order
+      when nil, :none
+        text
+      when :desc
+        text + content_tag(:span, nil, class: 'glyphicon glyphicon-sort-by-attributes-alt')
+      when :asc
+        text + content_tag(:span, nil, class: 'glyphicon glyphicon-sort-by-attributes')
+      end.html_safe
+    end
+  end
 end

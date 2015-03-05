@@ -79,4 +79,69 @@ describe SitesHelper do
       end
     end
   end
+
+  describe '#site_sort_link' do
+    let(:text) { 'Capacity' }
+    let(:name) { :sort_by_capacity }
+    let(:current_scopes) {{}}
+
+    before { allow(helper).to receive(:current_scopes).and_return(current_scopes) }
+
+    subject(:markup) { helper.site_sort_link(text, name) }
+
+    it 'is not liberal in what it expects' do
+      expect { helper.site_sort_link 'Text', 'string_name', '1' }.to raise_error(
+                                                                         ArgumentError,
+                                                                         /name must be a symbol/
+                                                                       )
+    end
+
+    context 'no current_scopes' do
+      it 'has no glyphicon' do
+        expect(markup).not_to include('glyphicon')
+      end
+
+      it 'generates a :desc link' do
+        expect(markup).to include('href="/sites?sort_by_capacity=desc')
+      end
+    end
+
+    context ':sort_by_capacity is already desc' do
+      let(:current_scopes) { { sort_by_capacity: 'desc' } }
+
+      it 'displays a desc icon' do
+        expect(markup).to include('glyphicon-sort-by-attributes-alt')
+      end
+
+      it 'generates an :asc link' do
+        expect(markup).to include('href="/sites?sort_by_capacity=asc"')
+      end
+    end
+
+    context ':sort_by_capacity is already asc' do
+      let(:current_scopes) { { sort_by_capacity: 'asc', by_green_status: 'green'} }
+      it 'generates an :none link' do
+        expect(markup).to match(/glyphicon-sort-by-attributes[" ]/)
+      end
+
+      it 'preserves other bits in the href' do
+        expect(markup).to include('href="/sites?by_green_status=green')
+      end
+
+      it 'does not have "none"' do
+        expect(markup).not_to include('sort_by_capacity=none')
+      end
+    end
+
+    context 'another sort is in place' do
+      let(:current_scopes) { { sort_by_custard: 'asc', by_green_status: 'green'} }
+
+      it 'adds our sort' do
+        expect(markup).to include('sort_by_capacity')
+      end
+      it 'removes the other sort' do
+        expect(markup).not_to include('custard')
+      end
+    end
+  end
 end
