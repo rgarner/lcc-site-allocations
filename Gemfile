@@ -19,6 +19,8 @@ gem 'chart-js-rails'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
