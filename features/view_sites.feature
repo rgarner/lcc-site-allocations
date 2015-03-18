@@ -9,3 +9,4 @@ Feature: View sites
   Scenario: Look at the unfiltered list
     When I visit the home page
     Then I should see a list of sites with a count
+    And I should see colour-coded scores for each site
