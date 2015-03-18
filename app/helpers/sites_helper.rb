@@ -10,8 +10,8 @@ module SitesHelper
     end
   end
 
-  def not_showing_scores?
-    current_scopes[:with_scores] == '0'
+  def showing_scores?
+    current_scopes[:with_scores] != '0'
   end
 
   GREEN = <<-HTML

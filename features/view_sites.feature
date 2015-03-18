@@ -10,3 +10,9 @@ Feature: View sites
     When I visit the home page
     Then I should see a list of sites with a count
     And I should see colour-coded scores for each site
+
+  Scenario: Filtering by sites without score
+    When I visit the home page
+    Then I should see the scores column
+    When I show only sites without scores
+    Then I should not see the scores column

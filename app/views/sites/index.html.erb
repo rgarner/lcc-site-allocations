@@ -9,14 +9,14 @@
     <tr>
       <th class="shlaa-ref"><span class="hidden-xs">SHLAA ref</span></th>
       <th>Address</th>
-      <th class="<%= "hidden-xs" unless not_showing_scores? %>">
+      <th class="<%= "hidden-xs" if showing_scores? %>">
         <%= site_sort_link 'Area (ha)', :sort_by_area %>
       </th>
       <th><%= site_sort_link 'Capacity', :sort_by_capacity %></th>
       <th class="hidden-xs hidden-sm">IO / RAG</th>
       <th class="hidden-xs hidden-sm">Settlement hierarchy</th>
       <th class="hidden-xs hidden-sm">Reason</th>
-      <% unless not_showing_scores? %>
+      <% if showing_scores? %>
         <th class="site-total-score col-lg-1 col-md-1 col-sm-1">
           <%= site_sort_link 'Score', :sort_by_score %>
         </th>
@@ -34,12 +34,12 @@
            </span>
         </td>
         <td><%= link_to site.address, site %></td>
-        <td class="<%= "hidden-xs" unless not_showing_scores? %>"><%= site.area_ha %></td>
+        <td class="<%= "hidden-xs" if showing_scores? %>"><%= site.area_ha %></td>
         <td><%= site.capacity %></td>
         <td class="hidden-xs hidden-sm"><%= site.io_rag %></td>
         <td class="hidden-xs hidden-sm"><%= site.settlement_hierarchy %></td>
         <td class="hidden-xs hidden-sm"><%= site.reason %></td>
-        <% unless not_showing_scores? %>
+        <% if showing_scores? %>
           <td class="site-total-score col-lg-1 col-md-1 col-sm-1 <%= total_css_class(site.total_score) %>">
             <%= site.total_score || '–' %>
           </td>

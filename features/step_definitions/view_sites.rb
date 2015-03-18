@@ -12,3 +12,18 @@ Then(/^I should see colour\-coded scores for each site$/) do
   expect(page).to have_selector('.site-total-score.neutral', count: 1)
   expect(page).to have_selector('.site-total-score.very-negative', count: 1)
 end
+
+
+Then(/^I should see the scores column$/) do
+  expect(page).to have_selector('th.site-total-score')
+end
+
+When(/^I show only sites without scores$/) do
+  within '.filters' do
+    click_link 'Without'
+  end
+end
+
+Then(/^I should not see the scores column$/) do
+  expect(page).not_to have_selector('th.site-total-score')
+end
