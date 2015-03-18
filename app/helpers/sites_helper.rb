@@ -60,7 +60,7 @@ module SitesHelper
                   href: sites_path(current_scopes.except(name)))
     else
       # Value should be added to the query string
-      content_tag(:a, markup, class: 'btn btn-default',
+      content_tag(:a, markup, class: options[:class] || 'btn btn-default',
                   href: sites_path(current_scopes.merge({name => value})))
     end
   end

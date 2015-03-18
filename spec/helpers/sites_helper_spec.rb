@@ -42,6 +42,12 @@ describe SitesHelper do
         it { should include ('active') }
         it { should include('<span class="glyphicon glyphicon-tree-deciduous"')}
       end
+
+      context 'has a class override' do
+        let(:options) { { class: 'btn' } }
+
+        it { should include('class="btn"') }
+      end
     end
 
     context 'with_scores' do

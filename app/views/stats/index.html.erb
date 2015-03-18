@@ -19,7 +19,7 @@
 </script>
 
 <h2>Scores</h2>
-<table class="table table-striped">
+<table class="averages table table-striped">
   <thead>
     <th></th>
     <th>Avg</th>
@@ -29,7 +29,12 @@
   <tbody>
   <% @green_brown_summary.each do |line| %>
     <tr>
-      <td><%= line.coalesced_green_brown.humanize %></td>
+      <td>
+        <%= site_filter_link line.coalesced_green_brown.humanize,
+                             :by_green_status,
+                             line.coalesced_green_brown,
+                             class: '' %>
+      </td>
       <td class="site-total-score <%= total_css_class(line.average) %>"><%= line.average %></td>
       <td class="site-total-score <%= total_css_class(line.min) %>"><%= line.min %></td>
       <td class="site-total-score <%= total_css_class(line.max) %>"><%= line.max %></td>
