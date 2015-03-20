@@ -5,3 +5,8 @@ Given(/^there are some sites(?: with scores)?$/) do
     create(:site, total_score: +19, green_brown: 'brown')
   ]
 end
+
+Given(/^that a site exists with some scores$/) do
+  @site = create :site
+  @site.scores = [create(:score), create(:score)]
+end
