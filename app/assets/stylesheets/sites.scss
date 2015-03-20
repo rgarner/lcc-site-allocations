@@ -42,3 +42,13 @@ dd {
   clear: both;
   padding: $padding-dl-and-reason;
 }
+
+#map {
+  width: 80%;
+  border: 1px solid black;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  height: 350px;
+  margin-left: auto;
+  margin-right: auto;
+}
