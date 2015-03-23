@@ -21,6 +21,7 @@ gem 'activerecord-postgis-adapter', '3.0.0.beta2'
 gem 'rgeo-geojson'
 
 group :development, :test do
+  gem 'poltergeist'
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
