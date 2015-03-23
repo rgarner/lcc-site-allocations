@@ -7,15 +7,15 @@ json.settlement_hierarchy @site.settlement_hierarchy
 json.green_brown          @site.green_brown
 json.reason               @site.reason
 
-factory = RGeo::GeoJSON::EntityFactory.instance
+if @site.boundary
+  feature = RGeo::GeoJSON::EntityFactory.instance.feature(
+    @site.boundary,
+    nil,
+    {
+      name:  @site.address,
+      score: @site.total_score
+    }
+  )
 
-feature = factory.feature(
-  @site.boundary,
-  nil,
-  {
-    name: @site.address,
-    score: @site.total_score
-  }
-)
-
-json.feature RGeo::GeoJSON.encode feature
+  json.feature(RGeo::GeoJSON.encode(feature))
+end

@@ -13,3 +13,11 @@ end
 And(/^I should see help for each type of score$/) do
   expect(page).to have_selector('.scores .help', count: @site.scores.count)
 end
+
+And(/^I should see a map for that site$/) do
+  expect(page).to have_selector('svg g path.leaflet-clickable')
+end
+
+But(/^I should not see a map for that site$/) do
+  expect(page).not_to have_selector('svg g path.leaflet-clickable')
+end

@@ -1,5 +1,9 @@
 <div class="site">
 
+<%= content_for :head do %>
+  <link rel="alternate" type="application/json" href="<%= site_path(@site, format: :json) %>">
+<% end %>
+
 <p id="notice"><%= notice %></p>
 
 <h2 class="col-lg-12">

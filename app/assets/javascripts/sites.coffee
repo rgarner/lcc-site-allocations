@@ -4,10 +4,36 @@
 
 jQuery ->
   if document.getElementById('map')
-    map = L.map('map', {
-      center: [53.801277, -1.548567],
-      zoom: 12
-    });
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+    $.ajax
+      url: $('meta[rel="alternate"][type="application/json"]').attr('href')
+      dataType: "json"
+      error: (jqXHR, textStatus, errorThrown) ->
+        console.log("Couldn't get map JSON - #{textStatus}: #{errorThrown}")
+        $('#map').remove()
+
+      success: (data, textStatus, jqXHR) ->
+        unless data.feature
+          $('#map').remove()
+          return
+
+        map = L.map('map', {
+          center: [53.801277, -1.548567],
+          zoom: 12
+        });
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        $('body').append "Successful AJAX call: #{data}"
+
+        feature = L.geoJson(
+          data.feature,
+          onEachFeature: (feature, layer) ->
+            layer.bindPopup("""
+              <h4>#{feature.properties.name}</h4>
+              <strong>Score</strong>
+              <span class="score">#{feature.properties.score}</span>
+            """)
+        )
+        feature.addTo(map);
+        map.fitBounds(feature.getBounds())
