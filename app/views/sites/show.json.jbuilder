@@ -1,1 +1,21 @@
-json.extract! @site, :id, :shlaa_ref, :address, :area_ha, :capacity, :io_rag, :settlement_hierarchy, :green_brown, :reason, :created_at, :updated_at
+json.shlaa_ref            @site.shlaa_ref
+json.address              @site.address
+json.area_ha              @site.area_ha
+json.capacity             @site.capacity
+json.io_rag               @site.io_rag
+json.settlement_hierarchy @site.settlement_hierarchy
+json.green_brown          @site.green_brown
+json.reason               @site.reason
+
+factory = RGeo::GeoJSON::EntityFactory.instance
+
+feature = factory.feature(
+  @site.boundary,
+  nil,
+  {
+    name: @site.address,
+    score: @site.total_score
+  }
+)
+
+json.feature RGeo::GeoJSON.encode feature
