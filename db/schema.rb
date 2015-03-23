@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150303150523) do
+ActiveRecord::Schema.define(version: 20150323115532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "postgis"
 
   create_table "score_types", force: :cascade do |t|
     t.string "sa_objective_code"
@@ -36,16 +37,17 @@ ActiveRecord::Schema.define(version: 20150303150523) do
   add_index "scores", ["site_id", "score_type_id"], name: "index_scores_on_site_id_and_score_type_id", unique: true, using: :btree
 
   create_table "sites", force: :cascade do |t|
-    t.string  "shlaa_ref"
-    t.string  "address"
-    t.float   "area_ha"
-    t.integer "capacity"
-    t.string  "io_rag"
-    t.string  "settlement_hierarchy"
-    t.string  "green_brown"
-    t.string  "reason"
-    t.integer "total_score"
-    t.integer "ranking"
+    t.string   "shlaa_ref"
+    t.string   "address"
+    t.float    "area_ha"
+    t.integer  "capacity"
+    t.string   "io_rag"
+    t.string   "settlement_hierarchy"
+    t.string   "green_brown"
+    t.string   "reason"
+    t.integer  "total_score"
+    t.integer  "ranking"
+    t.geometry "boundary",             limit: {:srid=>4326, :type=>"polygon"}
   end
 
   add_index "sites", ["shlaa_ref"], name: "index_sites_on_shlaa_ref", unique: true, using: :btree

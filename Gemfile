@@ -17,6 +17,7 @@ gem 'has_scope'
 gem 'kramdown'
 gem 'chart-js-rails'
 gem 'leaflet-rails'
+gem 'activerecord-postgis-adapter', '3.0.0.beta2'
 
 group :development, :test do
   gem 'byebug'
