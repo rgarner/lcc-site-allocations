@@ -24,8 +24,6 @@ jQuery ->
           attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        $('body').append "Successful AJAX call: #{data}"
-
         feature = L.geoJson(
           data.feature,
           onEachFeature: (feature, layer) ->
