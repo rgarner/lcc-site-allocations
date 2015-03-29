@@ -4,6 +4,7 @@ class SitesController < ApplicationController
   has_scope :sort_by_capacity
   has_scope :sort_by_area
   has_scope :sort_by_score
+  has_scope :containing_text
 
   def index
     @sites  = apply_scopes(Site).all

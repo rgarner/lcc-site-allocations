@@ -2,7 +2,7 @@
 
 <%= render 'filter_panel' %>
 
-<h2><%= @sites.count %> sites</h2>
+<h2><%= @sites.count(:all) %> sites</h2>
 
 <table class="sites table table-striped">
   <thead>

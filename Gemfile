@@ -19,8 +19,10 @@ gem 'chart-js-rails'
 gem 'leaflet-rails'
 gem 'activerecord-postgis-adapter', '3.0.0.beta2'
 gem 'rgeo-geojson'
+gem 'pg_search'
 
 group :development, :test do
+  gem 'launchy'
   gem 'poltergeist'
   gem 'byebug'
   gem 'web-console', '~> 2.0'

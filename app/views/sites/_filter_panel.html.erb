@@ -1,4 +1,4 @@
-<div class="filters well well-lg">
+<div class="filters well well-lg col-lg-12">
   <div class="filter-type">
     <label class="filter-type-heading">Greenfield status</label>
 
@@ -22,7 +22,6 @@
     <label class="filter-type-heading">With scores</label>
 
     <div class="btn-group" role="group" aria-label="Greenfield status">
-
       <div class="btn-group" role="group">
         <%= site_filter_link 'With', :with_scores, '1', glyphs: %w(glyphicon-ok-circle) %>
       </div>
@@ -33,5 +32,18 @@
         <%= site_filter_link 'All', :with_scores, :all, glyphs: %w(glyphicon-list) %>
       </div>
     </div>
+  </div>
+
+  <div class="filter-type">
+    <%= site_filter_form do %>
+      <label class="filter-type-heading" for="containing_text">Containing text</label>
+
+      <div class="input-group">
+        <%= text_field_tag 'containing_text', params[:containing_text], class: 'form-control', placeholder: 'Containing...' %>
+        <span class="input-group-btn">
+          <%= button_tag 'Search', class: 'btn btn-default' %>
+        </span>
+      </div>
+    <% end %>
   </div>
 </div>

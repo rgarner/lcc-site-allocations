@@ -1,8 +1,8 @@
 Given(/^there are some sites(?: with scores)?$/) do
   @sites = [
-    create(:site, total_score: -19, green_brown: 'green'),
-    create(:site, total_score: 0, green_brown: 'mix'),
-    create(:site, total_score: +19, green_brown: 'brown')
+    create(:site, total_score: -19, green_brown: 'green', address: 'Green site'),
+    create(:site, total_score: 0, green_brown: 'mix', address: 'Mixed site'),
+    create(:site, total_score: +19, green_brown: 'brown', address: 'Brown site')
   ]
 end
 

@@ -16,3 +16,8 @@ Feature: View sites
     Then I should see the scores column
     When I show only sites without scores
     Then I should not see the scores column
+
+  Scenario: Searching for sites by address or reason
+    When I search for sites with some text
+    Then I should see only those sites that match that address text
+    And I should see my search text

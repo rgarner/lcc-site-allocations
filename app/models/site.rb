@@ -1,4 +1,7 @@
 class Site < ActiveRecord::Base
+  include PgSearch
+  pg_search_scope :containing_text, against: { address: 'A', reason: 'B' }
+
   has_many :scores
 
   scope :by_green_status, ->(status) {
