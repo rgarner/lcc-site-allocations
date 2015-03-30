@@ -35,4 +35,14 @@ RSpec.describe "sites/index", :type => :view do
     assert_select "tr>td", :text => "Settlement Hierarchy".to_s, :count => 2
     assert_select "tr>td", :text => "Reason".to_s, :count => 2
   end
+
+  it 'passes through existing query parameters' do
+    allow(view).to receive(:params).and_return({
+                                                 by_green_status: 'green',
+                                                 with_scores: 1
+                                               })
+    render
+    expect(rendered).to have_selector('form input[type=hidden][name=by_green_status][value=green]')
+    expect(rendered).to have_selector('form input[type=hidden][name=with_scores][value="1"]')
+  end
 end

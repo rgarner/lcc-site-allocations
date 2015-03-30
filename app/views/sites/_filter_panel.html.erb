@@ -35,7 +35,10 @@
   </div>
 
   <div class="filter-type">
-    <%= site_filter_form do %>
+    <%= form_tag(sites_path, method: 'get', role: 'form') do %>
+      <%= hidden_field_tag(:by_green_status, params[:by_green_status]) %>
+      <%= hidden_field_tag(:with_scores,     params[:with_scores])  %>
+
       <label class="filter-type-heading" for="containing_text">Containing text</label>
 
       <div class="input-group">

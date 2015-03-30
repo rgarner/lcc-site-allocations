@@ -100,10 +100,4 @@ module SitesHelper
       end.html_safe
     end
   end
-
-  def site_filter_form
-    form_tag(sites_path(params.slice(:by_green_status,:with_scores)), method: 'get', role: 'form') do
-      yield
-    end
-  end
 end
