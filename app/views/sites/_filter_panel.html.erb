@@ -44,7 +44,7 @@
       <div class="input-group">
         <%= text_field_tag 'containing_text', params[:containing_text], class: 'form-control', placeholder: 'Containing...' %>
         <span class="input-group-btn">
-          <%= button_tag 'Search', class: 'btn btn-default' %>
+          <%= button_tag 'Search', name: nil, class: 'btn btn-default' %>
         </span>
       </div>
     <% end %>
