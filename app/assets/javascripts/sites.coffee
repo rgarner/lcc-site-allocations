@@ -5,7 +5,7 @@
 jQuery ->
   if document.getElementById('map')
     $.ajax
-      url: $('meta[rel="alternate"][type="application/json"]').attr('href')
+      url: $('link[rel="alternate"][type="application/json"]').attr('href')
       dataType: "json"
       error: (jqXHR, textStatus, errorThrown) ->
         console.log("Couldn't get map JSON - #{textStatus}: #{errorThrown}")
