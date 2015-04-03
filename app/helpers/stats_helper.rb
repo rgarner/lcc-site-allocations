@@ -18,4 +18,25 @@ module StatsHelper
     c[A] = alpha
     "rgba(#{c[R]},#{c[G]},#{c[B]},#{c[A]})"
   end
+
+  ##
+  # Create a Chart.js dataset by the given +type+
+  # Requires a by_score hash grouped by score, e.g.
+  # { -18: [{coalesced_green_brown: 'green', count: 6}, {coalesced_green_brown: 'brown', count: 1}]}
+  # { -17: [{coalesced_green_brown: 'green', count: 7}, {coalesced_green_brown: 'brown', count: 2}]}
+  DEFAULT_ALPHA = 0.75
+
+  def distribution_dataset(type, by_score)
+    {
+      label:       type.titleize,
+      fillColor:   named_to_rgba(doughnut_color(type),                  alpha: DEFAULT_ALPHA),
+      strokeColor: named_to_rgba(doughnut_color(type, highlight: true), alpha: DEFAULT_ALPHA),
+      pointColor:  named_to_rgba(doughnut_color(type, highlight: true), alpha: DEFAULT_ALPHA),
+      pointStrokeColor: "white",
+      data: by_score.each_pair.map do |score, rows|
+        row = rows.find {|row| row.coalesced_green_brown == type}
+        row.present? && score.present? ? row.count : 0
+      end
+    }.to_json.html_safe
+  end
 end

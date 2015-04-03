@@ -15,48 +15,9 @@
       <%= by_score.each_pair.map {|pair| pair.first}.compact.join(',') %>
     ],
     datasets: [
-      {
-        label: "Green",
-        fillColor: "<%= named_to_rgba(doughnut_color('green'), alpha: 0.75) %>",
-        strokeColor: "<%= named_to_rgba(doughnut_color('green', highlight: true), alpha: 0.75) %>",
-        pointColor: "<%= named_to_rgba(doughnut_color('green', highlight: true), alpha: 0.75) %>",
-        pointStrokeColor: "white",
-        data: <%=
-         by_score.each_pair.map do |score, rows|
-           row = rows.find {|row| row.coalesced_green_brown == 'green'}
-           row.present? && score.present? ? row.count : 0
-         end
-        %>
-
-      },
-      {
-        label: "Brown",
-        fillColor: "<%= named_to_rgba(doughnut_color('brown'), alpha: 0.75) %>",
-        strokeColor: "<%= named_to_rgba(doughnut_color('brown', highlight: true), alpha: 0.75) %>",
-        pointColor: "<%= named_to_rgba(doughnut_color('brown', highlight: true), alpha: 0.75) %>",
-        pointStrokeColor: "white",
-        data: <%=
-         by_score.each_pair.map do |score, rows|
-           row = rows.find {|row| row.coalesced_green_brown == 'brown'}
-           row.present? && score.present? ? row.count : 0
-         end
-        %>
-
-      },
-      {
-        label: "Mix",
-        fillColor: "<%= named_to_rgba(doughnut_color('mix'), alpha: 1.0) %>",
-        strokeColor: "<%= named_to_rgba('black', alpha: 1.0) %>",
-        pointColor: "<%= named_to_rgba(doughnut_color('mix', highlight: true), alpha: 1.0) %>",
-        pointStrokeColor: "white",
-        data: <%=
-         by_score.each_pair.map do |score, rows|
-           row = rows.find {|row| row.coalesced_green_brown == 'mix'}
-           row.present? && score.present? ? row.count : 0
-         end
-        %>
-
-      }
+      <%=  distribution_dataset('green', by_score) %>,
+      <%=  distribution_dataset('brown', by_score) %>,
+      <%=  distribution_dataset('mix', by_score) %>
     ]
   };
 </script>

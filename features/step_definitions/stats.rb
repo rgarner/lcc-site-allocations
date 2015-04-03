@@ -19,7 +19,7 @@ end
 
 Then(/^I should see a graph showing the distribution of site scores by green, brown and mixed$/) do
   expect(page.body).to include('var data = {')
-  expect(page.body).to include('label: "Green"')
-  expect(page.body).to include('label: "Brown"')
-  expect(page.body).to include('label: "Mix"')
+  expect(page.body).to include('"label":"Green"')
+  expect(page.body).to include('"label":"Brown"')
+  expect(page.body).to include('"label":"Mix"')
 end
