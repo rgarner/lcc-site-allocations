@@ -2,9 +2,16 @@ require 'rails_helper'
 
 RSpec.describe StatsController, :type => :controller do
 
-  describe "GET index" do
+  describe "GET summary" do
     it "returns http success" do
-      get :index
+      get :summary
+      expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe "GET distribution" do
+    it "returns http success" do
+      get :distribution
       expect(response).to have_http_status(:success)
     end
   end

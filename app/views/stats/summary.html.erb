@@ -1,6 +1,8 @@
 <div class="page-header"><h1>Statistics</h1></div>
 
-<div class="canvas-container">
+<%= render partial: 'tabs', locals: { active: 'Summary' } %>
+
+<div class="summary canvas-container">
   <div class="legend"></div>
   <canvas id="summary-chart"></canvas>
 </div>
@@ -21,10 +23,10 @@
 <h2>Scores</h2>
 <table class="averages table table-striped">
   <thead>
-    <th></th>
-    <th>Avg</th>
-    <th>Min</th>
-    <th>Max</th>
+  <th></th>
+  <th>Avg</th>
+  <th>Min</th>
+  <th>Max</th>
   </thead>
   <tbody>
   <% @green_brown_summary.each do |line| %>
@@ -42,4 +44,3 @@
   <% end %>
   </tbody>
 </table>
-

@@ -1,15 +1,21 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the StatsControllerHelper. For example:
-#
-# describe StatsControllerHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe StatsHelper, :type => :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '#named_to_rgba' do
+    context 'named color does not exist' do
+      it 'raises an ArgumentError' do
+        expect { helper.named_to_rgba('octarine') }.to raise_error(ArgumentError, /octarine is an imaginary color/)
+      end
+    end
+    context 'no alpha value is given' do
+      it 'translates named colors to rgba(...) with a defaulting to 1' do
+        expect(helper.named_to_rgba('green')).to eq('rgba(0,128,0,1.0)')
+      end
+    end
+    context 'an alpha value is given' do
+      it 'translates named colors to rgba(...) with a set to the alpha value' do
+        expect(helper.named_to_rgba('green', alpha: 0.5)).to eq('rgba(0,128,0,0.5)')
+      end
+    end
+  end
 end

@@ -64,6 +64,29 @@ class Site < ActiveRecord::Base
     )
   }
 
+  scope :distribution, -> {
+    self.find_by_sql(
+      <<-SQL
+        SELECT CASE
+          WHEN green_brown ~* 'mix'   THEN 'mix'
+          WHEN green_brown ~* 'green' THEN 'green'
+          WHEN green_brown ~* 'brown' THEN 'brown'
+          ELSE green_brown
+        END AS coalesced_green_brown,
+        COUNT(*),
+        total_score
+        FROM
+          sites
+        WHERE
+          green_brown <> ''
+        GROUP BY
+          coalesced_green_brown, total_score
+        ORDER BY
+          total_score, coalesced_green_brown;
+      SQL
+    )
+  }
+
   def to_param
     shlaa_ref
   end
