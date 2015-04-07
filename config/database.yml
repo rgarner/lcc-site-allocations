@@ -79,10 +79,7 @@ test: &test
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: lcc-site-allocations_production
-  username: lcc-site-allocations
-  password: <%= ENV['LCC-SITE-ALLOCATIONS_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
 
 cucumber:
   <<: *test
