@@ -32,8 +32,7 @@ describe SiteAllocations::Import::Scores do
     end
 
     describe 'the first' do
-
-      subject(:score) { Score.find_by!(shlaa_ref: 'exist1') }
+      subject(:score) { Score.find_by!(shlaa_ref: 'exist1', score_type: score_type) }
 
       example { expect(score.score).to eql('0') }
       example { expect(score.site).to eql(site) }
@@ -41,6 +40,16 @@ describe SiteAllocations::Import::Scores do
 
       it 'warns about sites it could not find' do
         expect(logger).to have_received(:warn).with('no site for notexist2')
+      end
+    end
+
+    describe 'a second import' do
+      before do
+        SiteAllocations::Import::Scores.new(filename, logger).run!
+      end
+
+      it 'does not zero the scores' do
+        expect(site.reload.total_score).to eql(1)
       end
     end
   end
