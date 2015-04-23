@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150323115532) do
+ActiveRecord::Schema.define(version: 20150423074826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20150323115532) do
     t.integer  "total_score"
     t.integer  "ranking"
     t.geometry "boundary",             limit: {:srid=>4326, :type=>"polygon"}
+    t.geometry "centroid",             limit: {:srid=>4326, :type=>"point"}
   end
 
   add_index "sites", ["shlaa_ref"], name: "index_sites_on_shlaa_ref", unique: true, using: :btree
