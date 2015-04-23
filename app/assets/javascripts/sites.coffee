@@ -30,4 +30,6 @@ jQuery ->
             """)
         )
         feature.addTo(map);
-        map.fitBounds(feature.getBounds())
+
+        options = if data.feature.geometry.type == 'Point' then { maxZoom: 15 } else {}
+        map.fitBounds(feature.getBounds(), options)
