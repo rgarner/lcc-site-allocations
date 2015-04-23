@@ -32,14 +32,14 @@ module SiteAllocations
               next
             end
 
-            Score.find_or_create_by!(score_type: score_type, shlaa_ref: shlaa_ref) do |score|
+            score = Score.find_or_create_by!(score_type: score_type, shlaa_ref: shlaa_ref) do |score|
               score.score_type = score_type
               score.site = site
               score.score = value
-
-              numeric_value  = score.to_i
-              total += numeric_value unless numeric_value.nil?
             end
+
+            numeric_value  = score.to_i || 0
+            total += numeric_value
           end
 
           site.update_attribute(:total_score, total)
