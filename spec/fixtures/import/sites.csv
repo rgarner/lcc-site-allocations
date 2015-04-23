@@ -1,3 +1,3 @@
-SHLAA Ref,Address,Area ha,_something_,Capacity,I&O RAG,Settlement Hierarchy,Green/Brown,Reason
-34,"Low Hall Road -Riverside Mill, Horsforth LS19",7.9,"",60,LG,Main Urban Area Extension,Brownfield,Site with current or recently expired planning permission or existing UDP allocation. Principle of residential development accepted
-271,"Springfield Road - Springhead Mills, Guiseley",1.9,"",54,LG,Major Settlement Infill,Brownfield,Site with current or recently expired planning permission or existing UDP allocation. Principle of residential development accepted
+SHLAA Ref,Address,Area ha,_something_,Capacity,I&O RAG,Settlement Hierarchy,Green/Brown,Reason,Easting,Northing
+34,"Low Hall Road -Riverside Mill, Horsforth LS19",7.9,"",60,LG,Main Urban Area Extension,Brownfield,Site with current or recently expired planning permission or existing UDP allocation. Principle of residential development accepted,421771,437622
+271,"Springfield Road - Springhead Mills, Guiseley",1.9,"",54,LG,Major Settlement Infill,Brownfield,Site with current or recently expired planning permission or existing UDP allocation. Principle of residential development accepted,419291,442038

@@ -15,6 +15,17 @@ module SiteAllocations
             site.green_brown = row['Green/Brown']
             site.reason = row['Reason']
           end
+
+          if row['Easting'] && row['Northing'] && row['Northing'] != 'area' # temporary workaround for 5158
+            point_wkt = "POINT(#{row['Easting']} #{row['Northing']})"
+            Site.connection.execute(
+              <<-SQL
+                UPDATE sites
+                SET centroid = ST_Transform(ST_GeomFromText('#{point_wkt}', 27700), 4326)
+                WHERE shlaa_ref='#{row['SHLAA Ref']}'
+              SQL
+            )
+          end
         end
       end
     end

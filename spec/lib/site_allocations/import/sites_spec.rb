@@ -33,6 +33,7 @@ describe SiteAllocations::Import::Sites do
       example { expect(site.settlement_hierarchy).to eql('Main Urban Area Extension') }
       example { expect(site.green_brown).to eql('Brownfield') }
       example { expect(site.reason).to include('recently expired planning') }
+      example { expect(site.centroid.to_s).to eql('POINT (-1.6706730369853784 53.83440286161263)') }
     end
   end
 end
