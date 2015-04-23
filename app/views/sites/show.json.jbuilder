@@ -7,9 +7,11 @@ json.settlement_hierarchy @site.settlement_hierarchy
 json.green_brown          @site.green_brown
 json.reason               @site.reason
 
-if @site.boundary
+feature_value = @site.boundary || @site.centroid
+
+if feature_value
   feature = RGeo::GeoJSON::EntityFactory.instance.feature(
-    @site.boundary,
+    feature_value,
     nil,
     {
       name:  @site.address,

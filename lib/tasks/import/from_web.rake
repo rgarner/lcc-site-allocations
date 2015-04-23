@@ -4,7 +4,7 @@ require 'site_allocations/import/scores'
 require 'open-uri'
 
 namespace :import do
-  desc 'Import all'
+  desc 'Import all from web'
   task :from_web => :environment do
     module SiteAllocations::Import
       WEB_BASE = 'https://raw.githubusercontent.com/rgarner/lcc-site-allocations-data/master/data/output'
