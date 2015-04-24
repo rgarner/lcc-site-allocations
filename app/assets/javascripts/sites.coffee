@@ -15,8 +15,10 @@ jQuery ->
 
         map = L.map('map', {
           center: [53.801277, -1.548567],
-          zoom: 12
+          zoom: 12,
+          scrollWheelZoom: false
         });
+
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
           attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
