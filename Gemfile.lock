@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/rgarner/rgeo-geojson.git
+  revision: 3f40333b26bfeeea20967dbb23e426764d0cc8a8
+  branch: allow-encoding-of-null-geometry
+  specs:
+    rgeo-geojson (0.3.1)
+      rgeo (~> 0.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -170,8 +178,6 @@ GEM
     rgeo-activerecord (2.1.1)
       activerecord (~> 4.2)
       rgeo (~> 0.3)
-    rgeo-geojson (0.3.1)
-      rgeo (~> 0.3)
     rspec-core (3.1.7)
       rspec-support (~> 3.1.0)
     rspec-expectations (3.1.2)
@@ -251,7 +257,7 @@ DEPENDENCIES
   poltergeist
   rack (= 1.6.0)
   rails (= 4.2.0)
-  rgeo-geojson
+  rgeo-geojson!
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
