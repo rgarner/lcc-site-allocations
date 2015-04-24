@@ -6,10 +6,12 @@ Feature: View sites
   Background:
     Given there are some sites
 
+  @javascript
   Scenario: Look at the unfiltered list
     When I visit the home page
     Then I should see a list of sites with a count
     And I should see colour-coded scores for each site
+    And I should see a map with those sites
 
   Scenario: Filtering by sites without score
     When I visit the home page

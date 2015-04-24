@@ -42,3 +42,8 @@ end
 Then(/^I should see my search text$/) do
   expect(page).to have_selector('input[value="Green site"]')
 end
+
+Then(/^I should see a map with those sites$/) do
+  expect(page).to have_selector('#map')
+  expect(page).to have_selector('.leaflet-marker-icon', count: @sites.count)
+end

@@ -1,5 +1,7 @@
 <%= content_for :head do %>
-  <link rel="alternate" type="application/vnd.geo+json" href="<%= sites_path(current_scopes).sub('sites?', 'sites.geojson?') %>">
+  <link rel="alternate"
+        type="application/vnd.geo+json"
+        href="<%= sites_path(current_scopes).sub(/sites(\?)?/, 'sites.geojson\1') %>">
 <% end %>
 
 <p id="notice"><%= notice %></p>
