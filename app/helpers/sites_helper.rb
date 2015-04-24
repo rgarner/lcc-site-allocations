@@ -100,4 +100,26 @@ module SitesHelper
       end.html_safe
     end
   end
+
+  def feature_json(json, site)
+    feature_value = site.boundary || site.centroid
+
+    if feature_value
+      feature = RGeo::GeoJSON::EntityFactory.instance.feature(
+        feature_value,
+        nil,
+        {
+          name:  site.address,
+          score: site.total_score
+        }
+      )
+
+      json.feature(RGeo::GeoJSON.encode(feature))
+    end
+  end
+
+  def site_json(json, site)
+    json.extract! site, :shlaa_ref, :address, :area_ha, :capacity, :io_rag, :settlement_hierarchy, :green_brown, :reason
+    json.url site_url(site, format: :json)
+  end
 end
