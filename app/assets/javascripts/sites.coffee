@@ -1,14 +1,15 @@
 jQuery ->
   if document.getElementById('map')
     $.ajax
-      url: $('link[rel="alternate"][type="application/json"]').attr('href')
+      url: $('link[rel="alternate"][type="application/vnd.geo+json"]').attr('href')
       dataType: "json"
       error: (jqXHR, textStatus, errorThrown) ->
         console.log("Couldn't get map JSON - #{textStatus}: #{errorThrown}")
         $('#map').remove()
 
-      success: (data, textStatus, jqXHR) ->
-        unless data.feature
+      success: (data_feature, textStatus, jqXHR) ->
+        # data_feature can be type: 'Feature' or type: 'FeatureCollection'
+        if data_feature.type == 'Feature' and !data_feature.geometry?
           $('#map').remove()
           return
 
@@ -21,7 +22,7 @@ jQuery ->
         }).addTo(map);
 
         feature = L.geoJson(
-          data.feature,
+          data_feature,
           onEachFeature: (feature, layer) ->
             layer.bindPopup("""
               <h4>#{feature.properties.name}</h4>
@@ -31,5 +32,5 @@ jQuery ->
         )
         feature.addTo(map);
 
-        options = if data.feature.geometry.type == 'Point' then { maxZoom: 15 } else {}
+        options = if data_feature.type == 'Feature' && data_feature.geometry.type == 'Point' then { maxZoom: 15 } else {}
         map.fitBounds(feature.getBounds(), options)
