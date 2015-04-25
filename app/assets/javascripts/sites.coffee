@@ -30,10 +30,11 @@ jQuery ->
         featureLayer = L.geoJson(
           data_feature,
           onEachFeature: (feature, layer) ->
+            site = feature.properties # for readability in the template
             layer.bindPopup("""
-              <h4><a href="/sites/#{feature.properties.shlaa_ref}">#{feature.properties.name}</a></h4>
+              <h4><a href="/sites/#{site.shlaa_ref}">#{site.name}</a></h4>
               <strong>Score</strong>
-              <span class="score">#{feature.properties.score || 'N/A'}</span>
+              <span class="score">#{if site.score? then site.score else 'N/A'}</span>
             """)
         )
         markers.addLayer(featureLayer)
