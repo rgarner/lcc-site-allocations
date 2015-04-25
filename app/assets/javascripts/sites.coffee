@@ -31,7 +31,7 @@ jQuery ->
           data_feature,
           onEachFeature: (feature, layer) ->
             layer.bindPopup("""
-              <h4>#{feature.properties.name}</h4>
+              <h4><a href="/sites/#{feature.properties.shlaa_ref}">#{feature.properties.name}</a></h4>
               <strong>Score</strong>
               <span class="score">#{feature.properties.score || 'N/A'}</span>
             """)
