@@ -33,7 +33,7 @@ jQuery ->
             layer.bindPopup("""
               <h4>#{feature.properties.name}</h4>
               <strong>Score</strong>
-              <span class="score">#{feature.properties.score}</span>
+              <span class="score">#{feature.properties.score || 'N/A'}</span>
             """)
         )
         markers.addLayer(featureLayer)
