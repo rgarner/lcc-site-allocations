@@ -122,6 +122,8 @@ GEM
     kramdown (0.13.8)
     launchy (2.4.3)
       addressable (~> 2.3)
+    leaflet-markercluster-rails (0.7.0)
+      railties (>= 3.1)
     leaflet-rails (0.7.4)
     loofah (2.0.1)
       nokogiri (>= 1.5.9)
@@ -251,6 +253,7 @@ DEPENDENCIES
   jquery-rails
   kramdown
   launchy
+  leaflet-markercluster-rails
   leaflet-rails
   pg
   pg_search

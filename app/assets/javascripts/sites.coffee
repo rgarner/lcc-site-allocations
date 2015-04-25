@@ -23,7 +23,11 @@ jQuery ->
           attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        feature = L.geoJson(
+        markers = new L.MarkerClusterGroup(
+          { disableClusteringAtZoom: 15, showCoverageOnHover: true, zoomToBoundsOnClick: true}
+        )
+
+        featureLayer = L.geoJson(
           data_feature,
           onEachFeature: (feature, layer) ->
             layer.bindPopup("""
@@ -32,7 +36,8 @@ jQuery ->
               <span class="score">#{feature.properties.score}</span>
             """)
         )
-        feature.addTo(map);
+        markers.addLayer(featureLayer)
+        markers.addTo(map);
 
         options = if data_feature.type == 'Feature' && data_feature.geometry.type == 'Point' then { maxZoom: 15 } else {}
-        map.fitBounds(feature.getBounds(), options)
+        map.fitBounds(markers.getBounds(), options)
