@@ -23,9 +23,22 @@ jQuery ->
           attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        markers = new L.MarkerClusterGroup(
-          { disableClusteringAtZoom: 15, showCoverageOnHover: true, zoomToBoundsOnClick: true}
-        )
+        markers = new L.MarkerClusterGroup({
+          disableClusteringAtZoom: 14,
+          showCoverageOnHover: true,
+          zoomToBoundsOnClick: true,
+          maxClusterRadius: 60,
+          iconCreateFunction: (cluster) ->
+            children = cluster.getChildCount()
+            return new L.DivIcon(
+              {
+                className: "leaflet-div-icon cluster",
+                html: """
+                  <div class="cluster-inner"><div class="cluster-count">#{children}</div></div>
+                """
+              }
+            )
+        })
 
         featureLayer = L.geoJson(
           data_feature,
