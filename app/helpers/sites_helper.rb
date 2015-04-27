@@ -1,11 +1,11 @@
 module SitesHelper
   def total_css_class(total_score)
     case total_score
-    when -58..-10 then 'very-negative'
-    when -10..-1 then 'negative'
-    when -0 then 'neutral'
-    when 1..10 then 'positive'
-    when 11..58 then 'very-positive'
+    when -58..-11 then 'very-negative'
+    when -10..-1  then 'negative'
+    when 0        then 'neutral'
+    when 1..10    then 'positive'
+    when 11..58   then 'very-positive'
       else ''
     end
   end

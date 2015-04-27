@@ -9,11 +9,11 @@ jQuery ->
 
       success: (data_feature, textStatus, jqXHR) ->
         getIconName = (s) ->
-          if      -58 < s < -11 then 'very-negative'
-          else if -10 < s < -1  then 'negative'
-          else if       s == 0  then 'neutral'
-          else if   1 < s < 10  then 'positive'
-          else if  11 < s < 58  then 'very-positive'
+          if      -58 <= s <= -11 then 'very-negative'
+          else if -10 <= s <=  -1 then 'negative'
+          else if        s == 0   then 'neutral'
+          else if   1 <= s <= 10  then 'positive'
+          else if  11 <= s <= 58  then 'very-positive'
           else 'no-score'
 
         # data_feature can be type: 'Feature' or type: 'FeatureCollection'
@@ -55,7 +55,7 @@ jQuery ->
             layer.bindPopup("""
               <h4><a href="/sites/#{site.shlaa_ref}">#{site.name}</a></h4>
               <strong>Score</strong>
-              <span class="score">#{if site.score? then site.score else 'N/A'}</span>
+              <span class="score label #{ if site.score? then getIconName(site.score) else ''}">#{if site.score? then site.score else 'N/A'}</span>
             """)
           pointToLayer: (feature, latlng) ->
             iconName = getIconName(feature.properties.score)
