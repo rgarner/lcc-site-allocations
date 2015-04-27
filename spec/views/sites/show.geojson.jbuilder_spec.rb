@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'sites/show.json.jbuilder' do
+describe 'sites/show.geojson.jbuilder' do
   before do
     assign(:site, site)
     render
@@ -19,24 +19,25 @@ describe 'sites/show.json.jbuilder' do
       )
     end
 
-    it 'does not include surrogate ID' do
-      expect(json['id']).to be_nil
-    end
-
-    it 'includes the address' do
-      expect(json['address']).to eql('somewhere')
-    end
-
-    describe 'the feature is the boundary' do
-      subject(:feature) { json['feature'] }
+    describe 'the feature is the JSON' do
+      subject(:feature) { json }
 
       example { expect(feature['type']).to eql('Feature') }
 
-      describe 'the properties' do
+      describe 'the geoJSON properties are the primary API way to get info about the site' do
         subject(:properties) { feature['properties'] }
 
         example { expect(properties['name']).to  eql(site.address) }
+        example { expect(properties['address']).to eql(site.address) }
         example { expect(properties['score']).to eql(site.total_score) }
+        example { expect(properties['shlaa_ref']).to eql(site.shlaa_ref) }
+        example { expect(properties['address']).to eql(site.address) }
+        example { expect(properties['area_ha']).to eql(site.area_ha) }
+        example { expect(properties['capacity']).to eql(site.capacity) }
+        example { expect(properties['io_rag']).to eql(site.io_rag) }
+        example { expect(properties['settlement_hierarchy']).to eql(site.settlement_hierarchy) }
+        example { expect(properties['green_brown']).to eql(site.green_brown) }
+        example { expect(properties['reason']).to eql(site.reason) }
       end
 
       describe 'the geometry' do
@@ -59,7 +60,7 @@ describe 'sites/show.json.jbuilder' do
     end
 
     describe 'the feature is the centroid' do
-      subject(:feature) { json['feature'] }
+      subject(:feature) { json }
 
       example { expect(feature['type']).to eql('Feature') }
 

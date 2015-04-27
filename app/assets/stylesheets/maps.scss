@@ -1,0 +1,34 @@
+$base-cluster-size: 45px;
+$inner-offset: $base-cluster-size / 8;
+
+.cluster {
+  top: -$base-cluster-size / 2 + $inner-offset;
+  left: -$base-cluster-size / 2 + $inner-offset;
+
+  background-color: $cluster-colour;
+  opacity: 0.85 !important;
+
+  min-width:  $base-cluster-size;
+  min-height: $base-cluster-size;
+  border-radius: 50%;
+
+  .cluster-inner {
+    position: relative;
+    color: white;
+    border: $inner-offset / 2 solid white;
+    border-radius: 50%;
+    margin-left: auto; margin-right: auto;
+    margin-top: $inner-offset / 2.5;
+    min-height: $base-cluster-size - $inner-offset;
+    max-width: $base-cluster-size - $inner-offset;
+    .cluster-count {
+      position: absolute;
+      font-weight: bold;
+      min-width: 100%;
+      min-height: 100%;
+      line-height: 100%;
+      text-align: center;
+      padding-top: $base-cluster-size / 4.2;
+    }
+  }
+}

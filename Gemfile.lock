@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/rgarner/rgeo-geojson.git
+  revision: 3f40333b26bfeeea20967dbb23e426764d0cc8a8
+  branch: allow-encoding-of-null-geometry
+  specs:
+    rgeo-geojson (0.3.1)
+      rgeo (~> 0.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -114,6 +122,8 @@ GEM
     kramdown (0.13.8)
     launchy (2.4.3)
       addressable (~> 2.3)
+    leaflet-markercluster-rails (0.7.0)
+      railties (>= 3.1)
     leaflet-rails (0.7.4)
     loofah (2.0.1)
       nokogiri (>= 1.5.9)
@@ -169,8 +179,6 @@ GEM
     rgeo (0.3.20)
     rgeo-activerecord (2.1.1)
       activerecord (~> 4.2)
-      rgeo (~> 0.3)
-    rgeo-geojson (0.3.1)
       rgeo (~> 0.3)
     rspec-core (3.1.7)
       rspec-support (~> 3.1.0)
@@ -245,13 +253,14 @@ DEPENDENCIES
   jquery-rails
   kramdown
   launchy
+  leaflet-markercluster-rails
   leaflet-rails
   pg
   pg_search
   poltergeist
   rack (= 1.6.0)
   rails (= 4.2.0)
-  rgeo-geojson
+  rgeo-geojson!
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

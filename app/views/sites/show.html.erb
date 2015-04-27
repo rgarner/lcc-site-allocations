@@ -1,7 +1,7 @@
 <div class="site">
 
 <%= content_for :head do %>
-  <link rel="alternate" type="application/json" href="<%= site_path(@site, format: :json) %>">
+  <link rel="alternate" type="application/vnd.geo+json" href="<%= site_path(@site, format: :geojson) %>">
 <% end %>
 
 <p id="notice"><%= notice %></p>

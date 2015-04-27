@@ -1,8 +1,16 @@
+<%= content_for :head do %>
+  <link rel="alternate"
+        type="application/vnd.geo+json"
+        href="<%= sites_path(current_scopes).sub(/sites(\?)?/, 'sites.geojson\1') %>">
+<% end %>
+
 <p id="notice"><%= notice %></p>
 
 <%= render 'filter_panel' %>
 
 <h2><%= @sites.count(:all) %> sites</h2>
+
+<div id="map"></div>
 
 <table class="sites table table-striped">
   <thead>
