@@ -70,4 +70,9 @@ jQuery ->
         markers.addTo(map);
 
         options = if data_feature.type == 'Feature' && data_feature.geometry.type == 'Point' then { maxZoom: 15 } else {}
-        map.fitBounds(markers.getBounds(), options)
+
+        # Cope with race condition causing map freeze. Decorous 50ms grace given
+        setTimeout ( ->
+          map.fitBounds(markers.getBounds(), options)
+        ), 50
+
