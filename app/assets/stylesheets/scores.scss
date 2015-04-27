@@ -1,7 +1,7 @@
-.site-total-score {
+.site-total-score, .score {
   text-align: right;
 
-  .label {
+  .label, &.label {
     color: black;
   }
 

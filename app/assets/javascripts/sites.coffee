@@ -9,11 +9,11 @@ jQuery ->
 
       success: (data_feature, textStatus, jqXHR) ->
         getIconName = (s) ->
-          if      -58 < s < -11 then 'very-negative'
-          else if -10 < s < -1  then 'negative'
-          else if       s == 0  then 'neutral'
-          else if   1 < s < 10  then 'positive'
-          else if  11 < s < 58  then 'very-positive'
+          if      -58 <= s <= -11 then 'very-negative'
+          else if -10 <= s <=  -1 then 'negative'
+          else if        s == 0   then 'neutral'
+          else if   1 <= s <= 10  then 'positive'
+          else if  11 <= s <= 58  then 'very-positive'
           else 'no-score'
 
         # data_feature can be type: 'Feature' or type: 'FeatureCollection'
@@ -55,17 +55,13 @@ jQuery ->
             layer.bindPopup("""
               <h4><a href="/sites/#{site.shlaa_ref}">#{site.name}</a></h4>
               <strong>Score</strong>
-              <span class="score">#{if site.score? then site.score else 'N/A'}</span>
+              <span class="score label #{ if site.score? then getIconName(site.score) else ''}">#{if site.score? then site.score else 'N/A'}</span>
             """)
           pointToLayer: (feature, latlng) ->
             iconName = getIconName(feature.properties.score)
-            icon = L.icon({
+            icon = new L.Icon.Default({
               iconUrl: "/assets/#{iconName}.png",
               iconRetinaUrl: "/assets/#{iconName}2x.png",
-              shadowUrl: '/assets/marker-shadow.png'
-              iconSize:     [25, 41], # size of the icon
-              iconAnchor:   [12, 40], # point of the icon which will correspond to marker's location
-              popupAnchor:  [1, -40] # point from which the popup should open relative to the iconAnchor
             })
             return L.marker(latlng, {icon: icon})
         )
@@ -74,4 +70,9 @@ jQuery ->
         markers.addTo(map);
 
         options = if data_feature.type == 'Feature' && data_feature.geometry.type == 'Point' then { maxZoom: 15 } else {}
-        map.fitBounds(markers.getBounds(), options)
+
+        # Cope with race condition causing map freeze. Decorous 50ms grace given
+        setTimeout ( ->
+          map.fitBounds(markers.getBounds(), options)
+        ), 50
+
