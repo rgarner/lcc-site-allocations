@@ -59,13 +59,9 @@ jQuery ->
             """)
           pointToLayer: (feature, latlng) ->
             iconName = getIconName(feature.properties.score)
-            icon = L.icon({
+            icon = new L.Icon.Default({
               iconUrl: "/assets/#{iconName}.png",
               iconRetinaUrl: "/assets/#{iconName}2x.png",
-              shadowUrl: '/assets/marker-shadow.png'
-              iconSize:     [25, 41], # size of the icon
-              iconAnchor:   [12, 40], # point of the icon which will correspond to marker's location
-              popupAnchor:  [1, -40] # point from which the popup should open relative to the iconAnchor
             })
             return L.marker(latlng, {icon: icon})
         )
