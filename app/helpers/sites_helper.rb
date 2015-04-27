@@ -102,10 +102,8 @@ module SitesHelper
   end
 
   def feature_json(site)
-    feature_value = site.boundary || site.centroid
-
-    feature = RGeo::GeoJSON::EntityFactory.instance.feature(
-      feature_value,
+    RGeo::GeoJSON.encode(RGeo::GeoJSON::EntityFactory.instance.feature(
+      site.boundary || site.centroid,
       nil,
       {
         name:  site.address,
@@ -119,8 +117,6 @@ module SitesHelper
         green_brown: site.green_brown,
         reason: site.reason
       }
-    )
-
-    RGeo::GeoJSON.encode(feature)
+    ))
   end
 end
