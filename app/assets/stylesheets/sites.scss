@@ -43,11 +43,32 @@ dd {
   padding: $padding-dl-and-reason;
 }
 
+ul.marker-key {
+  padding: 0;
+  font-size: 0.85em;
+  float: right;
+  text-align: center;
+  line-height: 25px;
+
+  li {
+    background-size: 17px 27px;
+    display: inline;
+    padding: 4px 0 10px 23px;
+    background-repeat: no-repeat;
+  }
+
+  .very-negative { background-image: url(asset-path('very-negative.png')) ; }
+  .negative      { background-image: url(asset-path('negative.png')) ; }
+  .neutral       { background-image: url(asset-path('neutral.png')) ; }
+  .positive      { background-image: url(asset-path('positive.png')) ; }
+  .very-positive { background-image: url(asset-path('very-positive.png')) ; }
+}
+
 #map {
   width: 100%;
-  border: 1px solid black;
+  border: 1px solid #CCC;
   margin-top: 2em;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
   height: 350px;
   margin-left: auto;
   margin-right: auto;

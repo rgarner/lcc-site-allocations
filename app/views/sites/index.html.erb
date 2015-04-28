@@ -12,6 +12,16 @@
 
 <div id="map"></div>
 
+<% if showing_scores? %>
+  <ul class="marker-key">
+    <li class="very-negative">Very negative</li>
+    <li class="negative">Negative</li>
+    <li class="neutral">Neutral</li>
+    <li class="positive">Positive</li>
+    <li class="very-positive">Very positive</li>
+  </ul>
+<% end %>
+
 <table class="sites table table-striped">
   <thead>
     <tr>
