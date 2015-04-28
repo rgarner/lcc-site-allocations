@@ -16,6 +16,13 @@ jQuery ->
           else if  11 <= s <= 58  then 'very-positive'
           else 'no-score'
 
+        ColorMarker = L.Icon.extend({ options: {
+          shadowUrl: '/assets/marker-shadow.png'
+          iconSize: [25, 41], # size of the icon
+          iconAnchor: [12, 40], # point of the icon which will correspond to marker's location
+          popupAnchor: [1, -40] # point from which the popup should open relative to the iconAnchor
+        }})
+
         # data_feature can be type: 'Feature' or type: 'FeatureCollection'
         if data_feature.type == 'Feature' and !data_feature.geometry?
           $('#map').remove()
@@ -59,11 +66,11 @@ jQuery ->
             """)
           pointToLayer: (feature, latlng) ->
             iconName = getIconName(feature.properties.score)
-            icon = new L.Icon.Default({
-              iconUrl: "/assets/#{iconName}.png",
-              iconRetinaUrl: "/assets/#{iconName}2x.png",
+            icon = new ColorMarker({
+              iconUrl:       "/assets/#{iconName}.png",
+              iconRetinaUrl: "/assets/#{iconName}2x.png"
             })
-            return L.marker(latlng, {icon: icon})
+            return L.marker(latlng, { icon: icon })
         )
 
         markers.addLayer(featureLayer)
