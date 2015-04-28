@@ -5,6 +5,10 @@
     font-weight: bold;
   }
 
+  > .btn-group, .input-group {
+    min-width: 240px;
+  }
+
   .glyphicon:nth-last-child(2) {
     margin-right: 0.5em;
   }
