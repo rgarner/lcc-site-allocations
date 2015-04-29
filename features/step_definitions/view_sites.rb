@@ -47,3 +47,11 @@ Then(/^I should see a map with those sites$/) do
   expect(page).to have_selector('#map')
   expect(page).to have_selector('.leaflet-marker-icon', count: @sites.count)
 end
+
+And(/^I should see a key for the map markers$/) do
+  expect(page).to have_selector('.marker-key')
+end
+
+And(/^I should not see a key for the map markers$/) do
+  expect(page).not_to have_selector('.marker-key')
+end
