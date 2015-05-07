@@ -11,7 +11,7 @@ Feature: View sites
     When I visit the home page
     Then I should see a list of sites with a count
     And I should see colour-coded scores for each site
-    And I should see a map with those sites
+    And I should see a map showing boundaries for sites that have them and markers for those that don't
     And I should see a key for the map markers
 
   Scenario: Filtering by sites without score

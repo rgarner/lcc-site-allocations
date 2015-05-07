@@ -8,7 +8,7 @@ jQuery ->
         $('#map').remove()
 
       success: (data_feature, textStatus, jqXHR) ->
-        getIconName = (s) ->
+        getClassName = (s) ->
           if      -58 <= s <= -11 then 'very-negative'
           else if -10 <= s <=  -1 then 'negative'
           else if        s == 0   then 'neutral'
@@ -62,15 +62,20 @@ jQuery ->
             layer.bindPopup("""
               <h4><a href="/sites/#{site.shlaa_ref}">#{site.name}</a></h4>
               <strong>Score</strong>
-              <span class="score label #{ if site.score? then getIconName(site.score) else ''}">#{if site.score? then site.score else 'N/A'}</span>
+              <span class="score label #{ if site.score? then getClassName(site.score) else ''}">#{if site.score? then site.score else 'N/A'}</span>
             """)
           pointToLayer: (feature, latlng) ->
-            iconName = getIconName(feature.properties.score)
+            iconName = getClassName(feature.properties.score)
             icon = new ColorMarker({
               iconUrl:       "/assets/#{iconName}.png",
               iconRetinaUrl: "/assets/#{iconName}2x.png"
             })
             return L.marker(latlng, { icon: icon })
+          style: (feature) ->
+            {
+              style: null,
+              className: "boundary #{getClassName(feature.properties.score)}"
+            }
         )
 
         markers.addLayer(featureLayer)

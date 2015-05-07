@@ -12,6 +12,17 @@
   .very-negative, &.very-negative { background-color: $very-negative; }
 }
 
+path.boundary {
+  stroke-width: 2px;
+  fill-opacity: 0.7;
+  &.very-positive { fill: $very-positive; stroke: darken($very-positive, 50%); }
+  &.positive      { fill: $positive;      stroke: darken($very-positive, 50%); }
+  &.neutral       { fill: $neutral;       stroke: darken($neutral, 50%); }
+  &.no-score      { fill: $null;          stroke: darken($null, 50%); }
+  &.negative      { fill: $negative;      stroke: darken($negative, 50%); }
+  &.very-negative { fill: $very-negative; stroke: darken($very-negative, 50%); }
+}
+
 label.site-total-score, .scores {
   width: 100%;
   max-width: 99em;
