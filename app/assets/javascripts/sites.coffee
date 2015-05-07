@@ -39,7 +39,7 @@ jQuery ->
         }).addTo(map);
 
         markers = new L.MarkerClusterGroup({
-          disableClusteringAtZoom: 14,
+          disableClusteringAtZoom: 13,
           showCoverageOnHover: true,
           zoomToBoundsOnClick: true,
           maxClusterRadius: 60,
