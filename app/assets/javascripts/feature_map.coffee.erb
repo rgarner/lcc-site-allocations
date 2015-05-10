@@ -28,11 +28,13 @@ class @FeatureMap
 
   createColorMarker = (feature, latlng) ->
     iconName = getClassName(feature.properties.score)
-    icon = new ColorMarker({
-      iconUrl:       "/assets/#{iconName}.png",
-      iconRetinaUrl: "/assets/#{iconName}2x.png"
+    L.marker(
+        latlng, {
+          icon: new ColorIcon({
+            iconUrl:       "/assets/#{iconName}.png",
+            iconRetinaUrl: "/assets/#{iconName}2x.png"
+        })
     })
-    L.marker(latlng, { icon: icon })
 
   getBoundaryStyle = (feature) ->
     {
@@ -51,7 +53,7 @@ class @FeatureMap
       }
     )
 
-  ColorMarker = L.Icon.extend({ options: {
+  ColorIcon = L.Icon.extend({ options: {
     shadowUrl:   '/assets/marker-shadow.png'
     iconSize:    [25, 41], # size of the icon
     iconAnchor:  [12, 40], # point of the icon which will correspond to marker's location
