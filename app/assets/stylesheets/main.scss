@@ -1,6 +1,16 @@
 @import "colours";
 $lr-margin: 15px;
 
+header {
+  a {
+    color: white;
+    &:hover { color: white; }
+  }
+  .beta.badge {
+    background-color: orange;
+  }
+}
+
 nav {
   &.navbar-inverse a.navbar-brand {
     color: $header-footer-foreground;
