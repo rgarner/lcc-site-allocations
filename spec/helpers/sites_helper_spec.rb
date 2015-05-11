@@ -90,16 +90,25 @@ describe SitesHelper do
     let(:text) { 'Capacity' }
     let(:name) { :sort_by_capacity }
     let(:current_scopes) {{}}
+    let(:options) {{}}
 
     before { allow(helper).to receive(:current_scopes).and_return(current_scopes) }
 
-    subject(:markup) { helper.site_sort_link(text, name) }
+    subject(:markup) { helper.site_sort_link(text, name, options) }
 
     it 'is not liberal in what it expects' do
-      expect { helper.site_sort_link 'Text', 'string_name', '1' }.to raise_error(
+      expect { helper.site_sort_link 'Text', 'string_name' }.to raise_error(
                                                                          ArgumentError,
                                                                          /name must be a symbol/
                                                                        )
+    end
+
+    context 'disabling sorting' do
+      let(:options) { { disable_sorting: true } }
+
+      it 'just passes through the text' do
+        expect(markup).to eql('Capacity')
+      end
     end
 
     context 'no current_scopes' do

@@ -14,3 +14,11 @@ Feature: Statistics
   Scenario: Site distribution
     When I visit the distribution page
     Then I should see a graph showing the distribution of site scores by green, brown and mixed
+
+  @javascript
+  Scenario: Unsustainable sites
+    Given that there are enough unsustainable sites
+    When I visit the unsustainable sites page
+    Then I should see a table with the top 10 unsustainable sites
+    And I should see a map of those sites
+    And the columns should not be sortable

@@ -6,4 +6,8 @@ class StatsController < ApplicationController
   def distribution
     @distribution = Site.distribution
   end
+
+  def unsustainable
+    @sites = Site.unsustainable.limit(10)
+  end
 end

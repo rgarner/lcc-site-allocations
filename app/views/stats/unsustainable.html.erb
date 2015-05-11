@@ -1,0 +1,19 @@
+<%= content_for :head do %>
+  <link rel="alternate"
+        type="application/vnd.geo+json"
+        href="<%= unsustainable_stats_path(format: :geojson) %>">
+<% end %>
+
+<div class="page-header"><h1>Statistics</h1></div>
+
+<%= render partial: 'tabs', locals: { active: 'Unsustainable' } %>
+
+<h2>Unsustainable sites</h2>
+
+<div id="map"></div>
+
+<% if showing_scores? %>
+  <%= render 'shared/marker_key' %>
+<% end %>
+
+<%= render partial: 'sites/sites_table', locals: { disable_sorting: true } %>
