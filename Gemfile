@@ -21,6 +21,8 @@ gem 'leaflet-markercluster-rails'
 gem 'activerecord-postgis-adapter', '3.0.0.beta2'
 gem 'rgeo-geojson', git: 'https://github.com/rgarner/rgeo-geojson.git', branch: 'allow-encoding-of-null-geometry'
 gem 'pg_search'
+gem 'oj'
+gem 'oj_mimic_json'
 
 group :development, :test do
   gem 'launchy'
