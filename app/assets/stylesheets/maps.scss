@@ -32,3 +32,26 @@ $inner-offset: $base-cluster-size / 8;
     }
   }
 }
+
+.leaflet-popup-content {
+  h3 {
+    font-size: 1.2em;
+
+    a {
+      display: inline-block;
+      width: 85%;
+      float: left;
+    }
+
+    .score {
+      width: 30px;
+      float: right;
+    }
+  }
+
+  dl {
+    height: 1.2em;
+    clear: both;
+    padding-top: 0.5em;
+  }
+}

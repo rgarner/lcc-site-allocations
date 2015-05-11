@@ -43,9 +43,10 @@ Then(/^I should see my search text$/) do
   expect(page).to have_selector('input[value="Green site"]')
 end
 
-Then(/^I should see a map with those sites$/) do
+Then(/^I should see a map showing boundaries for sites that have them and markers for those that don't$/) do
   expect(page).to have_selector('#map')
-  expect(page).to have_selector('.leaflet-marker-icon', count: @sites.count)
+  expect(page).to have_selector('.leaflet-marker-icon', count: 1)
+  expect(page).to have_selector('.boundary', count: 2)
 end
 
 And(/^I should see a key for the map markers$/) do

@@ -1,6 +1,7 @@
 require 'site_allocations/import/sites'
 require 'site_allocations/import/score_types'
 require 'site_allocations/import/scores'
+require 'site_allocations/import/boundaries'
 require 'open-uri'
 
 namespace :import do
@@ -9,7 +10,7 @@ namespace :import do
     module SiteAllocations::Import
       WEB_BASE = 'https://raw.githubusercontent.com/rgarner/lcc-site-allocations-data/master/data/output'
 
-      [Sites, ScoreTypes, Scores].each do |klass|
+      [Sites, ScoreTypes, Scores, Boundaries].each do |klass|
         underscored = klass.name.demodulize.underscore # => score_types
 
         csv_base = "#{underscored}.csv"
