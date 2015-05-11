@@ -40,3 +40,7 @@ And(/^I should see a map of those sites$/) do
     count: Site.unsustainable.where('boundary IS NULL AND centroid IS NOT NULL').count
   )
 end
+
+And(/^the columns should not be sortable$/) do
+  expect(page).not_to have_selector('th a.sort')
+end

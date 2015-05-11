@@ -21,3 +21,4 @@ Feature: Statistics
     When I visit the unsustainable sites page
     Then I should see a table with the top 10 unsustainable sites
     And I should see a map of those sites
+    And the columns should not be sortable
