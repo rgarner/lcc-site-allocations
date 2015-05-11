@@ -23,3 +23,20 @@ Then(/^I should see a graph showing the distribution of site scores by green, br
   expect(page.body).to include('"label":"Brown"')
   expect(page.body).to include('"label":"Mix"')
 end
+
+
+When(/^I visit the unsustainable sites page$/) do
+  visit '/stats/unsustainable'
+end
+
+Then(/^I should see a table with the top 10 unsustainable sites$/) do
+  expect(page).to have_selector('.site', count: 10)
+end
+
+And(/^I should see a map of those sites$/) do
+  expect(page).to have_selector('#map')
+  expect(page).to have_selector(
+    '.leaflet-marker-icon',
+    count: Site.unsustainable.where('boundary IS NULL AND centroid IS NOT NULL').count
+  )
+end

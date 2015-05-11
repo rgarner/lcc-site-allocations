@@ -17,6 +17,8 @@ FactoryGirl.define do
     trait :with_centroid do
       centroid 'POINT(-1.47486759802822 53.8426310787134)'
     end
+
+    io_rag 'G'
   end
 
   factory :score_type do

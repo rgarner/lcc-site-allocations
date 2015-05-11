@@ -13,5 +13,6 @@ Rails.application.routes.draw do
   resource :stats, only: [] do
     get 'summary'
     get 'distribution'
+    get 'unsustainable'
   end
 end

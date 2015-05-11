@@ -87,6 +87,11 @@ class Site < ActiveRecord::Base
     )
   }
 
+  scope :unsustainable, -> {
+    where("sites.total_score < 0 AND sites.io_rag IN ('G', 'LG')").
+    order(:total_score)
+  }
+
   def to_param
     shlaa_ref
   end

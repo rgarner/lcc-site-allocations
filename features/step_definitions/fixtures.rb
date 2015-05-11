@@ -14,3 +14,14 @@ end
 Given(/^that a site exists with no boundary$/) do
   @site = create :site
 end
+
+
+Given(/^that there are enough unsustainable sites$/) do
+  expect(@sites.size).to eql(3)
+  @sites.concat(
+    (-20..-10).map do |score|
+      create :site, total_score: score
+    end
+  )
+  expect(@sites.size).to eql(14)
+end
