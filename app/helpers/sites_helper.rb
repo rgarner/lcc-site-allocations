@@ -65,7 +65,9 @@ module SitesHelper
     end
   end
 
-  def site_sort_link(text, name, options = { order: :none })
+  def site_sort_link(text, name, options = {})
+    return text if options[:disable_sorting]
+
     # <a class="sort sort-asc" href="/sites/2062?thing=1' %>">
     #   Capacity<span class="glyphicon glyphicon-sort-by-attributes"></span>
     # </a>
