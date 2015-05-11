@@ -5,8 +5,9 @@ from a number of PDFs held in council minutes. That data was effectively locked 
 
 ## What does it do?
 
-This has all the sites that those PDFs know about. Some of those sites have scores that helped decide to allocate them,
-some do not (use the 'With'/'Without' buttons to see which).
+This has all the sites that those PDFs know about. Some of those sites have sustainability appraisal scores that
+help decide to allocate them, some do not (use the 'With'/'Without' buttons to see which). When a site has no score,
+(it seems) most commonly it's already being built on.
 
 ## Why did we make this?
 
