@@ -13,6 +13,15 @@ class Site < ActiveRecord::Base
     where("#{with == '0' ? 'NOT' : ''} EXISTS (SELECT 1 FROM scores WHERE site_id = sites.id)")
   }
 
+  # A normal SELECT scope but optimised so that PostGIS takes the strain of serializing
+  # the boundary or centroid - around 5x faster than letting rgeo do it via SitesHelper#feature_json
+  scope :include_geojson, -> {
+    select('sites.shlaa_ref, sites.address, sites.total_score,'\
+           'sites.area_ha, sites.capacity, sites.io_rag, sites.settlement_hierarchy,'\
+           'sites.green_brown, sites.reason,'\
+           'ST_AsGeoJSON(COALESCE(sites.boundary, sites.centroid)) AS geojson')
+  }
+
   scope :sort_by_capacity, ->(sort_order) {
     case sort_order.try(:to_sym)
     when :asc then order('sites.capacity NULLS LAST')
