@@ -17,6 +17,7 @@ describe 'sites/index.geojson.jbuilder' do
              centroid: 'POINT(-1.47486759802822 53.8426310787134)',
              total_score: -12
       )
+      Site.include_geojson.find_by(shlaa_ref: '2062')
     end
     let!(:centroid_site) do
       create(:site,
@@ -25,6 +26,7 @@ describe 'sites/index.geojson.jbuilder' do
              centroid: 'POINT(-1.47486759802822 53.8426310787134)',
              total_score: +11
       )
+      Site.include_geojson.find_by(shlaa_ref: '797')
     end
     let!(:no_geo_site) do
       create(:site,
@@ -32,6 +34,7 @@ describe 'sites/index.geojson.jbuilder' do
              address: 'no-geo-site',
              total_score: +15
       )
+      Site.include_geojson.find_by(shlaa_ref: '12')
     end
 
     it 'has all the sites' do

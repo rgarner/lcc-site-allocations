@@ -7,7 +7,16 @@ class SitesController < ApplicationController
   has_scope :containing_text
 
   def index
-    @sites  = apply_scopes(Site).all
+    respond_to do |format|
+      format.html do
+        @sites  = apply_scopes(Site).all
+        render
+      end
+      format.geojson do
+        @sites  = apply_scopes(Site).include_geojson.all
+        render geojson: @sites
+      end
+    end
   end
 
   def show

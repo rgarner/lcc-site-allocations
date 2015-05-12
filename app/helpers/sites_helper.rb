@@ -121,4 +121,19 @@ module SitesHelper
       }
     ))
   end
+
+  class RawJson
+    def initialize(s)
+      @s = s || 'null'
+    end
+    def to_json(*)
+      @s
+    end
+
+    undef_method :as_json
+  end
+
+  def raw_json_class
+    RawJson
+  end
 end
