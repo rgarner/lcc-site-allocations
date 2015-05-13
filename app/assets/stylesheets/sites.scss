@@ -20,6 +20,11 @@ $padding-dl-and-reason: 1%;
       text-overflow: ellipsis;
     }
   }
+
+  .site.map-available:hover {
+    background-color: $site-hover;
+    cursor: zoom-in;
+  }
 }
 
 .site {

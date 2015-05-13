@@ -7,4 +7,5 @@ jQuery ->
         console.log("Couldn't get map JSON - #{textStatus}: #{errorThrown}")
         $('#map').remove()
       success: (data_feature, textStatus, jqXHR) ->
-        new FeatureMap(data_feature)
+        window.map = new FeatureMap(data_feature)
+        new SiteHighlighter(window.map)

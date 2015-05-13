@@ -13,6 +13,8 @@ Feature: View sites
     And I should see colour-coded scores for each site
     And I should see a map showing boundaries for sites that have them and markers for those that don't
     And I should see a key for the map markers
+    When I click on a site's row in the list
+    Then it should zoom to a feature on the map
 
   Scenario: Filtering by sites without score
     When I visit the home page

@@ -22,12 +22,12 @@
 
   <tbody>
   <% @sites.each do |site| %>
-    <tr class="site">
+    <tr class="site" data-shlaa-ref="<%= site.shlaa_ref %>">
       <td class="shlaa-ref">
-          <span class="shlaa-ref-content">
-            <%= green_brown_glyphs(site) %>
-            <%= link_to site.shlaa_ref, site %>
-           </span>
+        <span class="shlaa-ref-content">
+          <%= green_brown_glyphs(site) %>
+          <%= link_to site.shlaa_ref, site %>
+         </span>
       </td>
       <td><%= link_to site.address, site %></td>
       <td class="<%= "hidden-xs" if showing_scores? %>"><%= site.area_ha %></td>
