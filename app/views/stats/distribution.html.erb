@@ -2,9 +2,16 @@
 
 <%= render partial: 'tabs', locals: { active: 'Distribution' } %>
 
+<h2>Site distribution by score</h2>
+
+<p>The total of greenfield, brownfield, and mixed sites for each total
+   sustainability appraisal score. You can see that brownfield sites tend to have
+   positive scores and greenfield sites tend to have negative scores.</p>
+
 <div class="distribution canvas-container">
-  <div class="legend"></div>
+  <label class="axis y">Total number of sites</label>
   <canvas id="distribution-chart"></canvas>
+  <label class="axis x">Sustainability Appraisal score</label>
 </div>
 
 <script type="text/javascript">

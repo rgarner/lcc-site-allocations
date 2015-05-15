@@ -6,6 +6,7 @@ jQuery ->
     lineChart = new Chart(ctx).Line(
       data, {
         scaleShowGridLines : true,
+        scaleLabel: " <%=value%>",
         bezierCurve: false,
         pointDotRadius: 2,
       }
