@@ -25,16 +25,21 @@ class @SiteHighlighter
   unhighlight: (layer) ->
     if layer
       switch layer.feature.geometry.type
-        when 'Polygon' then featureClassList(layer).remove('highlight')
-        when 'Point'   then $(layer._icon).removeClass('highlight')
+        when 'Polygon'
+          featureClassList(layer).remove('highlight')
+        when 'Point'
+          layer.setZIndexOffset(0)
+          $(layer._icon).removeClass('highlight')
 
   highlight: (layer) ->
     if layer
       switch layer.feature.geometry.type
         when 'Polygon'
           featureClassList(layer)?.add('highlight')
+          layer.bringToFront()
           @leafletMap.fitBounds(layer.getBounds(), {padding: [100,100]})
         when 'Point'
+          layer.setZIndexOffset(1000)
           @leafletMap.setView(layer.getLatLng(), 13)
           setTimeout ->
             $(layer._icon).addClass('highlight')
