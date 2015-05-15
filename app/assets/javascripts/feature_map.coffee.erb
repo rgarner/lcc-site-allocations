@@ -29,7 +29,7 @@ class @FeatureMap
         <dt>IO / RAG</dt>
         <dd>#{site.io_rag}</dd>
       </dl>
-    """, {minWidth: 200})
+    """, { minWidth: 200, shlaaRef: site.shlaa_ref} )
 
   createColorMarker = (feature, latlng) ->
     iconName = getClassName(feature.properties.score)
@@ -65,21 +65,19 @@ class @FeatureMap
     popupAnchor: [1, -40]  # point from which the popup should open relative to the iconAnchor
   }})
 
-  draw: ->
-    # @data_feature can be type: 'Feature' or type: 'FeatureCollection'
-    if @data_feature.type == 'Feature' and !@data_feature.geometry?
-      $('#map').remove()
-      return
+  getMap: -> @map
+  layerByShlaaRef: (shlaa_ref) -> @layersByShlaaRef[shlaa_ref]
 
-    map = L.map('map', {
+  draw: ->
+    @map = L.map('map', {
       center: OVER_LEEDS,
       zoom: 12,
       scrollWheelZoom: false
-    });
+    })
 
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+    }).addTo(@map);
 
     markers = new L.MarkerClusterGroup({
       disableClusteringAtZoom: 13,
@@ -89,19 +87,22 @@ class @FeatureMap
       iconCreateFunction:      createClusterIcon
     })
 
-    featureLayer = L.geoJson(
+    @layersByShlaaRef = {}
+    @featureLayer = L.geoJson(
       @data_feature,
-      onEachFeature: bindPopup,
+      onEachFeature: (feature, layer) =>
+        @layersByShlaaRef[feature.properties.shlaa_ref] = layer
+        bindPopup(feature, layer)
       pointToLayer:  createColorMarker,
       style:         getBoundaryStyle
     )
 
-    markers.addLayer(featureLayer)
-    markers.addTo(map);
+    markers.addLayer(@featureLayer)
+    markers.addTo(@map);
 
-    options = if @data_feature.type == 'Feature' && @data_feature.geometry.type == 'Point' then { maxZoom: 15 } else {}
+    options = if @data_feature.type == 'Feature' and @data_feature.geometry.type == 'Point' then { maxZoom: 15 } else {}
 
     # Cope with race condition causing map freeze. Decorous 50ms grace given
-    setTimeout ( ->
-      map.fitBounds(markers.getBounds(), options)
+    setTimeout ( =>
+      @map.fitBounds(markers.getBounds(), options)
     ), 50
