@@ -22,6 +22,25 @@ $normal-stats-font-size: 125%;
   max-width: $chart-canvas-max-width;
 }
 
+#distribution-chart {
+  width: 98% !important;
+  float: right;
+}
+
+label.axis {
+  font-size: 90%;
+  display: block;
+  &.x {
+    text-align: center;
+  }
+  &.y {
+    transform-origin: left;
+    transform: rotate(-90deg);
+    position: absolute;
+    top: 60%;
+  }
+}
+
 .badge {
   &.brown { background-color: $brownfield; }
   &.mix   { background-color: $mixed;      }
