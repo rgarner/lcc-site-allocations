@@ -1,8 +1,12 @@
 <% disable_sorting ||= false %>
+<% numbered_rows   ||= false %>
 
 <table class="sites table table-striped">
   <thead>
   <tr>
+    <% if numbered_rows %>
+      <th class="number"></th>
+    <% end %>
     <th class="shlaa-ref"><span class="hidden-xs">SHLAA ref</span></th>
     <th>Address</th>
     <th class="<%= "hidden-xs" if showing_scores? %>">
@@ -21,8 +25,11 @@
   </thead>
 
   <tbody>
-  <% @sites.each do |site| %>
+  <% @sites.each_with_index do |site, index| %>
     <tr class="site" data-shlaa-ref="<%= site.shlaa_ref %>">
+      <% if numbered_rows %>
+        <td class="number"><%= index + 1 %></th>
+      <% end %>
       <td class="shlaa-ref">
         <span class="shlaa-ref-content">
           <%= green_brown_glyphs(site) %>

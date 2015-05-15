@@ -8,7 +8,12 @@
 
 <%= render partial: 'tabs', locals: { active: 'Unsustainable' } %>
 
-<h2>Unsustainable sites</h2>
+<h2>Top 10 unsustainable sites</h2>
+
+<p>
+  These are the top 10 sites in Leeds that are earmarked for allocation.
+  They have an IO/RAG of "G" or "LG" and very low Sustainability Appraisal scores.
+</p>
 
 <div id="map"></div>
 
@@ -16,4 +21,4 @@
   <%= render 'shared/marker_key' %>
 <% end %>
 
-<%= render partial: 'sites/sites_table', locals: { disable_sorting: true } %>
+<%= render partial: 'sites/sites_table', locals: { disable_sorting: true, numbered_rows: true } %>
