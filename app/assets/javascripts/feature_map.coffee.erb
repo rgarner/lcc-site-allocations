@@ -100,7 +100,7 @@ class @FeatureMap
     markers.addLayer(@featureLayer)
     markers.addTo(@map);
 
-    options = if @data_feature.type == 'Feature' && @data_feature.geometry.type == 'Point' then { maxZoom: 15 } else {}
+    options = if @data_feature.type == 'Feature' and @data_feature.geometry.type == 'Point' then { maxZoom: 15 } else {}
 
     # Cope with race condition causing map freeze. Decorous 50ms grace given
     setTimeout ( =>
