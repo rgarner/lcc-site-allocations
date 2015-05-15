@@ -69,11 +69,6 @@ class @FeatureMap
   layerByShlaaRef: (shlaa_ref) -> @layersByShlaaRef[shlaa_ref]
 
   draw: ->
-    # @data_feature can be type: 'Feature' or type: 'FeatureCollection'
-    if @data_feature.type == 'Feature' and !@data_feature.geometry?
-      $('#map').remove()
-      return
-
     @map = L.map('map', {
       center: OVER_LEEDS,
       zoom: 12,

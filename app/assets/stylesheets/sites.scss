@@ -22,13 +22,20 @@ $padding-dl-and-reason: 1%;
   }
 
   .site.map-available:hover {
-    background-color: $site-hover;
+//    background-color: $site-hover;
     cursor: zoom-in;
+  }
+
+  .site.not-on-map {
+    background-color: $not-on-map;
   }
 }
 
 .site {
   dl { margin: 0; padding: $padding-dl-and-reason; }
+  &.highlighted {
+    background-color: $row-site-highlight !important;
+  }
 }
 
 dt {
@@ -67,14 +74,4 @@ ul.marker-key {
   .neutral       { background-image: url(asset-path('neutral.png')) ; }
   .positive      { background-image: url(asset-path('positive.png')) ; }
   .very-positive { background-image: url(asset-path('very-positive.png')) ; }
-}
-
-#map {
-  width: 100%;
-  border: 1px solid #CCC;
-  margin-top: 2em;
-  margin-bottom: 1em;
-  height: 350px;
-  margin-left: auto;
-  margin-right: auto;
 }
