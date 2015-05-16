@@ -97,7 +97,7 @@ class Site < ActiveRecord::Base
   }
 
   scope :unsustainable, -> {
-    where("sites.total_score < 0 AND sites.io_rag IN ('G', 'LG')").
+    where("sites.total_score < 0 AND sites.io_rag = 'G'").
     order(:total_score)
   }
 
