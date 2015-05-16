@@ -9,6 +9,10 @@ class Site < ActiveRecord::Base
     where "sites.green_brown ~* '#{pattern}'"
   }
 
+  scope :by_io_rag, ->(io_rag) {
+    where(io_rag: io_rag)
+  }
+
   scope :with_scores, ->(with) {
     where("#{with == '0' ? 'NOT' : ''} EXISTS (SELECT 1 FROM scores WHERE site_id = sites.id)")
   }

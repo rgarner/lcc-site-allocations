@@ -13,8 +13,8 @@ class RAGStatus
       RAGStatus.new('R', 'Red', nil),
       RAGStatus.new('LG', 'Lime green', 'identified'),
       RAGStatus.new('P', 'Purple', 'sieved out'),
-      RAGStatus.new('NonIO', 'N/A', 'Site not in issues and options'),
-      RAGStatus.new('AV', 'N/A', 'Aire Valley'),
+      RAGStatus.new('NonIO', nil, 'Site not in issues and options'),
+      RAGStatus.new('AV', nil, 'Aire Valley'),
     ]
   end
 
@@ -25,5 +25,9 @@ class RAGStatus
     end
 
     @_by_abbr[abbr]
+  end
+
+  def display_name
+    "#{color || abbr}#{ description ? " (#{description})" : ''}"
   end
 end

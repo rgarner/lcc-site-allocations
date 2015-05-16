@@ -82,3 +82,29 @@ end
 And(/^I should not see any filter controls$/) do
   expect(page).not_to have_selector('.filter_type')
 end
+
+When(/^I filter by I&O\/RAG "([^"]*)"$/) do |io_rag|
+  within '.filter-type.io-rag' do
+    find('.caret').click
+    @io_rag = io_rag
+    click_link RAGStatus[io_rag].display_name
+  end
+end
+
+Then(/^I should see only sites that match the I&O\/RAG I selected$/) do
+  expect(page).to have_selector('.site', count: Site.where(io_rag: @io_rag).count)
+end
+
+Then(/^I should see what I&O\/RAG I filtered by$/) do
+  within '.filter-type.io-rag' do
+    expect(page).to have_selector('button', text: RAGStatus[@io_rag].display_name)
+  end
+end
+
+Then(/^I should see the "([^"]*)" filter$/) do |text|
+  expect(page).to have_selector('label.filter-type-heading', text: text)
+end
+
+Then(/^I should not see the "([^"]*)" filter$/) do |text|
+  expect(page).not_to have_selector('label.filter-type-heading', text: text)
+end
