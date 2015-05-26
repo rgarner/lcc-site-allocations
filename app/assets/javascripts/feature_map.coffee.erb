@@ -20,7 +20,7 @@ class @FeatureMap
     site = feature.properties # for readability in the template
     layer.bindPopup("""
       <h3>
-        <a href="/sites/#{site.shlaa_ref}">#{site.name}</a>
+        <a href="/sites/#{site.shlaa_ref}">#{site.shlaa_ref} #{site.name}</a>
         <span class="score label #{ if site.score? then getClassName(site.score) else ''}">
           #{if site.score? then site.score else ''}
         </span>
