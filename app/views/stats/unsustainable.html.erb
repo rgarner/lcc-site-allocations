@@ -1,3 +1,5 @@
+<%= content_for :title, 'Top 10 unsustainable sites' %>
+
 <%= content_for :head do %>
   <link rel="alternate"
         type="application/vnd.geo+json"
@@ -8,7 +10,7 @@
 
 <%= render partial: 'tabs', locals: { active: 'Unsustainable' } %>
 
-<h2>Top 10 unsustainable sites</h2>
+<h2><%= content_for :title %></h2>
 
 <p>
   These are the top 10 sites in Leeds that are earmarked for allocation.
