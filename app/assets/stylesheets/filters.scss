@@ -22,7 +22,5 @@
 }
 
 .greenfield-status .filter-text {
-  @media (max-width: $screen-xs-max) {
-    display: none;
-  }
+  @extend .hidden-xs;
 }
