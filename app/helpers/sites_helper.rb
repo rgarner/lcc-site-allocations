@@ -1,4 +1,8 @@
 module SitesHelper
+  def site_display_name(site)
+    "#{site.shlaa_ref}#{" #{site.address if site.address}"}"
+  end
+
   def total_css_class(total_score)
     case total_score
     when Score::VERY_NEGATIVE then 'very-negative'

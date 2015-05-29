@@ -1,4 +1,6 @@
-<h1><%= @score_type.display_name %></h1>
+<%= content_for :title, @score_type.display_name %>
+
+<h1><%= content_for :title %></h1>
 
 <h2>Assumptions</h2>
 <p><%= @score_type.assumptions %></p>
