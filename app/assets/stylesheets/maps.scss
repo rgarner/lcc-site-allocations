@@ -10,6 +10,10 @@ $inner-offset: $base-cluster-size / 8;
   margin-left: auto;
   margin-right: auto;
 
+  // Not really collapsing, but this copies the transition settings from
+  // Bootstrap's collapse component
+  @extend .collapsing;
+
   path.highlight {
     stroke: $map-site-highlight;
     stroke-opacity: 1.0;
@@ -19,6 +23,13 @@ $inner-offset: $base-cluster-size / 8;
   .leaflet-marker-icon.highlight {
     box-shadow: 1px 1px 6px 6px $map-site-highlight;
     border-radius: 999px;
+  }
+
+  // On medium/higher devices, also expand the map
+  &.expanded {
+    @media (min-width: $screen-md-min) {
+      height: 600px;
+    }
   }
 }
 

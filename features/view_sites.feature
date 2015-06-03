@@ -15,6 +15,9 @@ Feature: View sites
     And I should see a key for the map markers
     When I click on a site's row in the list
     Then it should zoom to a feature on the map
+    When I toggle the filter panel
+    Then the map should expand
+    And I should not see any filter controls
 
   Scenario: Filtering by sites without score
     When I visit the home page

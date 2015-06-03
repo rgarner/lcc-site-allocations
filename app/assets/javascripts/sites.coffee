@@ -13,4 +13,5 @@ jQuery ->
           return
 
         window.map = new FeatureMap(data_feature)
+        new MapResizer(window.map.map).ready();
         new SiteHighlighter(window.map)

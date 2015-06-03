@@ -70,3 +70,15 @@ Then(/^it should zoom to a feature on the map$/) do
   @new_bounds = evaluate_script(MAP_BOUNDS_JS)
   expect(@old_bounds['_northEast']['lng']).not_to be_within(0.01).of(@new_bounds['_northEast']['lng'])
 end
+
+When(/^I toggle the filter panel$/) do
+  find('#filters-panel-collapser').click
+end
+
+Then(/^the map should expand/) do
+  expect(evaluate_js('$("#map").attr("class")')).to include('expanded')
+end
+
+And(/^I should not see any filter controls$/) do
+  expect(page).not_to have_selector('.filter_type')
+end

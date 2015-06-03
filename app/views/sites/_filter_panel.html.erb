@@ -1,4 +1,12 @@
-<div class="filters well well-lg col-lg-12">
+<div id="filters-container">
+<a href="#filters-panel"
+   id="filters-panel-collapser"
+   role="button"
+   data-toggle="collapse"
+   class="btn btn-default collapser if-no-js-hide">
+  <span class="glyphicon glyphicon-triangle-top"></span>
+</a>
+<div class="collapse in filters well well-lg col-lg-12" aria-expanded="true" id="filters-panel">
   <div class="filter-type">
     <label class="filter-type-heading">Greenfield status</label>
 
@@ -49,4 +57,5 @@
       </div>
     <% end %>
   </div>
+</div>
 </div>
