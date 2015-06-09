@@ -11,10 +11,12 @@
 
 <h2><%= @sites.count(:all) %> sites</h2>
 
-<div id="map"></div>
+<div class="if-no-js-hide">
+  <div id="map"></div>
 
-<% if showing_scores? %>
-  <%= render 'shared/marker_key' %>
-<% end %>
+  <% if showing_scores? %>
+    <%= render 'shared/marker_key' %>
+  <% end %>
+</div>
 
 <%= render 'sites_table' %>
