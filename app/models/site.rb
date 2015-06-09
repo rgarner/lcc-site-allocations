@@ -9,6 +9,10 @@ class Site < ActiveRecord::Base
     where "sites.green_brown ~* '#{pattern}'"
   }
 
+  scope :by_io_rag, ->(io_rag) {
+    where(io_rag: io_rag)
+  }
+
   scope :with_scores, ->(with) {
     where("#{with == '0' ? 'NOT' : ''} EXISTS (SELECT 1 FROM scores WHERE site_id = sites.id)")
   }
@@ -97,7 +101,7 @@ class Site < ActiveRecord::Base
   }
 
   scope :unsustainable, -> {
-    where("sites.total_score < 0 AND sites.io_rag IN ('G', 'LG')").
+    where("sites.total_score < 0 AND sites.io_rag = 'G'").
     order(:total_score)
   }
 

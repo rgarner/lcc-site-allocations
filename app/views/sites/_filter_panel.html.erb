@@ -26,21 +26,23 @@
     </div>
   </div>
 
-  <div class="filter-type">
-    <label class="filter-type-heading">With scores</label>
+  <% if should_show_score_filter? %>
+    <div class="filter-type">
+      <label class="filter-type-heading">With scores</label>
 
-    <div class="btn-group" role="group" aria-label="Greenfield status">
-      <div class="btn-group" role="group">
-        <%= site_filter_link 'With', :with_scores, '1', glyphs: %w(glyphicon-ok-circle) %>
-      </div>
-      <div class="btn-group" role="group">
-        <%= site_filter_link 'Without', :with_scores, '0', glyphs: %w(glyphicon-remove-circle) %>
-      </div>
-      <div class="btn-group" role="group">
-        <%= site_filter_link 'All', :with_scores, :all, glyphs: %w(glyphicon-list) %>
+      <div class="btn-group" role="group" aria-label="Greenfield status">
+        <div class="btn-group" role="group">
+          <%= site_filter_link 'With', :with_scores, '1', glyphs: %w(glyphicon-ok-circle) %>
+        </div>
+        <div class="btn-group" role="group">
+          <%= site_filter_link 'Without', :with_scores, '0', glyphs: %w(glyphicon-remove-circle) %>
+        </div>
+        <div class="btn-group" role="group">
+          <%= site_filter_link 'All', :with_scores, :all, glyphs: %w(glyphicon-list) %>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
 
   <div class="filter-type">
     <%= form_tag(sites_path, method: 'get', role: 'form') do %>
@@ -56,6 +58,27 @@
         </span>
       </div>
     <% end %>
+  </div>
+
+  <div class="filter-type io-rag if-no-js-hide">
+    <label class="filter-type-heading">I&O RAG</label>
+
+    <div class="btn-group">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+        <%= selected_io_rag_label %> <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li><%= link_to 'All', sites_path(current_scopes.except(:by_io_rag)) %></li>
+        <% RAGStatus.all.each do |status| %>
+          <% if status.abbr == 'AV' %>
+            <li class="divider"></li>
+          <% end %>
+          <li>
+            <%= link_to status.display_name, sites_path(current_scopes.merge(by_io_rag: status.abbr)) %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </div>
 </div>

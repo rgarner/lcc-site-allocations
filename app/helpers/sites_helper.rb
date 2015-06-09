@@ -15,7 +15,11 @@ module SitesHelper
   end
 
   def showing_scores?
-    current_scopes[:with_scores] != '0'
+    current_scopes[:with_scores] != '0' && should_show_score_filter?
+  end
+
+  def should_show_score_filter?
+    current_scopes[:by_io_rag] != 'LG'
   end
 
   GREEN = <<-HTML
@@ -33,6 +37,11 @@ module SitesHelper
     else
       ''
     end.html_safe
+  end
+
+  def selected_io_rag_label
+    selected = RAGStatus[current_scopes[:by_io_rag]]
+    selected ? selected.display_name : 'All'
   end
 
   def site_filter_link(text, name, value, options = {} )

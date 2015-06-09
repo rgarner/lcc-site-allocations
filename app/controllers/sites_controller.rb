@@ -1,5 +1,6 @@
 class SitesController < ApplicationController
   has_scope :by_green_status
+  has_scope :by_io_rag
   has_scope :with_scores
   has_scope :sort_by_capacity
   has_scope :sort_by_area
