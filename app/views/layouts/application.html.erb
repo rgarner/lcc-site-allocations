@@ -16,7 +16,10 @@
   <%= csrf_meta_tags %>
 </head>
 
-<body>
+<body class="noscript">
+  <script type="application/javascript">
+    $('body').removeClass('noscript')
+  </script>
   <header>
     <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
       <div class="nav-links">
