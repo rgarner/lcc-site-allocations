@@ -5,7 +5,9 @@ class @SiteHighlighter
         $(row)
           .addClass('map-available')
           .on('click', @siteRowClicked)
-          .find('a').unbind('click')
+          .find('a').on('click', (e) ->
+            e.stopPropagation()
+          )
       else
         $(row).addClass('not-on-map')
     )
