@@ -1,3 +1,7 @@
+#
+# Manage the complementary resizing of the map and the filter panel.
+# When the filter panel collapses, expand the map and vice versa.
+#
 class @MapResizer
   constructor: (@leaflet_map) ->
     throw 'No map given' unless @leaflet_map?

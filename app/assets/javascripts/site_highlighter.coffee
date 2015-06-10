@@ -1,3 +1,8 @@
+#
+# Manage the interactions between the map and the table:
+#  * Highlight sites in the table when selected on the map
+#  * Zoom to sites on the map when clicked in the table
+#
 class @SiteHighlighter
   constructor: (@featureMap) ->
     siteRows().each((index, row) =>
