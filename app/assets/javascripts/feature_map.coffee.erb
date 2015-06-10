@@ -1,7 +1,10 @@
 class @FeatureMap
-  OVER_LEEDS = [53.801277, -1.548567]
+  OVER_LEEDS      = [53.801277, -1.548567]
+  DEFAULT_OPTIONS = {
+    fitMapToBounds: true
+  }
 
-  constructor: (@data_feature) ->
+  constructor: (@data_feature, @options = DEFAULT_OPTIONS) ->
     @draw()
 
   getClassName = (s) ->
@@ -100,9 +103,10 @@ class @FeatureMap
     markers.addLayer(@featureLayer)
     markers.addTo(@map);
 
-    options = if @data_feature.type == 'Feature' and @data_feature.geometry.type == 'Point' then { maxZoom: 15 } else {}
+    if @options.fitMapToBounds
+      options = if @data_feature.type == 'Feature' and @data_feature.geometry.type == 'Point' then { maxZoom: 15 } else {}
 
-    # Cope with race condition causing map freeze. Decorous 50ms grace given
-    setTimeout ( =>
-      @map.fitBounds(markers.getBounds(), options)
-    ), 50
+      # Cope with race condition causing map freeze. Decorous 50ms grace given
+      setTimeout ( =>
+        @map.fitBounds(markers.getBounds(), options)
+      ), 50

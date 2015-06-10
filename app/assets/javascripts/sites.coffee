@@ -12,6 +12,13 @@ jQuery ->
           $('#map').remove()
           return
 
-        window.map = new FeatureMap(data_feature)
-        new MapResizer(window.map.map).ready();
+        window.map = new FeatureMap(
+          data_feature,
+          {
+            fitMapToBounds: !MapStateManager.savedPosition()
+          }
+        )
+
+        new MapResizer(window.map.map).ready()
         new SiteHighlighter(window.map)
+        new MapStateManager(window.map.map) if data_feature.type == 'FeatureCollection'
