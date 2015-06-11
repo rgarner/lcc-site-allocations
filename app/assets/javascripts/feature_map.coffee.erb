@@ -86,7 +86,7 @@ class @FeatureMap
     # Cope with race condition causing map freeze. Decorous 50ms grace given
     setTimeout ( =>
       markerBounds = @markers.getBounds()
-      @map.fitBounds(markerBounds, options) if markerBounds? && markerBounds.isValid()
+      @map.fitBounds(markerBounds, options) if markerBounds? and markerBounds.isValid()
     ), 50
 
   draw: ->
