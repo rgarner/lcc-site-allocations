@@ -1,3 +1,8 @@
+#
+# Manage the interactions between the map and the table:
+#  * Highlight sites in the table when selected on the map
+#  * Zoom to sites on the map when clicked in the table
+#
 class @SiteHighlighter
   constructor: (@featureMap) ->
     siteRows().each((index, row) =>
@@ -5,7 +10,9 @@ class @SiteHighlighter
         $(row)
           .addClass('map-available')
           .on('click', @siteRowClicked)
-          .find('a').unbind('click')
+          .find('a').on('click', (e) ->
+            e.stopPropagation()
+          )
       else
         $(row).addClass('not-on-map')
     )
