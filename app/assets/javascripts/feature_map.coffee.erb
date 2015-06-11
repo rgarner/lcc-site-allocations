@@ -80,6 +80,15 @@ class @FeatureMap
   getMap: -> @map
   layerByShlaaRef: (shlaa_ref) -> @layersByShlaaRef[shlaa_ref]
 
+  fitBounds: (e) =>
+    options = if @data_feature.type == 'Feature' and @data_feature.geometry.type == 'Point' then { maxZoom: 15 } else {}
+
+    # Cope with race condition causing map freeze. Decorous 50ms grace given
+    setTimeout ( =>
+      markerBounds = @markers.getBounds()
+      @map.fitBounds(markerBounds, options) if markerBounds? && markerBounds.isValid()
+    ), 50
+
   draw: ->
     @map = L.map('map', {
       center: OVER_LEEDS,
@@ -91,7 +100,7 @@ class @FeatureMap
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(@map);
 
-    markers = new L.MarkerClusterGroup({
+    @markers = new L.MarkerClusterGroup({
       disableClusteringAtZoom: 13,
       showCoverageOnHover:     true,
       zoomToBoundsOnClick:     true,
@@ -109,13 +118,12 @@ class @FeatureMap
       style:         getBoundaryStyle
     )
 
-    markers.addLayer(@featureLayer)
-    markers.addTo(@map);
+    @markers.addLayer(@featureLayer)
+    @markers.addTo(@map);
+
+    @map.addControl(new FitBoundsControl({
+      onClick: @fitBounds
+    }))
 
     if @options.fitMapToBounds
-      options = if @data_feature.type == 'Feature' and @data_feature.geometry.type == 'Point' then { maxZoom: 15 } else {}
-
-      # Cope with race condition causing map freeze. Decorous 50ms grace given
-      setTimeout ( =>
-        @map.fitBounds(markers.getBounds(), options)
-      ), 50
+      @fitBounds()
