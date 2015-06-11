@@ -14,7 +14,7 @@
 
 path.boundary {
   stroke-width: 2px;
-  fill-opacity: 0.7;
+  fill-opacity: 0.5;
   &.very-positive { fill: $very-positive; stroke: darken($very-positive, 50%); }
   &.positive      { fill: $positive;      stroke: darken($very-positive, 50%); }
   &.neutral       { fill: $neutral;       stroke: darken($neutral, 50%); }
