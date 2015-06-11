@@ -1,4 +1,4 @@
-@FitBoundsControl = L.Control.extend({
+L.FitBoundsControl = L.Control.extend({
   options: {
     position: 'topleft'
   },
