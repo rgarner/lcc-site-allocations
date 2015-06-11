@@ -33,10 +33,6 @@ $inner-offset: $base-cluster-size / 8;
   }
 }
 
-.leaflet-fit-bounds {
-  text-align: center;
-}
-
 .cluster {
   top: -$base-cluster-size / 2 + $inner-offset;
   left: -$base-cluster-size / 2 + $inner-offset;
