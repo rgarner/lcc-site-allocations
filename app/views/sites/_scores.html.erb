@@ -1,6 +1,6 @@
 
 <h2 class="site-total-score">
-  Total score
+  Total <%= link_to 'score', glossary_path(anchor: 'sustainability-appraisal-scores') %>
   <span class="label <%= total_css_class(@site.total_score) %>">
     <%= @site.total_score %>
   </span>
