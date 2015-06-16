@@ -1,3 +1,5 @@
+<div class="about">
+
 ## What is this?
 
 This is an app that helps display Leeds City Council [site allocations data](http://github.com/rgarner/lcc-site-allocations-data) scraped
@@ -17,3 +19,5 @@ in key categories. A decision to allocate has been based on these errors.
 
 We want to see these errors corrected or acknowledged. We do not want to see valuable public space owned by Leeds City
 Council sacrificed to the development rush.
+
+</div>
