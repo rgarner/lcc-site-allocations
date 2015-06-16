@@ -1,0 +1,37 @@
+<% content_for :title, 'Glossary' %>
+
+<h2><%= content_for :title%></h2>
+
+<dl class="glossary">
+  <dt><a name="io-rag">I&O RAG</a></dt>
+  <dd>Issues and Options Red/Amber/Green - if green, viewed as suitable for housing allocation. 
+      If Amber, may be suitable with mitigation. 
+      If Red, there is usually some reason why this would not be allocated.
+      Note that this field is not always R/A/G - Purple means the site is <a href="#sieved-out">"sieved out"</a>
+  </dd>
+  
+  <dt>
+    <a name="sieved-out">
+      Sieved out
+    </a>
+  </dt>
+  <dd>
+    Not considered part of the settlement hierarchy, and therefore unsuitable for allocation. 
+    Does not undergo a sustainability appraisal and hence will not have scores.
+  </dd>
+
+  <dt>
+    <a name="with-scores">
+      With / Without Scores
+    </a>
+  </dt>
+  <dd>
+    Sites with scores have undergone a sustainability appraisal. Sites without scores may not have.
+    Sites with these <a href="#io-rag">I&O RAG</a> values do not have scores:
+    <ul>
+      <% %w(LG P NonIO).each do |no_score_io_rag| %>
+        <li><%= RAGStatus[no_score_io_rag].display_name %></li>
+      <% end %>
+    </ul>
+  </dd>
+</dl>

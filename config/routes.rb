@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :score_types, only: [:show]
 
   match 'about', to: 'static_content#about', via: :get
+  match 'glossary', to: 'static_content#glossary', via: :get
 
   get '/stats', to: redirect('/stats/summary')
 
