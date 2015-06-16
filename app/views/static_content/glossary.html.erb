@@ -1,0 +1,61 @@
+<% content_for :title, 'Glossary' %>
+
+<h2><%= content_for :title%></h2>
+
+<dl class="glossary">
+  <dt><a name="io-rag">I&O RAG</a></dt>
+  <dd>Issues and Options Red/Amber/Green - if green, viewed as suitable for housing allocation. 
+      If Amber, may be suitable with mitigation. 
+      If Red, there is usually some reason why this would not be allocated.
+      Note that this field is not always R/A/G - Purple means the site is <a href="#sieved-out">"sieved out"</a>
+  </dd>
+  
+  <dt>
+    <a name="sieved-out">
+      Sieved out
+    </a>
+  </dt>
+  <dd>
+    Not considered part of the settlement hierarchy, and therefore unsuitable for allocation. 
+    Does not undergo a sustainability appraisal and hence will not have scores.
+  </dd>
+
+  <dt>
+    <a name="with-scores">
+      With / Without Scores
+    </a>
+  </dt>
+  <dd>
+    Sites with scores have undergone a sustainability appraisal. Sites without scores may not have.
+    Sites with these <a href="#io-rag">I&O RAG</a> values do not have scores:
+    <ul>
+      <% %w(LG P NonIO).each do |no_score_io_rag| %>
+        <li><%= RAGStatus[no_score_io_rag].display_name %></li>
+      <% end %>
+    </ul>
+  </dd>
+
+  <dt>
+    <a name="sustainability-appraisal-scores">
+      Sustainability appraisal (SA) scores
+    </a>
+  </dt>
+  <dd>
+    <p>From
+      <a href="http://democracy.leeds.gov.uk/documents/s132681/Appendix%203%20-%20Sustainability%20Appraisal%20Report%20-Site%20Allocations%20Publication.pdf">
+        Leeds Site Allocations Plan (publication draft June 2015):
+      </a>
+    </p>
+    <blockquote>
+      <p>The SA Framework provides a way in which sustainability effects can be described,
+      analysed and compared. It consists of individual SA Objectives covering the
+      significant sustainability issues for Leeds, which were determined at the SA scoping
+      stage. The SA Framework was developed by Leeds City Council in consultation with
+      the statutory environmental consultation bodies (Natural England, Historic England
+      and the Environment Agency) for all of the documents in the Leeds Local
+      Development Framework.</p>
+      <p>The scores range from a major positive effect (++), minor positive (+), neutral
+        (O), minor negative (-) to major negative (--).</p>
+    </blockquote>
+  </dd>
+</dl>

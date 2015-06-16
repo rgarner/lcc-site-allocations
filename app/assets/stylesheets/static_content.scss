@@ -1,0 +1,20 @@
+.glossary {
+  dd {
+    margin-bottom: 20px;
+  }
+
+  dt {
+    a { color: black; }
+  }
+
+  blockquote {
+    font-size: 1em;
+    font-style: italic;
+  }
+}
+
+.about {
+  p:last-child {
+    margin-bottom: 3em;
+  }
+}
