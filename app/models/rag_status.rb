@@ -11,7 +11,7 @@ class RAGStatus
       RAGStatus.new('G', 'Green', nil),
       RAGStatus.new('A', 'Amber', nil),
       RAGStatus.new('R', 'Red', nil),
-      RAGStatus.new('LG', 'Lime green', 'identified'),
+      RAGStatus.new('LG', 'Lime green', 'identified - has planning permission'),
       RAGStatus.new('P', 'Purple', 'sieved out'),
       RAGStatus.new('NonIO', nil, 'Site not in issues and options'),
       RAGStatus.new('AV', nil, 'Aire Valley'),
