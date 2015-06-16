@@ -28,7 +28,9 @@
 
   <% if should_show_score_filter? %>
     <div class="filter-type">
-      <label class="filter-type-heading">With scores</label>
+      <label class="filter-type-heading">
+        <%= link_to 'With scores', glossary_path(anchor: 'with-scores') %>
+      </label>
 
       <div class="btn-group" role="group" aria-label="Greenfield status">
         <div class="btn-group" role="group">
@@ -61,7 +63,11 @@
   </div>
 
   <div class="filter-type io-rag if-no-js-hide">
-    <label class="filter-type-heading">I&O RAG</label>
+    <label class="filter-type-heading">
+      <%= link_to glossary_path + '#io-rag' do %>
+        <abbr title="Issues and Options Red / Amber / Green">I&O RAG</abbr>
+      <% end %>
+    </label>
 
     <div class="btn-group">
       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
