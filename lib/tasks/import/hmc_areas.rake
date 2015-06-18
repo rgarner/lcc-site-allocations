@@ -1,9 +1,9 @@
-require 'site_allocations/import/boundaries'
+require 'site_allocations/import/hmc_areas'
 
 namespace :import do
-  desc 'Import sites'
-  task :boundaries => :environment do
-    DEFAULT_BOUNDARIES_CSV = '../lcc-site-allocations-data/data/output/boundaries.csv'
-    SiteAllocations::Import::Boundaries.new(DEFAULT_BOUNDARIES_CSV).run!
+  desc 'Import hmc_areas'
+  task :hmc_areas => :environment do
+    DEFAULT_HMC_AREAS_CSV = '../lcc-site-allocations-data/data/output/hmc_areas.csv'
+    SiteAllocations::Import::HmcAreas.new(DEFAULT_HMC_AREAS_CSV).run!
   end
 end
