@@ -57,10 +57,6 @@ And(/^I should not see a key for the map markers$/) do
   expect(page).not_to have_selector('.marker-key')
 end
 
-MAP_BOUNDS_JS = <<-JAVASCRIPT
-  window.map.getMap().getBounds()
-JAVASCRIPT
-
 When(/^I click on a site's row in the list$/) do
   @old_bounds = evaluate_script(MAP_BOUNDS_JS)
   find('tr.site:first-child').click

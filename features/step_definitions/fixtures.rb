@@ -25,3 +25,8 @@ Given(/^that there are enough unsustainable sites$/) do
   )
   expect(@sites.size).to eql(14)
 end
+
+
+Given(/^there are some allocations$/) do
+  create :allocation
+end
