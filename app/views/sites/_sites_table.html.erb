@@ -28,7 +28,7 @@
   <% @sites.each_with_index do |site, index| %>
     <tr class="site" data-shlaa-ref="<%= site.shlaa_ref %>">
       <% if numbered_rows %>
-        <td class="number"><%= index + 1 %></th>
+        <td class="number"><%= index + 1 %></td>
       <% end %>
       <td class="shlaa-ref">
         <span class="shlaa-ref-content">
