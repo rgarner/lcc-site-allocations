@@ -4,6 +4,8 @@ class Site < ActiveRecord::Base
 
   has_many :scores
 
+  belongs_to :allocation
+
   scope :by_green_status, ->(status) {
     pattern = status.to_s.sub('mixed', 'mix')
     where "sites.green_brown ~* '#{pattern}'"

@@ -11,11 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150423074826) do
+ActiveRecord::Schema.define(version: 20150716100939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
+
+  create_table "allocations", force: :cascade do |t|
+    t.string   "plan_ref"
+    t.string   "address"
+    t.string   "allocation_ref"
+    t.integer  "capacity"
+    t.integer  "completed_post_2012"
+    t.integer  "under_construction"
+    t.integer  "not_started"
+    t.float    "area_ha"
+    t.string   "green_brown"
+    t.string   "status",              default: "Draft"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
+  add_index "allocations", ["plan_ref"], name: "index_allocations_on_plan_ref", unique: true, using: :btree
 
   create_table "score_types", force: :cascade do |t|
     t.string "sa_objective_code"
@@ -49,8 +66,10 @@ ActiveRecord::Schema.define(version: 20150423074826) do
     t.integer  "ranking"
     t.geometry "boundary",             limit: {:srid=>4326, :type=>"polygon"}
     t.geometry "centroid",             limit: {:srid=>4326, :type=>"point"}
+    t.integer  "allocation_id"
   end
 
+  add_index "sites", ["allocation_id"], name: "index_sites_on_allocation_id", using: :btree
   add_index "sites", ["shlaa_ref"], name: "index_sites_on_shlaa_ref", unique: true, using: :btree
 
 end
