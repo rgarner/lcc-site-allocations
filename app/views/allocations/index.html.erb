@@ -1,0 +1,34 @@
+<h2><%= @allocations.count(:all) %> allocations</h2>
+
+<div class="if-no-js-hide">
+  <div id="map"></div>
+
+  <%= render 'shared/marker_key' %>
+</div>
+
+<table class="allocations table table-striped">
+  <thead>
+  <tr>
+    <th class="plan-ref"><span class="hidden-xs">Plan ref</span></th>
+    <th>Address</th>
+    <th>Area (ha)</th>
+    <th>Capacity</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @allocations.each do |allocation| %>
+    <tr class="allocation" data-plan-ref="<%= allocation.plan_ref %>">
+      <td class="plan-ref">
+        <span class="plan-ref-content">
+          <%= green_brown_glyphs(allocation) %>
+          <%= link_to allocation.plan_ref, allocation %>
+         </span>
+      </td>
+      <td><%= link_to allocation.address, allocation %></td>
+      <td <%= allocation.area_ha %></td>
+      <td><%= allocation.capacity %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

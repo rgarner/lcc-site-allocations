@@ -28,5 +28,9 @@ end
 
 
 Given(/^there are some allocations$/) do
-  create :allocation
+  @allocations = [
+    create(:allocation),
+    create(:allocation),
+    create(:allocation)
+  ]
 end

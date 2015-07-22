@@ -10,13 +10,13 @@ Feature: View sites
   Scenario: Look at the unfiltered list
     When I visit the allocations page
     Then I should see a list of allocations with a count
-    And I should see a map showing boundaries for sites that have them and markers for those that don't
+#    And I should see a map showing boundaries for sites that have them and markers for those that don't
     And I should see a key for the map markers
-    When I click on an allocation's row in the list
-    Then it should zoom to a feature on the map
-    When I toggle the filter panel
-    Then the map should expand
-    And I should not see any filter controls
+#    When I click on an allocation's row in the list
+#    Then it should zoom to a feature on the map
+#    When I toggle the filter panel
+#    Then the map should expand
+#    And I should not see any filter controls
 
 #  Scenario: Filtering by sites without score
 #    When I visit the home page

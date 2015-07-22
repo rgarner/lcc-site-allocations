@@ -3,6 +3,10 @@ FactoryGirl.define do
     "#{ref}"
   end
 
+  sequence :plan_ref do |ref|
+    "HG1-#{ref}"
+  end
+
   sequence :sa_objective_code do |num|
     "SA#{num}"
   end
@@ -28,5 +32,9 @@ FactoryGirl.define do
   factory :score do
     association :score_type
     score 0
+  end
+
+  factory :allocation do
+    plan_ref
   end
 end
