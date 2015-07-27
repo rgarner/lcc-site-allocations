@@ -33,3 +33,16 @@ And(/^I should see the construction progress columns$/) do
   expect(page).to have_selector('th', text: 'Completed post-2012')
   expect(page).to have_selector('th', text: 'Under construction')
 end
+
+
+When(/^I search for allocations with some text$/) do
+  within '.filters' do
+    @search_text = 'new allocation'
+    fill_in 'Containing text', with: @search_text
+    click_button 'Search'
+  end
+end
+
+Then(/^I should see only those allocations that match that text$/) do
+  expect(page).to have_selector('.allocation', count: 1)
+end

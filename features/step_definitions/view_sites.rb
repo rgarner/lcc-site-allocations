@@ -30,7 +30,8 @@ end
 When(/^I search for sites with some text$/) do
   step 'I visit the home page'
   within '.filters' do
-    fill_in 'Containing text', with: 'Green site'
+    @search_text = 'Green site'
+    fill_in 'Containing text', with: @search_text
     click_button 'Search'
   end
 end
@@ -40,7 +41,7 @@ Then(/^I should see only those sites that match that address text$/) do
 end
 
 Then(/^I should see my search text$/) do
-  expect(page).to have_selector('input[value="Green site"]')
+  expect(page).to have_selector(%(input[value="#{@search_text}"]))
 end
 
 Then(/^I should see a map showing boundaries for sites that have them and markers for those that don't$/) do

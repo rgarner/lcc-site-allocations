@@ -26,11 +26,10 @@ Given(/^that there are enough unsustainable sites$/) do
   expect(@sites.size).to eql(14)
 end
 
-
 Given(/^there are some allocations$/) do
   @allocations = [
     create(:allocation),
     create(:allocation),
-    create(:allocation)
+    create(:allocation, address: 'the new allocation site')
   ]
 end

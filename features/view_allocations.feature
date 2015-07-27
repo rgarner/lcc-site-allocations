@@ -17,18 +17,8 @@ Feature: View sites
     Then I should not see the Area (ha) column
     And I should see the construction progress columns
 
-#
-#  Scenario: Searching for sites by address or reason
-#    When I search for sites with some text
-#    Then I should see only those sites that match that address text
-#    And I should see my search text
-#
-#  Scenario: Filtering by Issues and Options Red/Amber/Green
-#    When I visit the home page
-#    And I filter by I&O/RAG "G"
-#    Then I should see what I&O/RAG I filtered by
-#    And I should see only sites that match the I&O/RAG I selected
-#    And I should see the "With scores" filter
-#    When I filter by I&O/RAG "LG"
-#    Then I should not see the "With scores" filter
+  Scenario: Searching for allocatins by address or plan ref
+    When I search for allocations with some text
+    Then I should see only those allocations that match that text
+    And I should see my search text
 

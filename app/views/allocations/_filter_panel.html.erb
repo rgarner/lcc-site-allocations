@@ -24,5 +24,20 @@
         </div>
       </div>
     </div>
+
+    <div class="filter-type">
+      <%= form_tag(allocations_path, method: 'get', role: 'form') do %>
+        <%= hidden_field_tag(:by_policy, params[:by_policy]) %>
+
+        <label class="filter-type-heading" for="containing_text">Containing text</label>
+
+        <div class="input-group">
+          <%= text_field_tag 'containing_text', params[:containing_text], class: 'form-control', placeholder: 'Containing...' %>
+          <span class="input-group-btn">
+          <%= button_tag 'Search', name: nil, class: 'btn btn-default' %>
+        </span>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

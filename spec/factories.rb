@@ -36,5 +36,7 @@ FactoryGirl.define do
 
   factory :allocation do
     plan_ref
+
+    address 'The old allocation site'
   end
 end
