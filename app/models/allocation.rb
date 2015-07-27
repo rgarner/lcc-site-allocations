@@ -3,6 +3,10 @@ class Allocation < ActiveRecord::Base
 
   has_many :sites
 
+  scope :by_policy, -> (policy)  {
+    where 'allocations.plan_ref ~ ?', [policy]
+  }
+
   def to_param
     plan_ref
   end

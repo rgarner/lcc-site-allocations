@@ -17,3 +17,19 @@ Then(/^I should see a map showing boundaries for allocations that have them and 
   expect(page).to have_selector('.leaflet-marker-icon', count: 1)
   expect(page).to have_selector('.boundary', count: 2)
 end
+
+When(/^I filter by policy "([^"]*)"$/) do |policy|
+  within '.filter-type .policy' do
+    click_link 'HG1'
+  end
+end
+
+Then(/^I should not see the Area \(ha\) column$/) do
+  expect(page).not_to have_selector('th', text: 'Area (ha)')
+end
+
+And(/^I should see the construction progress columns$/) do
+  expect(page).to have_selector('th', text: 'Not started')
+  expect(page).to have_selector('th', text: 'Completed post-2012')
+  expect(page).to have_selector('th', text: 'Under construction')
+end

@@ -1,6 +1,8 @@
 class AllocationsController < ApplicationController
+  has_scope :by_policy
+
   def index
-    @allocations = Allocation.all
+    @allocations = apply_scopes(Allocation).all
   end
 
   def show

@@ -1,5 +1,7 @@
 <h2><%= @allocations.count(:all) %> allocations</h2>
 
+<%= render 'filter_panel' %>
+
 <div class="if-no-js-hide">
   <div id="map"></div>
 
@@ -11,7 +13,14 @@
   <tr>
     <th class="plan-ref"><span class="hidden-xs">Plan ref</span></th>
     <th>Address</th>
-    <th>Area (ha)</th>
+    <% if show_area_ha? %>
+      <th>Area (ha)</th>
+    <% end %>
+    <% if show_construction_totals? %>
+      <th>Not started</th>
+      <th>Completed post-2012</th>
+      <th>Under construction</th>
+    <% end %>
     <th>Capacity</th>
   </tr>
   </thead>
@@ -26,7 +35,14 @@
          </span>
       </td>
       <td><%= link_to allocation.address, allocation %></td>
-      <td <%= allocation.area_ha %></td>
+      <% if show_area_ha? %>
+        <td><%= allocation.area_ha %></td>
+      <% end %>
+      <% if show_construction_totals? %>
+        <td><%= allocation.not_started %></td>
+        <td><%= allocation.completed_post_2012 %></td>
+        <td><%= allocation.under_construction %></td>
+      <% end %>
       <td><%= allocation.capacity %></td>
     </tr>
   <% end %>

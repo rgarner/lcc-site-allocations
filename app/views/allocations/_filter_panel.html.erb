@@ -1,0 +1,28 @@
+<div id="filters-container">
+  <div class="collapse in filters well well-lg col-lg-12" aria-expanded="true" id="filters-panel">
+    <div class="filter-type">
+      <label class="filter-type-heading">Policy</label>
+
+      <div class="btn-group policy" role="group" aria-label="Greenfield status">
+        <div class="btn-group" role="group">
+          <%= allocation_filter_link 'HG1', :by_policy, 'HG1' %>
+        </div>
+        <div class="btn-group" role="group">
+          <%= allocation_filter_link 'HG2', :by_policy, 'HG2' %>
+        </div>
+        <div class="btn-group" role="group">
+          <%= allocation_filter_link 'HG3', :by_policy, 'HG3' %>
+        </div>
+        <div class="btn-group" role="group">
+          <%= allocation_filter_link 'MX1', :by_policy, 'MX1' %>
+        </div>
+        <div class="btn-group" role="group">
+          <%= allocation_filter_link 'MX2', :by_policy, 'MX2' %>
+        </div>
+        <div class="btn-group" role="group">
+          <%= allocation_filter_link 'All', :by_policy, :all, glyphs: %w(glyphicon-list) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

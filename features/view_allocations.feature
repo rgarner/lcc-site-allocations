@@ -5,25 +5,18 @@ Feature: View sites
 
   Background:
     Given there are some allocations
+    And I visit the allocations page
 
   @javascript @wip
   Scenario: Look at the unfiltered list
-    When I visit the allocations page
     Then I should see a list of allocations with a count
-#    And I should see a map showing boundaries for sites that have them and markers for those that don't
     And I should see a key for the map markers
-#    When I click on an allocation's row in the list
-#    Then it should zoom to a feature on the map
-#    When I toggle the filter panel
-#    Then the map should expand
-#    And I should not see any filter controls
 
-#  Scenario: Filtering by sites without score
-#    When I visit the home page
-#    Then I should see the scores column
-#    When I show only sites without scores
-#    Then I should not see the scores column
-#    And I should not see a key for the map markers
+  Scenario: Filtering by policy
+    When I filter by policy "HG1"
+    Then I should not see the Area (ha) column
+    And I should see the construction progress columns
+
 #
 #  Scenario: Searching for sites by address or reason
 #    When I search for sites with some text
