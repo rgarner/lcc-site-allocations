@@ -39,5 +39,13 @@ FactoryGirl.define do
     green_brown 'greenfield'
 
     address 'The old allocation site'
+
+    trait :with_site do
+      after(:create) { |a| a.sites = FactoryGirl.create_list(:site, 1) }
+    end
+
+    trait :with_sites do
+      after(:create) { |a| a.sites = [FactoryGirl.create(:site, :with_boundary),FactoryGirl.create(:site, :with_centroid)] }
+    end
   end
 end

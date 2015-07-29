@@ -14,6 +14,11 @@ class Allocation < ActiveRecord::Base
     where "allocations.green_brown ~* '#{pattern}'"
   }
 
+  scope :include_site_geojson, -> {
+    select('allocations.*, sites.*, ST_AsGeoJSON(COALESCE(sites.boundary, sites.centroid)) AS geojson').
+    joins('LEFT JOIN sites ON sites.allocation_id = allocations.id')
+  }
+
   def to_param
     plan_ref
   end

@@ -28,8 +28,8 @@ end
 
 Given(/^there are some allocations$/) do
   @allocations = [
-    create(:allocation),
-    create(:allocation),
+    create(:allocation, :with_site),
+    create(:allocation, :with_sites),
     create(:allocation, address: 'the new allocation site'),
     create(:allocation, plan_ref: 'HG2-1', green_brown: 'brownfield')
   ]

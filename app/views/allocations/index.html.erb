@@ -1,9 +1,15 @@
+<%= content_for :head do %>
+  <link rel="alternate"
+        type="application/vnd.geo+json"
+        href="<%= allocations_path(current_scopes).sub(/allocations(\?)?/, 'allocations.geojson\1') %>">
+<% end %>
+
 <h2><%= @allocations.count(:all) %> allocations</h2>
 
 <%= render 'filter_panel' %>
 
-<div class="if-no-js-hide">
-  <div id="map"></div>
+<div class="if-no-js-hide map-container">
+  <div id="map" class="allocations"></div>
 
   <%= render 'shared/marker_key' %>
 </div>

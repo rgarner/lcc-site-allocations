@@ -15,7 +15,7 @@ end
 Then(/^I should see a map showing boundaries for allocations that have them and markers for those that don't$/) do
   expect(page).to have_selector('#map')
   expect(page).to have_selector('.leaflet-marker-icon', count: 1)
-  expect(page).to have_selector('.boundary', count: 2)
+  expect(page).to have_selector('.boundary', count: 1)
 end
 
 When(/^I filter by policy "([^"]*)"$/) do |policy|
@@ -71,7 +71,7 @@ When(/^I filter by greenfield status "brownfield"$/) do
 end
 
 Then(/^I should see only brownfield allocations$/) do
-  within '.allocations' do
+  within 'table.allocations' do
     expect(page).to have_selector('.allocation .glyphicon-oil', count: 1)
   end
 end

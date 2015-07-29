@@ -7,8 +7,10 @@ Feature: View sites
     Given there are some allocations
     And I visit the allocations page
 
+  @javascript
   Scenario: Look at the unfiltered list
     Then I should see a list of allocations with a count
+    And I should see a map showing boundaries for allocations that have them and markers for those that don't
     And I should see a key for the map markers
 
   Scenario: Filtering by policy HG1 (identified)
