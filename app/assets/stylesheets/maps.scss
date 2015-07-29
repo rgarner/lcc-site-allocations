@@ -66,6 +66,7 @@ $inner-offset: $base-cluster-size / 8;
 }
 
 .leaflet-popup-content {
+  min-height: 2.5em;
   h3 {
     font-size: 1.2em;
     margin: 0;

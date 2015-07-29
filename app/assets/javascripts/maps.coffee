@@ -18,12 +18,12 @@ jQuery ->
         }
 
         window.map = if $(mapElement).hasClass('sites')
-          new FeatureMap(data_feature, mapOptions)
+          new SitesMap(data_feature, mapOptions)
+          new SiteHighlighter(window.map)
         else if $(mapElement).hasClass('allocations')
-          new FeatureMap(data_feature, mapOptions)
+          new AllocationsMap(data_feature, mapOptions)
         else
           throw "Unknown map type (sites or allocations) '#{$(mapElement).attr('class')}' given"
 
-        new SiteHighlighter(window.map)
         new MapResizer(window.map.map).ready()
         new MapStateManager(window.map.map) if data_feature.type == 'FeatureCollection'

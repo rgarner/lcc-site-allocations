@@ -16,4 +16,17 @@
 //= require Chart
 //= require leaflet
 //= require leaflet.markercluster
-//= require_tree .
+//= require color_icon
+//= require site.coffee.erb
+//= require feature_map
+//= require sites_map
+//= require allocations_map
+//= require map_state_manager
+//= require map_resizer
+//= require bing_layer
+//= require fit_bounds
+//= require site_highlighter
+//= require summary
+//= require distribution
+//= require maps
+
