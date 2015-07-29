@@ -17,9 +17,9 @@
       <th>Area (ha)</th>
     <% end %>
     <% if show_construction_totals? %>
-      <th>Not started</th>
-      <th>Completed post-2012</th>
-      <th>Under construction</th>
+      <th class="hidden-xxs">Not started</th>
+      <th class="hidden-xxs">Completed post-2012</th>
+      <th class="hidden-xxs">Under construction</th>
     <% end %>
     <th>Capacity</th>
   </tr>
@@ -39,9 +39,9 @@
         <td><%= allocation.area_ha %></td>
       <% end %>
       <% if show_construction_totals? %>
-        <td><%= allocation.not_started %></td>
-        <td><%= allocation.completed_post_2012 %></td>
-        <td><%= allocation.under_construction %></td>
+        <td class="hidden-xxs"><%= allocation.not_started %></td>
+        <td class="hidden-xxs"><%= allocation.completed_post_2012 %></td>
+        <td class="hidden-xxs"><%= allocation.under_construction %></td>
       <% end %>
       <td><%= allocation.capacity %></td>
     </tr>

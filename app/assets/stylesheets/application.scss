@@ -1,5 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "bootstrap_augmentations";
 @import "leaflet";
 
 //= depend_on_asset "layers.png"
