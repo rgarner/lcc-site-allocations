@@ -18,7 +18,7 @@ describe AllocationsHelper do
     context 'by_policy' do
       let(:text)  { 'Policy' }
       let(:name)  { :by_policy }
-      let(:value) { 'HG1' }
+      let(:value) { 'HG2' }
       let(:options) { { glyphs: %w(glyphicon-tree-deciduous) } }
 
       context 'is not selected' do
@@ -32,12 +32,12 @@ describe AllocationsHelper do
 
         it 'is not active' do
           expect(markup).to include('something=else')
-          expect(markup).to include('by_policy=HG1')
+          expect(markup).to include('by_policy=HG2')
         end
       end
 
       context 'is already selected' do
-        let(:current_scopes) { {something: 'else', by_policy: 'HG1'} }
+        let(:current_scopes) { {something: 'else', by_policy: 'HG2'} }
 
         it { should be_an(ActiveSupport::SafeBuffer) }
         it { should_not include ('<a class="btn') }
@@ -54,6 +54,14 @@ describe AllocationsHelper do
         let(:options) { { class: 'btn' } }
 
         it { should include('class="btn"') }
+      end
+
+      context 'has a conflicting by_green_status' do
+        let(:current_scopes) {{ by_green_status: 'green' }}
+
+        it 'deletes that conflicting key/value pair' do
+          expect(markup).not_to include('by_green_status')
+        end
       end
     end
 

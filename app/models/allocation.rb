@@ -9,6 +9,11 @@ class Allocation < ActiveRecord::Base
     where 'allocations.plan_ref ~ ?', [policy]
   }
 
+  scope :by_green_status, ->(status) {
+    pattern = status.to_s.sub('mixed', 'mix')
+    where "allocations.green_brown ~* '#{pattern}'"
+  }
+
   def to_param
     plan_ref
   end

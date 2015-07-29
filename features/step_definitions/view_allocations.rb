@@ -20,7 +20,7 @@ end
 
 When(/^I filter by policy "([^"]*)"$/) do |policy|
   within '.filter-type .policy' do
-    click_link 'HG1'
+    click_link policy
   end
 end
 
@@ -28,12 +28,15 @@ Then(/^I should not see the Area \(ha\) column$/) do
   expect(page).not_to have_selector('th', text: 'Area (ha)')
 end
 
+Then(/^I should see the Area \(ha\) column$/) do
+  expect(page).to have_selector('th', text: 'Area (ha)')
+end
+
 And(/^I should see the construction progress columns$/) do
   expect(page).to have_selector('th', text: 'Not started')
   expect(page).to have_selector('th', text: 'Completed post-2012')
   expect(page).to have_selector('th', text: 'Under construction')
 end
-
 
 When(/^I search for allocations with some text$/) do
   within '.filters' do
@@ -45,4 +48,30 @@ end
 
 Then(/^I should see only those allocations that match that text$/) do
   expect(page).to have_selector('.allocation', count: 1)
+end
+
+And(/^I should see the green\/brown filters$/) do
+  expect(page).to have_selector('.filter-type .greenfield-status')
+end
+
+But(/^I should not see the green\/brown filters$/) do
+  expect(page).not_to have_selector('.filter-type .greenfield-status')
+end
+
+But(/^I should not see the construction progress columns$/) do
+  expect(page).not_to have_selector('th', text: 'Not started')
+  expect(page).not_to have_selector('th', text: 'Completed post-2012')
+  expect(page).not_to have_selector('th', text: 'Under construction')
+end
+
+When(/^I filter by greenfield status "brownfield"$/) do
+  within '.greenfield-status' do
+    click_link 'Brownfield'
+  end
+end
+
+Then(/^I should see only brownfield allocations$/) do
+  within '.allocations' do
+    expect(page).to have_selector('.allocation .glyphicon-oil', count: 1)
+  end
 end

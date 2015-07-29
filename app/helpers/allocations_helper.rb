@@ -17,6 +17,7 @@ module AllocationsHelper
              end
     markup = (markup + content_tag(:span, text, class: 'filter-text')).html_safe
 
+    current_scopes.delete(:by_green_status) if name == :by_policy
 
     case
     when current_scopes[name] == value
@@ -31,6 +32,10 @@ module AllocationsHelper
       content_tag(:a, markup, class: options[:class] || 'btn btn-default',
                   href: allocations_path(current_scopes.merge({name => value})))
     end
+  end
+
+  def show_green_brown_filter?
+    current_scopes[:by_policy] =~ /HG2/i
   end
 
   def show_area_ha?

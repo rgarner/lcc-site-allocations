@@ -36,6 +36,7 @@ FactoryGirl.define do
 
   factory :allocation do
     plan_ref
+    green_brown 'greenfield'
 
     address 'The old allocation site'
   end
