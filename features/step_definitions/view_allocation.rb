@@ -6,6 +6,14 @@ Then(/^I should see details about that allocation$/) do
   expect(page).to have_selector('.allocation dl')
 end
 
+And(/^I should see links to its sites/) do
+  within '.allocation-details' do
+    @allocation.sites.each do |site|
+      expect(page).to have_link(site.shlaa_ref)
+    end
+  end
+end
+
 And(/^I should see a map with a feature for each site in it$/) do
   expect(page).to have_selector('#map')
   expect(page).to have_selector('.leaflet-marker-icon', count: @allocation.sites.select { |s| s.centroid.present? }.length)

@@ -8,5 +8,6 @@ Feature: Viewing an allocation
     Given that an allocation exists with more than one site
     When I visit that allocation's page
     Then I should see details about that allocation
+    And I should see links to its sites
     But I should not see details it does not have
     And I should see a map with a feature for each site in it

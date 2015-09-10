@@ -38,6 +38,12 @@ module AllocationsHelper
     "#{allocation.plan_ref} #{allocation.address}"
   end
 
+  def links_to_sites(allocation)
+    allocation.sites.map do |site|
+      link_to site.shlaa_ref, site_path(site)
+    end.join(', ').html_safe
+  end
+
   def show_green_brown_filter?
     current_scopes[:by_policy] =~ /HG2/i
   end

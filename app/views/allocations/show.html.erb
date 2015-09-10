@@ -29,6 +29,11 @@
           <dt><%= attr.to_s.humanize %></dt>
           <dd><%= @allocation.send attr %></dd>
         <% end %>
+
+        <% if attr == :plan_ref %>
+          <dt>Comprises sites</dt>
+          <dd><%= links_to_sites(@allocation) %></dd>
+        <% end %>
       <% end %>
     </dl>
   </div>
