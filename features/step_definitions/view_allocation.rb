@@ -7,7 +7,7 @@ Then(/^I should see details about that allocation$/) do
 end
 
 And(/^I should see links to its sites/) do
-  within '.allocation-details' do
+  within '.allocation' do
     @allocation.sites.each do |site|
       expect(page).to have_link(site.shlaa_ref)
     end

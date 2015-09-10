@@ -9,7 +9,7 @@
     <%= allocation_display_name(@allocation) %>
     <% if @allocation.sites.any? %>
       <br/>
-      <small>Comprises sites <%= links_to_sites(@allocation) %></small>
+      <small><%= links_to_sites(@allocation) %></small>
     <% end %>
   </h2>
 
@@ -20,8 +20,6 @@
   <div class="allocation-details well well-lg col-md-12">
     <dl>
       <% [
-          :plan_ref,
-          :address,
           :area_ha,
           :capacity,
           :completed_post_2012,

@@ -102,4 +102,30 @@ describe AllocationsHelper do
     end
 
   end
+
+  describe '#links_to_sites' do
+
+    subject(:markup) { helper.links_to_sites(allocation) }
+
+    context 'only one site' do
+      let(:allocation) { create(:allocation, :with_site) }
+
+      it { should be_an(ActiveSupport::SafeBuffer) }
+      it { should include 'Was site' }
+      it 'has a link to the site' do
+        expect(markup).to include %(href="#{site_path(allocation.sites.first)}")
+      end
+    end
+    context 'more than one site' do
+      let(:allocation) { create(:allocation, :with_sites) }
+
+      it { should be_an(ActiveSupport::SafeBuffer) }
+      it { should include 'Comprises sites' }
+      it 'has a link to each site' do
+        allocation.sites.each do |site|
+          expect(markup).to include %(href="#{site_path(site)}")
+        end
+      end
+    end
+  end
 end

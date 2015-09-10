@@ -38,10 +38,18 @@ module AllocationsHelper
     "#{allocation.plan_ref} #{allocation.address}"
   end
 
+  def link_to_site(site)
+    link_to(site.shlaa_ref, site_path(site.shlaa_ref))
+  end
+
   def links_to_sites(allocation)
-    allocation.sites.map do |site|
-      link_to site.shlaa_ref, site_path(site)
-    end.join(', ').html_safe
+    case allocation.sites.count
+    when 0 then ''
+    when 1 then
+      "Was site #{link_to_site(allocation.sites.first)}"
+    else
+      "Comprises sites #{allocation.sites.map { |site| link_to_site(site) }.join(', ')}"
+    end.html_safe
   end
 
   def show_green_brown_filter?
