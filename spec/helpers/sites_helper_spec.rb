@@ -159,4 +159,33 @@ describe SitesHelper do
       end
     end
   end
+
+  describe '#feature_json' do
+    let(:site) { build :site }
+    let(:extra_props) { {} }
+
+    subject(:json_hash) { helper.feature_json(site, extra_props) }
+
+    context 'site with no geo' do
+      it 'has nil geo' do
+        expect(json_hash.fetch('geometry')).to be_nil
+      end
+    end
+
+    context 'site with geo' do
+      let(:site) { build :site, :with_boundary }
+      it 'has some geo' do
+        expect(json_hash['geometry']['type']).to eql('Polygon')
+        expect(json_hash['geometry']['coordinates']).to be_an(Array)
+      end
+    end
+
+    context 'extra properties' do
+      let(:extra_props) { { plan_ref: 'HG1-1' } }
+
+      it 'has the extra property' do
+        expect(json_hash['properties']['plan_ref']).to eql('HG1-1')
+      end
+    end
+  end
 end

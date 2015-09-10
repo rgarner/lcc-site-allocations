@@ -116,7 +116,7 @@ module SitesHelper
     end
   end
 
-  def feature_json(site)
+  def feature_json(site, extra_props = {})
     RGeo::GeoJSON.encode(RGeo::GeoJSON::EntityFactory.instance.feature(
       site.boundary || site.centroid,
       nil,
@@ -131,7 +131,7 @@ module SitesHelper
         settlement_hierarchy: site.settlement_hierarchy,
         green_brown: site.green_brown,
         reason: site.reason
-      }
+      }.reverse_merge(extra_props)
     ))
   end
 
