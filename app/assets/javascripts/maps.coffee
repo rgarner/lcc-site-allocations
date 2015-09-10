@@ -18,8 +18,9 @@ jQuery ->
         }
 
         window.map = if $(mapElement).hasClass('sites')
-          new SitesMap(data_feature, mapOptions)
-          new SiteHighlighter(window.map)
+          map = new SitesMap(data_feature, mapOptions)
+          new SiteHighlighter(map)
+          map
         else if $(mapElement).hasClass('allocations')
           new AllocationsMap(data_feature, mapOptions)
         else

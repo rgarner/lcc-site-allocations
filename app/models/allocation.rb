@@ -15,8 +15,13 @@ class Allocation < ActiveRecord::Base
   }
 
   scope :include_site_geojson, -> {
-    select('allocations.*, sites.*, ST_AsGeoJSON(COALESCE(sites.boundary, sites.centroid)) AS geojson').
-    joins('LEFT JOIN sites ON sites.allocation_id = allocations.id')
+    select(
+      'allocations.*,'\
+      'sites.shlaa_ref, sites.address, sites.total_score,'\
+           'sites.area_ha, sites.capacity, sites.io_rag, sites.settlement_hierarchy,'\
+           'sites.green_brown, sites.reason,'\
+           'ST_AsGeoJSON(COALESCE(sites.boundary, sites.centroid)) AS geojson').
+    joins('LEFT JOIN sites ON sites.allocation_id = allocations.id').includes(:sites)
   }
 
   def to_param

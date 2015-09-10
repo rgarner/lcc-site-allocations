@@ -34,6 +34,10 @@ module AllocationsHelper
     end
   end
 
+  def allocation_display_name(allocation)
+    "#{allocation.plan_ref} #{allocation.address}"
+  end
+
   def show_green_brown_filter?
     current_scopes[:by_policy] =~ /HG2/i
   end

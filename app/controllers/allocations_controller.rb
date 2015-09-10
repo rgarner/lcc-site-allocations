@@ -21,5 +21,12 @@ class AllocationsController < ApplicationController
   end
 
   def show
+    @allocation = Allocation.find_by(plan_ref: params[:id]) or
+      render status: 404, text: "Allocation #{params[:id]} not found" and return
+
+    respond_to do |format|
+      format.html    { render }
+      format.geojson { render geojson: @allocation }
+    end
   end
 end

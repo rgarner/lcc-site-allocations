@@ -34,3 +34,8 @@ Given(/^there are some allocations$/) do
     create(:allocation, plan_ref: 'HG2-1', green_brown: 'brownfield')
   ]
 end
+
+
+Given(/^that an allocation exists with more than one site$/) do
+  @allocation = create :allocation, :with_sites
+end
