@@ -6,7 +6,11 @@
 <div class="allocation">
   <h2 class="col-lg-12">
     <%= green_brown_glyphs(@allocation) %>
-    <%= @allocation.address %>
+    <%= allocation_display_name(@allocation) %>
+    <% if @allocation.sites.any? %>
+      <br/>
+      <small>Comprises sites <%= links_to_sites(@allocation) %></small>
+    <% end %>
   </h2>
 
   <div class="map-container">
@@ -28,11 +32,6 @@
         <% if @allocation.send attr %>
           <dt><%= attr.to_s.humanize %></dt>
           <dd><%= @allocation.send attr %></dd>
-        <% end %>
-
-        <% if attr == :plan_ref %>
-          <dt>Comprises sites</dt>
-          <dd><%= links_to_sites(@allocation) %></dd>
         <% end %>
       <% end %>
     </dl>

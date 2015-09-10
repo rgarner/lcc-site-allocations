@@ -22,6 +22,10 @@ FactoryGirl.define do
       centroid 'POINT(-1.47486759802822 53.8426310787134)'
     end
 
+    trait :with_allocation do
+      allocation
+    end
+
     io_rag 'G'
   end
 

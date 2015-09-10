@@ -6,12 +6,12 @@ Given(/^there are some sites(?: with scores)?$/) do
   ]
 end
 
-Given(/^that a site exists with some scores and a boundary$/) do
-  @site = create :site, :with_boundary
+Given(/^that a site exists with some scores, a boundary and an allocation$/) do
+  @site = create :site, :with_boundary, :with_allocation
   @site.scores = [create(:score), create(:score)]
 end
 
-Given(/^that a site exists with no boundary$/) do
+Given(/^that a site exists with no boundary and no allocation$/) do
   @site = create :site
 end
 
