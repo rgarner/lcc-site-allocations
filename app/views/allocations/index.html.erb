@@ -33,7 +33,7 @@
 
   <tbody>
   <% @allocations.each do |allocation| %>
-    <tr class="allocation" data-plan-ref="<%= allocation.plan_ref %>">
+    <tr class="allocation" data-layer-ref="<%= allocation.plan_ref %>">
       <td class="plan-ref">
         <span class="plan-ref-content">
           <%= green_brown_glyphs(allocation) %>

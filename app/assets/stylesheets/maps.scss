@@ -89,3 +89,11 @@ $inner-offset: $base-cluster-size / 8;
     padding-top: 0.5em;
   }
 }
+
+.map-available:hover {
+  cursor: zoom-in;
+}
+
+.not-on-map {
+  background-color: $not-on-map;
+}

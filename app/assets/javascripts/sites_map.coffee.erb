@@ -19,7 +19,7 @@ class @SitesMap extends @FeatureMap
         <dt>IO / RAG</dt>
         <dd>#{site.io_rag}</dd>
       </dl>
-    """, { minWidth: 200, shlaaRef: site.shlaa_ref} )
+    """, { minWidth: 200, layerRef: site.shlaa_ref} )
 
   createColorMarker = (feature, latlng) ->
     iconName = Site.getClassName(feature.properties.score)
@@ -37,7 +37,7 @@ class @SitesMap extends @FeatureMap
       className: "boundary #{Site.getClassName(feature.properties.score)}"
     }
 
-  layerByShlaaRef: (shlaa_ref) -> @layersByShlaaRef[shlaa_ref]
+  layerByRef: (shlaa_ref) -> @layersByShlaaRef[shlaa_ref]
 
   draw: ->
     super

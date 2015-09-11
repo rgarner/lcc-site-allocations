@@ -19,10 +19,12 @@ jQuery ->
 
         window.map = if $(mapElement).hasClass('sites')
           map = new SitesMap(data_feature, mapOptions)
-          new SiteHighlighter(map)
+          new SiteHighlighter(map, '.sites tr.site')
           map
         else if $(mapElement).hasClass('allocations')
-          new AllocationsMap(data_feature, mapOptions)
+          map = new AllocationsMap(data_feature, mapOptions)
+          new SiteHighlighter(map, '.allocations tr.allocation')
+          map
         else
           throw "Unknown map type (sites or allocations) '#{$(mapElement).attr('class')}' given"
 

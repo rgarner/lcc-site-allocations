@@ -26,7 +26,7 @@
 
   <tbody>
   <% @sites.each_with_index do |site, index| %>
-    <tr class="site" data-shlaa-ref="<%= site.shlaa_ref %>">
+    <tr class="site" data-layer-ref="<%= site.shlaa_ref %>">
       <% if numbered_rows %>
         <td class="number"><%= index + 1 %></td>
       <% end %>
