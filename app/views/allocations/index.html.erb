@@ -2,6 +2,7 @@
   <link rel="alternate"
         type="application/vnd.geo+json"
         href="<%= allocations_path(current_scopes).sub(/allocations(\?)?/, 'allocations.geojson\1') %>">
+  <%= render partial: 'shared/facebook_open_graph_meta', locals: { description: 'Draft Allocations for housing' } %>
 <% end %>
 
 <h2><%= @allocations.count(:all) %> allocations</h2>

@@ -3,6 +3,7 @@
   <link rel="alternate"
         type="application/vnd.geo+json"
         href="<%= sites_path(current_scopes).sub(/sites(\?)?/, 'sites.geojson\1') %>">
+  <%= render 'shared/facebook_open_graph_meta' %>
 <% end %>
 
 <p id="notice"><%= notice %></p>
