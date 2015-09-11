@@ -1,10 +1,9 @@
 #
 # Manage the leaflet map and its geoJSON features.
 # Knows how to:
-#   * Set up the leaflet.js map
-#   * Style sites
-#   * Style markers
-#   * Style popups
+#   * Set up the leaflet.js map OVER_LEEDS
+#   * Set up OSM and Bing layers
+#   * Style cluster markers
 #   * Fit to displayed features if requested
 #
 class @FeatureMap

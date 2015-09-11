@@ -1,7 +1,7 @@
 #
 # Manage the leaflet map and its geoJSON features.
 # Knows how to:
-#   * Style sites
+#   * Style sites that pertain to allocations
 #   * Style markers
 #   * Style popups
 #
