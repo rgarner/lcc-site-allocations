@@ -6,12 +6,12 @@ Given(/^there are some sites(?: with scores)?$/) do
   ]
 end
 
-Given(/^that a site exists with some scores and a boundary$/) do
-  @site = create :site, :with_boundary
+Given(/^that a site exists with some scores, a boundary and an allocation$/) do
+  @site = create :site, :with_boundary, :with_allocation
   @site.scores = [create(:score), create(:score)]
 end
 
-Given(/^that a site exists with no boundary$/) do
+Given(/^that a site exists with no boundary and no allocation$/) do
   @site = create :site
 end
 
@@ -24,4 +24,18 @@ Given(/^that there are enough unsustainable sites$/) do
     end
   )
   expect(@sites.size).to eql(14)
+end
+
+Given(/^there are some allocations$/) do
+  @allocations = [
+    create(:allocation, :with_site),
+    create(:allocation, :with_sites),
+    create(:allocation, address: 'the new allocation site'),
+    create(:allocation, plan_ref: 'HG2-1', green_brown: 'brownfield')
+  ]
+end
+
+
+Given(/^that an allocation exists with more than one site$/) do
+  @allocation = create :allocation, :with_sites
 end

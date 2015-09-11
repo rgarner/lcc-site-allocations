@@ -3,6 +3,10 @@ FactoryGirl.define do
     "#{ref}"
   end
 
+  sequence :plan_ref do |ref|
+    "HG1-#{ref}"
+  end
+
   sequence :sa_objective_code do |num|
     "SA#{num}"
   end
@@ -18,6 +22,10 @@ FactoryGirl.define do
       centroid 'POINT(-1.47486759802822 53.8426310787134)'
     end
 
+    trait :with_allocation do
+      allocation
+    end
+
     io_rag 'G'
   end
 
@@ -28,5 +36,20 @@ FactoryGirl.define do
   factory :score do
     association :score_type
     score 0
+  end
+
+  factory :allocation do
+    plan_ref
+    green_brown 'greenfield'
+
+    address 'The old allocation site'
+
+    trait :with_site do
+      after(:create) { |a| a.sites = FactoryGirl.create_list(:site, 1) }
+    end
+
+    trait :with_sites do
+      after(:create) { |a| a.sites = [FactoryGirl.create(:site, :with_boundary),FactoryGirl.create(:site, :with_centroid)] }
+    end
   end
 end

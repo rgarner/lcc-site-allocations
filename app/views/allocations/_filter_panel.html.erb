@@ -1,0 +1,65 @@
+<div id="filters-container">
+  <div class="collapse in filters well well-lg col-lg-12" aria-expanded="true" id="filters-panel">
+
+    <% if show_green_brown_filter? %>
+      <div class="filter-type">
+        <label class="filter-type-heading">Greenfield status</label>
+
+        <div class="btn-group greenfield-status" role="group" aria-label="Greenfield status">
+          <div class="btn-group" role="group">
+            <%= allocation_filter_link 'Greenfield', :by_green_status, 'green', glyphs: %w(glyphicon-tree-deciduous) %>
+          </div>
+          <div class="btn-group" role="group">
+            <%= allocation_filter_link 'Brownfield', :by_green_status, 'brown', glyphs: %w(glyphicon-oil) %>
+          </div>
+          <div class="btn-group" role="group">
+            <%= allocation_filter_link 'Mixed', :by_green_status, 'mix', glyphs: %w(glyphicon-tree-deciduous glyphicon-oil) %>
+          </div>
+          <div class="btn-group" role="group">
+            <%= allocation_filter_link 'All', :by_green_status, :all, glyphs: %w(glyphicon-list) %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="filter-type">
+      <label class="filter-type-heading">Policy</label>
+
+      <div class="btn-group policy" role="group" aria-label="Policy">
+        <div class="btn-group" role="group">
+          <%= allocation_filter_link 'HG1', :by_policy, 'HG1' %>
+        </div>
+        <div class="btn-group" role="group">
+          <%= allocation_filter_link 'HG2', :by_policy, 'HG2' %>
+        </div>
+        <div class="btn-group" role="group">
+          <%= allocation_filter_link 'HG3', :by_policy, 'HG3' %>
+        </div>
+        <div class="btn-group" role="group">
+          <%= allocation_filter_link 'MX1', :by_policy, 'MX1' %>
+        </div>
+        <div class="btn-group" role="group">
+          <%= allocation_filter_link 'MX2', :by_policy, 'MX2' %>
+        </div>
+        <div class="btn-group" role="group">
+          <%= allocation_filter_link 'All', :by_policy, :all, glyphs: %w(glyphicon-list) %>
+        </div>
+      </div>
+    </div>
+
+    <div class="filter-type">
+      <%= form_tag(allocations_path, method: 'get', role: 'form') do %>
+        <%= hidden_field_tag(:by_policy, params[:by_policy]) %>
+
+        <label class="filter-type-heading" for="containing_text">Containing text</label>
+
+        <div class="input-group">
+          <%= text_field_tag 'containing_text', params[:containing_text], class: 'form-control', placeholder: 'Containing...' %>
+          <span class="input-group-btn">
+          <%= button_tag 'Search', name: nil, class: 'btn btn-default' %>
+        </span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -9,9 +9,13 @@
 <h2 class="col-lg-12">
   <%= green_brown_glyphs(@site) %>
   <%= @site.address %>
+  <% if @site.allocation %>
+    <br/>
+    <small><%= link_to "Part of allocation #{@site.allocation.plan_ref}", allocation_path(@site.allocation) %></small>
+  <% end %>
 </h2>
 
-<div id="map" class="if-no-js-hide"></div>
+<div id="map" class="if-no-js-hide sites"></div>
 
 <div class="site-details well well-lg col-md-12">
   <dl class="col-md-6">

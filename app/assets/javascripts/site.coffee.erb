@@ -1,0 +1,12 @@
+class @Site
+  @getClassName = (s) ->
+  <%=
+    "
+      if      #{Score::VERY_NEGATIVE.min}  <= s <= #{Score::VERY_NEGATIVE.max}  then 'very-negative'
+      else if #{Score::NEGATIVE.min}       <= s <= #{Score::NEGATIVE.max}       then 'negative'
+      else if                                 s == #{Score::NEUTRAL}            then 'neutral'
+      else if #{Score::POSITIVE.min}       <= s <= #{Score::POSITIVE.max}       then 'positive'
+      else if #{Score::VERY_POSITIVE.min}  <= s <= #{Score::VERY_POSITIVE.max}  then 'very-positive'
+      else 'no-score'
+    "
+  %>

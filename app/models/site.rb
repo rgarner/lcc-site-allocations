@@ -1,8 +1,11 @@
 class Site < ActiveRecord::Base
+  include HasTextBasedGreenStatus
   include PgSearch
   pg_search_scope :containing_text, against: { shlaa_ref: 'A', address: 'A', reason: 'B' }
 
   has_many :scores
+
+  belongs_to :allocation
 
   scope :by_green_status, ->(status) {
     pattern = status.to_s.sub('mixed', 'mix')
@@ -109,13 +112,5 @@ class Site < ActiveRecord::Base
     shlaa_ref
   end
 
-  def green_status
-    case green_brown
-      when /mix/i then :mixed
-      when /greenfield/i then :green
-      when /brownfield/i then :brown
-    else
-      nil
-    end
-  end
+
 end

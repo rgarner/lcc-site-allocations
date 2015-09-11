@@ -1,0 +1,37 @@
+<%= content_for :head do %>
+  <link rel="alternate" type="application/vnd.geo+json" href="<%= allocation_path(@allocation, format: :geojson) %>">
+<% end %>
+<%= content_for :title, allocation_display_name(@allocation) %>
+
+<div class="allocation">
+  <h2 class="col-lg-12">
+    <%= green_brown_glyphs(@allocation) %>
+    <%= allocation_display_name(@allocation) %>
+    <% if @allocation.sites.any? %>
+      <br/>
+      <small><%= links_to_sites(@allocation) %></small>
+    <% end %>
+  </h2>
+
+  <div class="map-container">
+    <div id="map" class="if-no-js-hide allocations"></div>
+  </div>
+
+  <div class="allocation-details well well-lg col-md-12">
+    <dl>
+      <% [
+          :area_ha,
+          :capacity,
+          :completed_post_2012,
+          :under_construction,
+          :not_started,
+          :green_brown
+        ].each do |attr| %>
+        <% if @allocation.send attr %>
+          <dt><%= attr.to_s.humanize %></dt>
+          <dd><%= @allocation.send attr %></dd>
+        <% end %>
+      <% end %>
+    </dl>
+  </div>
+</div>

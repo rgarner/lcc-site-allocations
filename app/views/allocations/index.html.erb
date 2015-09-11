@@ -1,0 +1,56 @@
+<%= content_for :head do %>
+  <link rel="alternate"
+        type="application/vnd.geo+json"
+        href="<%= allocations_path(current_scopes).sub(/allocations(\?)?/, 'allocations.geojson\1') %>">
+<% end %>
+
+<h2><%= @allocations.count(:all) %> allocations</h2>
+
+<%= render 'filter_panel' %>
+
+<div class="if-no-js-hide map-container">
+  <div id="map" class="allocations"></div>
+
+  <%= render 'shared/marker_key' %>
+</div>
+
+<table class="allocations table table-striped">
+  <thead>
+  <tr>
+    <th class="plan-ref"><span class="hidden-xs">Plan ref</span></th>
+    <th>Address</th>
+    <% if show_area_ha? %>
+      <th>Area (ha)</th>
+    <% end %>
+    <% if show_construction_totals? %>
+      <th class="hidden-xxs">Not started</th>
+      <th class="hidden-xxs">Completed post-2012</th>
+      <th class="hidden-xxs">Under construction</th>
+    <% end %>
+    <th>Capacity</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @allocations.each do |allocation| %>
+    <tr class="allocation" data-plan-ref="<%= allocation.plan_ref %>">
+      <td class="plan-ref">
+        <span class="plan-ref-content">
+          <%= green_brown_glyphs(allocation) %>
+          <%= link_to allocation.plan_ref, allocation %>
+         </span>
+      </td>
+      <td><%= link_to allocation.address, allocation %></td>
+      <% if show_area_ha? %>
+        <td><%= allocation.area_ha %></td>
+      <% end %>
+      <% if show_construction_totals? %>
+        <td class="hidden-xxs"><%= allocation.not_started %></td>
+        <td class="hidden-xxs"><%= allocation.completed_post_2012 %></td>
+        <td class="hidden-xxs"><%= allocation.under_construction %></td>
+      <% end %>
+      <td><%= allocation.capacity %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

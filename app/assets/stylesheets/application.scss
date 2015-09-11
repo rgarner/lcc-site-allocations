@@ -1,5 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "bootstrap_augmentations";
 @import "leaflet";
 
 //= depend_on_asset "layers.png"
@@ -10,6 +11,7 @@
 @import "scores";
 @import "filters";
 @import "sites";
+@import "allocations";
 @import "stats";
 @import "maps";
 @import "static_content";

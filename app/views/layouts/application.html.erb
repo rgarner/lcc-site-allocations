@@ -40,6 +40,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar">
             <%= nav_link current_page?(sites_path) || current_page?(root_path), 'Sites', root_path %>
+            <%= nav_link current_page?(allocations_path) || current_page?(allocations_path), 'Allocations', allocations_path %>
             <%= nav_link current_page?(stats_path) || current_page?(stats_path), 'Stats', stats_path %>
             <%= nav_link current_page?(glossary_path) || current_page?(glossary_path), 'Glossary', glossary_path %>
             <%= nav_link current_page?(about_path), 'About', about_path %>

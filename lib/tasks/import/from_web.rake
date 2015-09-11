@@ -10,7 +10,7 @@ namespace :import do
     module SiteAllocations::Import
       WEB_BASE = 'https://raw.githubusercontent.com/rgarner/lcc-site-allocations-data/master/data/output'
 
-      [Sites, ScoreTypes, Scores, Boundaries].each do |klass|
+      [Sites, ScoreTypes, Scores, Boundaries, Allocations].each do |klass|
         underscored = klass.name.demodulize.underscore # => score_types
 
         csv_base = "#{underscored}.csv"

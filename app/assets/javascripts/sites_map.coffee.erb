@@ -1,0 +1,60 @@
+#
+# Manage the leaflet map and its geoJSON features.
+# Knows how to:
+#   * Style sites
+#   * Style markers
+#   * Style popups
+#
+class @SitesMap extends @FeatureMap
+  bindPopup = (feature, layer) ->
+    site = feature.properties # for readability in the template
+    layer.bindPopup("""
+      <h3>
+        <a href="/sites/#{site.shlaa_ref}">#{site.shlaa_ref} #{site.name}</a>
+        <span class="score label #{ if site.score? then Site.getClassName(site.score) else ''}">
+          #{if site.score? then site.score else ''}
+        </span>
+      </h3>
+      <dl>
+        <dt>IO / RAG</dt>
+        <dd>#{site.io_rag}</dd>
+      </dl>
+    """, { minWidth: 200, shlaaRef: site.shlaa_ref} )
+
+  createColorMarker = (feature, latlng) ->
+    iconName = Site.getClassName(feature.properties.score)
+    L.marker(
+        latlng, {
+          icon: new ColorIcon({
+            iconUrl:       "/assets/#{iconName}.png",
+            iconRetinaUrl: "/assets/#{iconName}2x.png"
+        })
+    })
+
+  getBoundaryStyle = (feature) ->
+    {
+      style: null,
+      className: "boundary #{Site.getClassName(feature.properties.score)}"
+    }
+
+  layerByShlaaRef: (shlaa_ref) -> @layersByShlaaRef[shlaa_ref]
+
+  draw: ->
+    super
+
+    @layersByShlaaRef = {}
+
+    @featureLayer = L.geoJson(
+      @data_feature,
+      onEachFeature: (feature, layer) =>
+        @layersByShlaaRef[feature.properties.shlaa_ref] = layer
+        bindPopup(feature, layer)
+      pointToLayer:  createColorMarker,
+      style:         getBoundaryStyle
+    )
+
+    @markers.addLayer(@featureLayer)
+    @markers.addTo(@map);
+
+    if @options.fitMapToBounds
+      @fitBounds()
