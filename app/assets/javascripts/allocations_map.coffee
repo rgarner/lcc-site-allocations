@@ -15,7 +15,7 @@ class @AllocationsMap extends @FeatureMap
         #{if allocation.score? then allocation.score else ''}
         </span>
       </h3>
-    """, { minWidth: 200, planRef: allocation.plan_ref} )
+    """, { minWidth: 200, layerRef: allocation.plan_ref} )
 
   createColorMarker = (feature, latlng) ->
     iconName = Site.getClassName(feature.properties.score)
@@ -32,6 +32,9 @@ class @AllocationsMap extends @FeatureMap
       style: null,
       className: "boundary #{Site.getClassName(feature.properties.score)}"
     }
+
+  layerByRef: (planRef) ->
+    @layersByPlanRef[planRef]
 
   draw: ->
     super

@@ -20,14 +20,6 @@ $padding-dl-and-reason: 1%;
       text-overflow: ellipsis;
     }
   }
-
-  .site.map-available:hover {
-    cursor: zoom-in;
-  }
-
-  .site.not-on-map {
-    background-color: $not-on-map;
-  }
 }
 
 .site, .allocation, .leaflet-popup-content {

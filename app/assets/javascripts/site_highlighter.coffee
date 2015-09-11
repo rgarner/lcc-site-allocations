@@ -1,15 +1,15 @@
 #
 # Manage the interactions between the map and the table:
-#  * Highlight sites in the table when selected on the map
-#  * Zoom to sites on the map when clicked in the table
+#  * Highlight layers in the table when selected on the map
+#  * Zoom to layers on the map when clicked in the table
 #
 class @SiteHighlighter
-  constructor: (@featureMap) ->
-    siteRows().each((index, row) =>
-      if @featureMap.layerByShlaaRef($(row).attr('data-shlaa-ref'))
+  constructor: (@featureMap, @tableRowSelector) ->
+    @tableRows().each((index, row) =>
+      if @featureMap.layerByRef($(row).attr('data-layer-ref'))
         $(row)
           .addClass('map-available')
-          .on('click', @siteRowClicked)
+          .on('click', @tableRowClicked)
           .find('a').on('click', (e) ->
             e.stopPropagation()
           )
@@ -20,11 +20,12 @@ class @SiteHighlighter
     @leafletMap = @featureMap.getMap()
     @leafletMap.on('popupopen',  @popupOpened)
 
-  siteRows = ->
-    $('.sites tr.site')
+
+  tableRows: =>
+    $(@tableRowSelector)
 
   popupOpened: (e) =>
-    @highlightShlaaRef(e.popup.options.shlaaRef)
+    @highlightLayerWithRef(e.popup.options.layerRef)
 
   featureClassList = (layer) ->
     $(layer._container).find('path,.leaflet-marker-icon').get(0).classList
@@ -52,18 +53,18 @@ class @SiteHighlighter
             $(layer._icon).addClass('highlight')
           , 500
 
-  highlightShlaaRef: (shlaaRef) ->
-    layer = @featureMap.layerByShlaaRef(shlaaRef)
+  highlightLayerWithRef: (ref) ->
+    layer = @featureMap.layerByRef(ref)
     if layer
       @unhighlight(@highlightedLayer)
-      siteRows().removeClass('highlighted')
+      @tableRows().removeClass('highlighted')
       @highlightedLayer = layer
       @highlight(layer)
-      $(".sites .site[data-shlaa-ref=#{shlaaRef}]").addClass('highlighted')
+      $("#{@tableRowSelector}[data-layer-ref=#{ref}]").addClass('highlighted')
 
-  siteRowClicked: (e) =>
+  tableRowClicked: (e) =>
     $row = $(e.currentTarget)
-    @highlightShlaaRef($row.attr('data-shlaa-ref'), $row)
+    @highlightLayerWithRef($row.attr('data-layer-ref'), $row)
 
 
 
